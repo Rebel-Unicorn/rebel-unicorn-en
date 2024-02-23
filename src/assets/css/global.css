@@ -12,6 +12,7 @@ body {
   background: #fff;
   position: relative;
   min-height: 100vh;
+  scroll-behavior: smooth;
 }
 
 #app {
@@ -21,4 +22,35 @@ body {
 svg {
   width: 100%;
   height: auto;
+}
+@keyframes rotateVector {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+@keyframes moveAlongTrack {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(100%);
+  }
+  /* 0% {
+    transform: translateY(0%);
+  }
+  50% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(-100%);
+  } */
 }
