@@ -1,44 +1,44 @@
 <template>
-  <div class="scroll-wrapper flex flex-nowrap overflow-x-hidden w-screen">
+  <div class="scroll-wrapper md:flex md:flex-nowrap overflow-x-hidden w-screen">
     <section
       id="home"
-      class="scroll-section section-1 h-screen w-screen flex items-center justify-center flex-shrink-0"
+      class="scroll-section section-1 md:h-screen h-[max-content] w-screen flex items-center justify-center flex-shrink-0"
     >
       <HomeModule />
     </section>
     <section
       id="services"
-      class="scroll-section section-2 h-screen w-screen flex items-center justify-center flex-shrink-0"
+      class="scroll-section section-2 md:h-screen h-[max-content] w-screen flex items-center justify-center flex-shrink-0"
     >
       <ServicesModule />
     </section>
     <section
       id="successes"
-      class="scroll-section section-3 h-screen w-screen flex items-center justify-center flex-shrink-0"
+      class="scroll-section section-3 md:h-screen h-[max-content] w-screen flex items-center justify-center flex-shrink-0"
     >
       <SuccessesModule />
     </section>
     <section
       id="successes"
-      class="scroll-section section-3 h-screen w-screen flex items-center justify-center flex-shrink-0"
+      class="scroll-section section-3 md:h-screen h-[max-content] w-screen flex items-center justify-center flex-shrink-0"
     >
       <SuccessProofModule />
     </section>
     <section
       id="coaching"
-      class="scroll-section section-4 h-screen w-screen flex items-center justify-center flex-shrink-0"
+      class="scroll-section section-4 md:h-screen h-[max-content] w-screen flex items-center justify-center flex-shrink-0"
     >
       <CoachingModule />
     </section>
     <section
       id="testimonials"
-      class="scroll-section section-5 h-screen w-screen flex items-center justify-center flex-shrink-0"
+      class="scroll-section section-5 md:h-screen h-[max-content] w-screen flex items-center justify-center flex-shrink-0"
     >
       <TestimonialsModule />
     </section>
     <section
       id="learn-more"
-      class="scroll-section section-6 h-screen w-screen flex items-center justify-center flex-shrink-0"
+      class="scroll-section section-6 md:h-screen h-[max-content] w-screen flex items-center justify-center flex-shrink-0"
     >
       <LearnMore />
     </section>
@@ -110,19 +110,21 @@ export default {
       const sections = gsap.utils.toArray(".scroll-section");
       // const sections = gsap.utils.toArray("section");
 
-      gsap.to(sections, {
-        xPercent: -100 * (sections.length - 1),
-        ease: "none",
-        scrollTrigger: {
-          trigger: ".scroll-wrapper",
-          pin: true,
-          scrub: 1,
-          snap: 1 / (sections.length - 1),
-          start: "center center",
-          end: () => "+=" + updatedWindowWidth.value,
-          // onToggle: (self) => console.log(self.isActive),
-        },
-      });
+      if (windowWidth.value > 767) {
+        gsap.to(sections, {
+          xPercent: -100 * (sections.length - 1),
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".scroll-wrapper",
+            pin: true,
+            scrub: 1,
+            snap: 1 / (sections.length - 1),
+            start: "center center",
+            end: () => "+=" + updatedWindowWidth.value,
+            // onToggle: (self) => console.log(self.isActive),
+          },
+        });
+      }
     });
 
     onUnmounted(() => {

@@ -1,9 +1,14 @@
 <template>
-  <div class="successes-background w-full h-full flex flex-1">
-    <VerticalAnimatedText content="Successes" />
-    <div class="ml-[58px] relative w-full h-full grid grid-cols-2">
+  <div
+    class="successes-background md:w-full w-[inherit] h-screen flex md:flex-row flex-col flex-1"
+  >
+    <VerticalAnimatedText content="Successes" v-if="windowWidth >= 767" />
+    <HorizontalAnimatedText v-else content="Successes" />
+    <div
+      class="lg:ml-[58px] md:mx-5 mx-4 relative md:w-full w-auto h-full flex md:flex-row md:flex-nowrap flex-col md:py-0 py-8"
+    >
       <div
-        class="left w-[calc(100%-130px)] h-full pb-[130px] flex flex-col justify-end"
+        class="left md:w-[calc(100%-130px)] w-full md:h-full h-[30%] md:pb-[130px] pb-[52px] flex flex-col md:justify-end"
       >
         <h2 class="text-[48px] leading-[50px] font-[600] mb-4">
           Hear more about our successes
@@ -27,7 +32,7 @@
         <!-- https://graduatecoach.co.uk/international-graduate-coaching/ -->
         <!-- https://graduatecoach.co.uk/one-to-one-coaching/ -->
       </div>
-      <div class="right w-full h-full">
+      <div class="right w-full md:h-full h-[70%]">
         <div class="success-vid-img w-full h-full">
           <button class="vid-utils">
             <span class="block play-icon hover:scale-90 transition-all">
@@ -95,12 +100,26 @@
 
 <script>
 import VerticalAnimatedText from "@/components/VerticalAnimatedText.vue";
+import HorizontalAnimatedText from "@/components/HorizontalAnimatedText.vue";
+import { ref, onMounted, onUnmounted } from "vue";
+
 export default {
   components: {
     VerticalAnimatedText,
+    HorizontalAnimatedText,
   },
   setup() {
-    return {};
+    const windowWidth = ref(window.innerWidth);
+    const updateWidth = () => {
+      windowWidth.value = window.innerWidth;
+    };
+    onMounted(() => {
+      document.addEventListener("resize", updateWidth());
+    });
+    onUnmounted(() => {
+      document.removeEventListener("resize", updateWidth());
+    });
+    return { windowWidth };
   },
 };
 </script>

@@ -1,10 +1,13 @@
 <template>
-  <div class="testimonials-background w-full h-full flex flex-1">
-    <VerticalAnimatedText content="Testimonials" />
+  <div
+    class="testimonials-background w-full h-full flex md:flex-row flex-col flex-1"
+  >
+    <VerticalAnimatedText content="Testimonials" v-if="windowWidth >= 767" />
+    <HorizontalAnimatedText v-else content="Testimonials" />
     <div
-      class="h-full w-full max-w-[calc(100%-200px)] mx-auto pt-[158px] pb-10 relative"
+      class="h-full md:w-full w-auto md:max-w-[calc(100%-200px)] md:mx-auto mx-4 md:pt-[158px] pt-8 md:pb-10 pb-[100px] relative"
     >
-      <div class="cards-container grid grid-cols-3 gap-12">
+      <div class="cards-container grid md:grid-cols-3 grid-cols-1 gap-12">
         <Card
           v-for="card in cardsData"
           :key="`${card.id}-${card.title}`"
@@ -14,7 +17,7 @@
           :footerContent="card.footerContent"
         />
       </div>
-      <div class="cta absolute bottom-10 right-10">
+      <div class="cta absolute bottom-10 md:right-10 left-0">
         <button class="rounded-full py-2 px-4 border border-black">
           Read More Testimonials
         </button>
@@ -25,11 +28,13 @@
 
 <script>
 import VerticalAnimatedText from "@/components/VerticalAnimatedText.vue";
-import { ref } from "vue";
+import HorizontalAnimatedText from "@/components/HorizontalAnimatedText.vue";
+import { ref, onMounted, onUnmounted } from "vue";
 import Card from "@/components/TestimonialCard.vue";
 export default {
   components: {
     VerticalAnimatedText,
+    HorizontalAnimatedText,
     Card,
   },
   setup() {
@@ -59,7 +64,17 @@ export default {
         footerContent: "Simon, International Graduate",
       },
     ]);
-    return { cardsData };
+    const windowWidth = ref(window.innerWidth);
+    const updateWidth = () => {
+      windowWidth.value = window.innerWidth;
+    };
+    onMounted(() => {
+      document.addEventListener("resize", updateWidth());
+    });
+    onUnmounted(() => {
+      document.removeEventListener("resize", updateWidth());
+    });
+    return { cardsData, windowWidth };
   },
 };
 </script>
