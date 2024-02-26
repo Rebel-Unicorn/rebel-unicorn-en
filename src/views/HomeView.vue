@@ -19,6 +19,12 @@
       <SuccessesModule />
     </section>
     <section
+      id="successes"
+      class="scroll-section section-3 h-screen w-screen flex items-center justify-center flex-shrink-0"
+    >
+      <SuccessProofModule />
+    </section>
+    <section
       id="coaching"
       class="scroll-section section-4 h-screen w-screen flex items-center justify-center flex-shrink-0"
     >
@@ -64,6 +70,7 @@ import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import HomeModule from "@/components/modules/HomeModule.vue";
 import ServicesModule from "@/components/modules/ServicesModule.vue";
 import SuccessesModule from "@/components/modules/SuccessesModule.vue";
+import SuccessProofModule from "@/components/modules/SuccessProof.vue";
 import CoachingModule from "@/components/modules/CoachingModule.vue";
 import TestimonialsModule from "@/components/modules/TestimonialsModule.vue";
 import LearnMore from "@/components/modules/LearnMore.vue";
@@ -74,6 +81,7 @@ export default {
     HomeModule,
     ServicesModule,
     SuccessesModule,
+    SuccessProofModule,
     CoachingModule,
     TestimonialsModule,
     LearnMore,
@@ -108,8 +116,9 @@ export default {
         scrollTrigger: {
           trigger: ".scroll-wrapper",
           pin: true,
-          scrub: 0.3,
+          scrub: 1,
           snap: 1 / (sections.length - 1),
+          start: "center center",
           end: () => "+=" + updatedWindowWidth.value,
           // onToggle: (self) => console.log(self.isActive),
         },

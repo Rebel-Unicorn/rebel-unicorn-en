@@ -4,7 +4,7 @@
   >
     <Logo />
     <button
-      class="text-[16px] leading-[19.36px] text-black rounded-full border border-black py-2 px-4 mix-blend-difference"
+      class="text-[16px] leading-[19.36px] text-black rounded-full border shadow-sm py-2 px-4 bg-[#ffffff7d] mix-blend-difference"
     >
       Apply now
     </button>

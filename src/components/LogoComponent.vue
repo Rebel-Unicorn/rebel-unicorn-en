@@ -1,5 +1,5 @@
 <template>
-  <div class="logo flex items-center w-[max-content] h-[36px]">
+  <div class="logo relative flex items-center w-[max-content] h-[36px] z-[1]">
     <div class="icon-type block relative">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -40,8 +40,13 @@ export default {
 .logo::after {
   content: "";
   position: absolute;
+  width: 120%;
+  height: 110%;
   inset: 0;
   z-index: -1;
-  color: white;
+  mix-blend-mode: multiply;
+  border-radius: 99999px;
+  left: -15px;
+  top: -2px;
 }
 </style>

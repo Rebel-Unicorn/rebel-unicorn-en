@@ -70,6 +70,7 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
   background-origin: initial;
+  image-resolution: 300dpi;
 }
 .button-container {
   position: relative;

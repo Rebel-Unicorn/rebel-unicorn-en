@@ -45,6 +45,10 @@
       <span class="slide-text-down">{{ content }}</span>
       <span class="slide-text-down">{{ content }}</span>
       <span class="slide-text-down">{{ content }}</span>
+      <span class="slide-text-down">{{ content }}</span>
+      <span class="slide-text-down">{{ content }}</span>
+      <span class="slide-text-down">{{ content }}</span>
+      <span class="slide-text-down">{{ content }}</span>
     </div>
   </div>
 </template>
@@ -331,7 +335,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 2rem;
+  padding: 0 1.8rem;
   border-right: solid 1px black;
   border-left: solid 1px black;
   position: relative;
@@ -353,10 +357,12 @@ export default {
   writing-mode: tb-rl;
 }
 .sticky-text span {
-  font-size: 3.6rem;
+  font-size: 3rem;
+  display: block;
 }
 .slide-text-down,
 .slide-text-up {
-  margin-top: 50px;
+  background-color: white;
+  padding: 50px 0;
 }
 </style>
