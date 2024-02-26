@@ -4,6 +4,7 @@ import "./registerServiceWorker";
 import router from "./router";
 import store from "./store";
 import "./assets/css/global.css";
+import "./assets/css/mediaQueries.css";
 // import { gsap } from "gsap";
 
 // window.gsap = gsap;

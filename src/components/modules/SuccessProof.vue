@@ -1,8 +1,8 @@
 <template>
   <div
-    class="success-proof-wrapper h-full w-full max-w-[calc(100%-222px)] mx-auto pt-[130px] pb-14"
+    class="success-proof-wrapper h-full w-full md:max-w-[calc(100%-222px)] max-w-full lg:mx-auto md:pt-[130px] pt-14 pb-14 md:mx-5 mx-4"
   >
-    <div class="heading w-full max-w-[43.3%] mb-10">
+    <div class="heading w-full md:max-w-[43.3%] max-w-full md:mb-10 mb-[62px]">
       <h2 class="text-[48px] leading-[50px] font-[600] mb-4">Our Successes</h2>
       <p class="leading-[24px] text-[rgba(0,0,0,0.7)]">
         We have helped over 5000 students land roles with organizations like
@@ -10,7 +10,7 @@
       </p>
     </div>
     <div
-      class="companies-wrapper w-full max-h-[calc(100vh-366px)] grid grid-cols-4 gap-5 gap-x-0 pb-8"
+      class="companies-wrapper w-full md:max-h-[calc(100vh-366px)] grid md:grid-cols-4 grid-cols-3 gap-8 md:gap-x-0 pb-8"
     >
       <img
         v-for="(company, id) in companyLogos"

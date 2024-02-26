@@ -1,10 +1,13 @@
 <template>
-  <div class="service-background w-full h-full flex flex-1">
-    <VerticalAnimatedText content="Services" />
+  <div
+    class="service-background w-full h-full flex flex-1 md:flex-row flex-col"
+  >
+    <VerticalAnimatedText content="Services" v-if="windowWidth >= 767" />
+    <HorizontalAnimatedText v-else content="Services" />
     <div
-      class="pt-[130px] mx-[58px] relative w-full h-full flex items-centers justify-between"
+      class="lg:pt-[130px] md:pt-[60px] pt-[30px] md:pb-0 pb-7 lg:mx-[58px] md:mx-5 mx-4 relative md:w-full w-auto h-full flex md:flex-row flex-col items-centers justify-between"
     >
-      <div class="left w-full h-full max-w-[644px]">
+      <div class="left w-full h-full max-w-[644px] md:mb-0 mb-[65px]">
         <h2 class="text-[48px] leading-[50px] font-[600] mb-4">
           Graduate career coaching services
         </h2>
@@ -18,7 +21,7 @@
           <Accordion :accordionData="items" />
         </div>
       </div>
-      <div class="right w-[440px] h-full pr-[10px]">
+      <div class="right w-full md:max-w-[440px] max-w-full h-full pr-[10px]">
         <div class="ft-img w-full h-[644px]"></div>
       </div>
     </div>
@@ -28,13 +31,25 @@
 <script>
 import VerticalAnimatedText from "@/components/VerticalAnimatedText.vue";
 import Accordion from "@/components/disclosure/DisclosureComponent.vue";
-import { ref } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
+import HorizontalAnimatedText from "@/components/HorizontalAnimatedText.vue";
 export default {
   components: {
     VerticalAnimatedText,
     Accordion,
+    HorizontalAnimatedText,
   },
   setup() {
+    const windowWidth = ref(window.innerWidth);
+    const updateWidth = () => {
+      windowWidth.value = window.innerWidth;
+    };
+    onMounted(() => {
+      document.addEventListener("resize", updateWidth());
+    });
+    onUnmounted(() => {
+      document.removeEventListener("resize", updateWidth());
+    });
     const items = ref([
       {
         id: 1,
@@ -75,6 +90,7 @@ export default {
     ]);
     return {
       items,
+      windowWidth,
     };
   },
 };

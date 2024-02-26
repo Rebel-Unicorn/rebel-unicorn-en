@@ -1,12 +1,17 @@
 <template>
-  <div class="coaching-background w-full h-full flex flex-1">
-    <VerticalAnimatedText content="Coaching" />
-    <div class="relative w-full h-full grid grid-cols-2">
-      <div class="left w-full h-full">
+  <div
+    class="coaching-background w-full h-full flex md:flex-row flex-col flex-1"
+  >
+    <VerticalAnimatedText content="Coaching" v-if="windowWidth >= 767" />
+    <HorizontalAnimatedText v-else content="Coaching" />
+    <div
+      class="relative w-full h-full md:grid grid-cols-2 flex flex-col md:my-0 my-4"
+    >
+      <div class="left w-full md:h-full h-[345px]">
         <div class="coaching-img w-full h-full"></div>
       </div>
       <div
-        class="right w-[calc(100%-130px)] h-full pt-[130px] ml-[58px] flex flex-col justify-start"
+        class="right md:w-[calc(100%-130px)] w-auto h-full md:pt-[130px] pt-[56px] md:mx-0 mx-4 md:ml-[58px] flex flex-col justify-start"
       >
         <h2 class="text-[48px] leading-[50px] font-[600] mb-4">
           Our career coaches help you to...
@@ -26,12 +31,14 @@
 <script>
 import VerticalAnimatedText from "@/components/VerticalAnimatedText.vue";
 import Accordion from "@/components/disclosure/DisclosureComponent.vue";
-import { ref } from "vue";
+import HorizontalAnimatedText from "@/components/HorizontalAnimatedText.vue";
+import { ref, onMounted, onUnmounted } from "vue";
 
 export default {
   components: {
     VerticalAnimatedText,
     Accordion,
+    HorizontalAnimatedText,
   },
   setup() {
     const items = ref([
@@ -54,7 +61,17 @@ export default {
           "Our one-to-one graduate coaching transforms your career prospects with lifelong skills gained through personal mentorship, practical tasks and an introduction to a network of contacts.",
       },
     ]);
-    return { items };
+    const windowWidth = ref(window.innerWidth);
+    const updateWidth = () => {
+      windowWidth.value = window.innerWidth;
+    };
+    onMounted(() => {
+      document.addEventListener("resize", updateWidth());
+    });
+    onUnmounted(() => {
+      document.removeEventListener("resize", updateWidth());
+    });
+    return { items, windowWidth };
   },
 };
 </script>
@@ -67,5 +84,15 @@ export default {
   background-size: cover;
   background-origin: initial;
   image-resolution: 300dpi;
+}
+@media only screen and (max-width: 48em) {
+  .coaching-img {
+    background: url(../../assets/webp/coaching-image-small.webp);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-origin: initial;
+    image-resolution: 300dpi;
+  }
 }
 </style>

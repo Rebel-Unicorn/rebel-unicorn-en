@@ -1,6 +1,6 @@
 <template>
   <header
-    class="w-full py-[40px] flex items-center justify-between fixed top-0 left-0 z-50 px-[90px]"
+    class="w-full py-[40px] flex items-center justify-between fixed top-0 left-0 z-50 lg:px-[90px] md:px-6 px-4"
   >
     <Logo />
     <button

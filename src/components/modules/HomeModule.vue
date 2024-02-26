@@ -1,9 +1,13 @@
 <template>
-  <div class="home-background w-full h-full grid grid-cols-2">
+  <div
+    class="home-background w-full h-full min-h-screen flex md:flex-row flex-col flex-nowrap md:pb-0 pb-7"
+  >
     <div
-      class="left h-full flex flex-col items-start justify-start pt-[122px] mx-[90px] relative"
+      class="left md:w-[40%] w-auto md:h-full h-screen flex flex-col items-start justify-start pt-[122px] lg:mx-[90px] md:mx-[45px] mx-4 relative"
     >
-      <h1 class="mt-[70px] mb-3 text-[82px] leading-[82.75px] font-[600]">
+      <h1
+        class="mt-[70px] mb-3 xl:text-[82px] lg:text-[60px] md:text-[55px] text-[48px] xl:leading-[82.75px] lg:leading-[62.8px] md:leading-[55.8px] leading-[48.8px] font-[600]"
+      >
         We turn degrees into careers
       </h1>
       <p class="leading-6 text-[rgba(0,0,0,0.7)]">
@@ -11,7 +15,7 @@
         over 5000 students and graduates land graduate-level jobs and boost
         their career development with our expert career advice.
       </p>
-      <div class="button-container translate-y-[90px] translate-x-6">
+      <div class="button-container translate-y-[160px] translate-x-6">
         <!-- <span class="rotating-text"></span> -->
         <button class="my-button">
           <span class="block w-[40px]">
@@ -33,7 +37,7 @@
         </button>
       </div>
     </div>
-    <div class="right"></div>
+    <div class="right md:w-[58.8%] w-full h-screen"></div>
   </div>
 </template>
 
