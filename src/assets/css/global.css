@@ -1,0 +1,56 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Pontano+Sans:wght@300..700&display=swap'); */
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 16px;
+  background: #fff;
+  position: relative;
+  min-height: 100vh;
+  scroll-behavior: smooth;
+}
+
+#app {
+  font-family: "Instrument Sans", sans-serif;
+}
+
+svg {
+  width: 100%;
+  height: auto;
+}
+@keyframes rotateVector {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+@keyframes moveAlongTrack {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(100%);
+  }
+  /* 0% {
+    transform: translateY(0%);
+  }
+  50% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(-100%);
+  } */
+}
