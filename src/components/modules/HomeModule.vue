@@ -17,7 +17,7 @@
       </p>
       <div class="button-container translate-y-[160px] translate-x-6">
         <!-- <span class="rotating-text"></span> -->
-        <button class="my-button">
+        <button id="sign-up" class="sign-up-btn">
           <span class="block w-[40px]">
             <svg
               width="41"
@@ -80,7 +80,7 @@ export default {
   position: relative;
 }
 
-.my-button {
+.sign-up-btn {
   background-color: #9747ff;
   color: #fff;
   height: 100px;
@@ -94,7 +94,7 @@ export default {
   align-items: center;
   justify-content: center;
 }
-.my-button::before {
+.sign-up-btn::before {
   content: "";
   background: url(../../assets/webp/cta-vector.png);
   background-position: center;
