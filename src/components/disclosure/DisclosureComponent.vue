@@ -7,7 +7,7 @@
         v-slot="{ open, close }"
       >
         <DisclosureButton
-          class="flex justify-between w-full px-[10px] py-4 text-[16px] leading-[24px] font-normal text-left text-[rgba(0,0,0,0.7)]"
+          class="flex justify-between w-full px-[10px] py-4 text-[16px] leading-[24px] font-normal text-left text-[rgba(0,0,0,0.7)] outline-transparent ring-transparent ring-offset-transparent focus:outline-none focus-visible:ring"
           :class="!open && 'border-b-[1px] border-[rgba(0,0,0,0.7)]'"
         >
           <span>{{ item.title }}</span>
@@ -33,12 +33,12 @@
           </span>
         </DisclosureButton>
         <DisclosurePanel
-          class="panel transition-all opacity-0 duration-200 max-h-0 overflow-hidden"
+          class="panel transition-all opacity-0 duration-200 max-h-0 overflow-hidden outline-transparent ring-transparent ring-offset-transparent focus:outline-none focus-visible:ring"
           :class="
             open &&
             'max-h-[max-content] opacity-100 border-b-[1px] border-[rgba(0,0,0,0.7)] px-[10px]'
           "
-          static
+          unmount
         >
           <div class="pt-[10px] pb-4 text-[15px] leading-20 text-gray-500">
             {{ decode(item.content) }}
@@ -50,6 +50,7 @@
           :data-id="item.id"
           v-show="false"
           @click="doClose(close)"
+          class="outline-transparent ring-transparent ring-offset-transparent focus:outline-none focus-visible:ring"
         ></button>
         <DisclosureStateEmitter :show="open" @show="hideOther(item.id)" />
       </Disclosure>
