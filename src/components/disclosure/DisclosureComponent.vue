@@ -7,7 +7,7 @@
         v-slot="{ open, close }"
       >
         <DisclosureButton
-          class="flex justify-between w-full px-[10px] py-4 text-[16px] leading-[24px] font-normal text-left text-[rgba(0,0,0,0.7)] outline-transparent ring-transparent ring-offset-transparent focus:outline-none focus-visible:ring"
+          class="flex justify-between w-full px-[10px] lg:py-4 py-3 lg:text-[16px] text-[14px] leading-[24px] font-normal text-left text-[rgba(0,0,0,0.7)] outline-transparent ring-transparent ring-offset-transparent focus:outline-none focus-visible:ring"
           :class="!open && 'border-b-[1px] border-[rgba(0,0,0,0.7)]'"
         >
           <span>{{ item.title }}</span>

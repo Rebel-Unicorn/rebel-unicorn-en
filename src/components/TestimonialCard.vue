@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <div class="top h-[276px] w-auto mb-8">
+    <div class="top lg:h-[276px] h-auto w-auto mb-8">
       <img :src="image" :alt="`${title}-image`" class="h-full" />
     </div>
     <div class="bottom max-h-[300px] w-auto py-[10px]">

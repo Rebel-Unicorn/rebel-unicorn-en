@@ -1,17 +1,15 @@
 <template>
   <div
-    class="coaching-background w-full h-full flex md:flex-row flex-col flex-1"
+    class="coaching-background w-full h-full flex flex-1 md:flex-row flex-col"
   >
     <VerticalAnimatedText content="Coaching" v-if="windowWidth >= 767" />
     <HorizontalAnimatedText v-else content="Coaching" />
-    <div
-      class="relative w-full h-full md:grid grid-cols-2 flex flex-col md:my-0 my-4"
-    >
+    <div class="relative w-full h-full lg:grid grid-cols-2 flex flex-col">
       <div class="left w-full md:h-full h-[345px]">
         <div class="coaching-img w-full h-full"></div>
       </div>
       <div
-        class="right md:w-[calc(100%-130px)] w-auto h-full md:pt-[130px] pt-[56px] md:mx-0 mx-4 md:ml-[58px] flex flex-col justify-start"
+        class="right md:w-[calc(100%-130px)] w-auto h-full md:pt-[130px] pt-[56px] md:mx-0 mx-4 md:ml-[58px] md:mb-0 mb-6 flex flex-col justify-start"
       >
         <h2 class="text-[48px] leading-[50px] font-[600] mb-4">
           Our career coaches help you to...

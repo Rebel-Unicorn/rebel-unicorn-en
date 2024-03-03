@@ -1,16 +1,18 @@
 <template>
   <div
-    class="successes-background md:w-full w-[inherit] h-screen flex md:flex-row flex-col flex-1"
+    class="successes-background lg:w-screen w-[inherit] h-screen flex md:flex-row flex-col flex-1"
   >
     <VerticalAnimatedText content="Successes" v-if="windowWidth >= 767" />
     <HorizontalAnimatedText v-else content="Successes" />
     <div
-      class="lg:ml-[58px] md:mx-5 mx-4 relative md:w-full w-auto h-full flex md:flex-row md:flex-nowrap flex-col md:py-0 py-8"
+      class="sm:mx-[58px] lg:mx-0 mx-4 relative lg:w-[inherit] w-auto h-full flex lg:flex-row lg:flex-nowrap flex-col lg:py-0 py-8 xl:pt-0 sm:pt-[130px] pt-[60px]"
     >
       <div
-        class="left md:w-[calc(100%-130px)] w-full md:h-full h-[30%] md:pb-[130px] pb-[52px] flex flex-col md:justify-end"
+        class="left xl:ml-[58px] lg:w-[calc(100%-130px)] w-full lg:h-[30%] xl:h-full lg:pb-[130px] pb-[52px] flex flex-col xl:justify-end"
       >
-        <h2 class="text-[48px] leading-[50px] font-[600] mb-4">
+        <h2
+          class="lg:text-[48px] text-[38px] lg:leading-[50px] leading-[38px] font-[600] mb-4"
+        >
           Hear more about our successes
         </h2>
         <p class="leading-[24px] text-[rgba(0,0,0,0.7)]">
@@ -32,7 +34,7 @@
         <!-- https://graduatecoach.co.uk/international-graduate-coaching/ -->
         <!-- https://graduatecoach.co.uk/one-to-one-coaching/ -->
       </div>
-      <div class="right w-full md:h-full h-[70%]">
+      <div class="right w-full h-full">
         <div class="success-vid-img w-full h-full">
           <button class="vid-utils">
             <span class="block play-icon hover:scale-90 transition-all">

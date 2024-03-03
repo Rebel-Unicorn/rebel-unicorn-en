@@ -7,7 +7,9 @@
     <div
       class="h-full md:w-full w-auto md:max-w-[calc(100%-200px)] md:mx-auto mx-4 md:pt-[158px] pt-8 md:pb-10 pb-[100px] relative"
     >
-      <div class="cards-container grid md:grid-cols-3 grid-cols-1 gap-12">
+      <div
+        class="cards-container grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:gap-12 gap-8"
+      >
         <Card
           v-for="card in cardsData"
           :key="`${card.id}-${card.title}`"
