@@ -3,7 +3,7 @@
     class="home-background w-full h-full min-h-screen flex lg:flex-row flex-col flex-nowrap md:pb-0 pb-7"
   >
     <div
-      class="left lg:w-[40%] w-auto h-screen lg:h-full flex flex-col items-start lg:justify-start justify-center pt-[122px] sm:mx-10 lg:mx-[90px] mx-4 relative"
+      class="left xl:w-[40%] w-auto h-screen xl:h-full flex flex-col items-start xl:justify-start justify-center pt-[122px] sm:mx-10 xl:mx-[90px] mx-4 relative"
     >
       <h1
         class="mt-[70px] mb-3 xl:text-[82px] lg:text-[55px] text-[48px] xl:leading-[82.75px] lg:leading-[55.8px] leading-[48.8px] font-[600]"
@@ -37,7 +37,9 @@
         </button>
       </div>
     </div>
-    <div class="right lg:w-[58.8%] w-full h-screen"></div>
+    <div
+      class="right xl:w-[58.8%] w-full xl:h-screen lg:h-[1860px] md:h-[1200px] h-[500px]"
+    ></div>
   </div>
 </template>
 
@@ -75,6 +77,16 @@ export default {
   background-size: cover;
   background-origin: initial;
   image-resolution: 300dpi;
+}
+@media only screen and (max-width: 1281px) {
+  .home-background .right {
+    background: url(../../assets/svg/home-img-2.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-origin: initial;
+    image-resolution: 300dpi;
+  }
 }
 
 .sign-up-btn {

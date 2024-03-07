@@ -2,11 +2,11 @@
   <div
     class="learn-more-background w-full h-full flex md:flex-row flex-col flex-1"
   >
-    <VerticalAnimatedText content="Learn more" v-if="windowWidth >= 767" />
+    <VerticalAnimatedText content="Learn more" v-if="windowWidth >= 769" />
     <HorizontalAnimatedText v-else content="Learn more" />
-    <div class="flex md:flex-row flex-col w-full h-full">
+    <div class="flex lg:flex-row flex-col w-full h-full">
       <div
-        class="left footer-img-container relative md:w-[63.3%] w-full h-screen md:max-h-full max-h-[489px]"
+        class="left footer-img-container relative lg:w-[63.3%] w-full h-screen lg:max-h-full max-h-[489px]"
       >
         <!-- <img src="" alt="">
         <img src="" alt="">

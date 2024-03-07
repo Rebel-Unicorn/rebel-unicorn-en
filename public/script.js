@@ -2,7 +2,7 @@ import { gsap } from "gsap";
 
 verticalLoop(".slide-text-down", {
   repeat: -1,
-  speed: 1,
+  speed: 0.3,
 });
 function verticalLoop(items, config) {
   // console.log(items, "items");

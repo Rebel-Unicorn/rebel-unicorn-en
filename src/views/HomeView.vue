@@ -1,64 +1,81 @@
 <template>
-  <div class="scroll-wrapper md:flex md:flex-nowrap overflow-x-hidden w-screen">
+  <div class="scroll-wrapper xl:flex xl:flex-nowrap overflow-x-hidden w-screen">
     <section
       id="home"
-      class="scroll-section section-1 md:h-screen h-[max-content] w-screen flex items-center justify-center flex-shrink-0"
+      class="scroll-section section-1 md:h-screen h-auto w-screen flex items-center justify-center flex-shrink-0"
     >
       <HomeModule />
     </section>
     <section
       id="services"
-      class="scroll-section section-2 md:h-screen h-[max-content] w-screen flex items-center justify-center flex-shrink-0"
+      class="scroll-section section-2 xl:h-screen h-auto w-screen flex items-center justify-center flex-shrink-0"
     >
       <ServicesModule />
     </section>
     <section
       id="successes"
-      class="scroll-section section-3 md:h-screen h-[max-content] w-[200vw] flex items-center justify-center flex-shrink-0"
+      class="scroll-section section-3 h-[200vh] xl:h-screen xl:w-[200vw] md:w-screen w-full flex xl:flex-row flex-col items-center justify-center flex-shrink-0"
     >
       <SuccessesModule />
-      <SuccessProofModule />
     </section>
     <!-- <section
       id="success-proof"
-      class="section-4 md:h-screen h-[max-content] w-screen block flex-shrink-0"
+      class="section-4 md:h-screen h-auto w-screen block flex-shrink-0"
     >
       <SuccessProofModule />
     </section> -->
     <section
       id="coaching"
-      class="scroll-section section-5 md:h-screen h-[max-content] w-screen flex items-center justify-center flex-shrink-0"
+      class="scroll-section section-5 md:h-screen h-screen w-screen flex items-center justify-center flex-shrink-0"
     >
       <CoachingModule />
     </section>
     <section
       id="testimonials"
-      class="scroll-section section-6 md:h-screen h-[max-content] w-screen flex items-center justify-center flex-shrink-0"
+      class="scroll-section section-6 md:h-screen h-auto w-screen flex items-center justify-center flex-shrink-0"
     >
       <TestimonialsModule />
     </section>
     <section
       id="learn-more"
-      class="scroll-section section-7 md:h-screen h-[max-content] w-screen flex items-center justify-center flex-shrink-0"
+      class="scroll-section section-7 md:h-screen h-auto w-screen flex items-center justify-center flex-shrink-0"
     >
       <LearnMore />
     </section>
   </div>
   <div
-    class="w-full max-w-[max-content] fixed bottom-[50px] left-[50%] translate-x-[-50%] rounded-full p-1 backdrop-blur-lg backdrop-opacity-80 shadow-md bg-[#80808073]"
+    class="w-full max-w-[632px] fixed bottom-[50px] left-[50%] translate-x-[-50%] rounded-full p-1 backdrop-blur-lg backdrop-opacity-80 shadow-md bg-[#80808073] sm:mx-0 mx-1"
   >
-    <nav class="bottom-nav w-full rounded-full flex items-center">
+    <nav
+      v-if="windowWidth > 1281"
+      class="bottom-nav w-full rounded-full flex items-center overflow-x-auto"
+    >
       <div
         v-for="url in urls"
         :key="url.id"
         :data-section="url.href"
         :class="[
-          `py-2 px-4 rounded-full font-normal text-[16px] leading-[19.36px] text-white cursor-pointer`,
-          `${url.id === 1 && 'nav-active'}`,
+          `sm:py-2 py-[5px] sm:px-4 px-2 rounded-full font-normal text-[16px] leading-[19.36px] text-white cursor-pointer transition duration-300 delay-500 ease-in-out whitespace-nowrap`,
         ]"
       >
         {{ url.name }}
       </div>
+    </nav>
+    <nav
+      v-else
+      class="bottom-nav w-full rounded-full flex items-center overflow-x-auto"
+    >
+      <a
+        v-for="url in urls"
+        :key="url.id"
+        :data-section="url.href"
+        :href="`#${url.href}`"
+        :class="[
+          `sm:py-2 py-[5px] sm:px-4 px-2 rounded-full font-normal text-[16px] leading-[19.36px] text-white cursor-pointer transition duration-300 delay-50 ease-in-out whitespace-nowrap`,
+        ]"
+      >
+        {{ url.name }}
+      </a>
     </nav>
   </div>
 </template>
@@ -72,7 +89,7 @@ import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import HomeModule from "@/components/modules/HomeModule.vue";
 import ServicesModule from "@/components/modules/ServicesModule.vue";
 import SuccessesModule from "@/components/modules/SuccessesModule.vue";
-import SuccessProofModule from "@/components/modules/SuccessProof.vue";
+// import SuccessProofModule from "@/components/modules/SuccessProof.vue";
 import CoachingModule from "@/components/modules/CoachingModule.vue";
 import TestimonialsModule from "@/components/modules/TestimonialsModule.vue";
 import LearnMore from "@/components/modules/LearnMore.vue";
@@ -83,7 +100,7 @@ export default {
     HomeModule,
     ServicesModule,
     SuccessesModule,
-    SuccessProofModule,
+    // SuccessProofModule,
     CoachingModule,
     TestimonialsModule,
     LearnMore,
@@ -101,6 +118,7 @@ export default {
     const updateWidth = () => {
       windowWidth.value = window.innerWidth;
     };
+
     onBeforeMount(() => {
       gsap.registerPlugin(ScrollTrigger);
       gsap.registerPlugin(ScrollToPlugin);
@@ -108,6 +126,10 @@ export default {
     onMounted(() => {
       // const activeSection = ref();
       document.addEventListener("resize", updateWidth());
+      window.addEventListener("resize", () => {
+        console.log("resized");
+        window.location.reload();
+      });
       const nav = gsap.utils.toArray("nav div");
       const setActiveNavLink = (sectionId) => {
         // Remove active class from all nav links
@@ -133,7 +155,60 @@ export default {
       const sections = gsap.utils.toArray(".scroll-section");
       // const navbarLinks = document.querySelectorAll(".navbar div");
 
-      if (windowWidth.value > 767) {
+      const checkSectionsInViewport = () => {
+        let observerOptions = {
+          root: null, // Use the viewport as the root
+          rootMargin: "0px", // No margin
+          threshold: 0.46, // 0.5 to trigger when 50% of the section is visible or 0 to update dynamically
+        };
+        const getTotalWidth = () => {
+          return sections.reduce(
+            (total, section) => total + section.offsetWidth,
+            0
+          );
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            const section = entry.target;
+            const sectionWidth = section.offsetWidth;
+            const totalWidth = getTotalWidth(); // Function to calculate the total width of all sections
+
+            // Calculate a dynamic threshold based on the section's width
+            let dynamicThreshold = Math.min(
+              1,
+              entry.intersectionRatio * (sectionWidth / totalWidth)
+            );
+            // console.log((dynamicThreshold /= 2), "threshold");
+
+            // Update the threshold value in the options dynamically
+            observerOptions.threshold = dynamicThreshold;
+
+            const activeLink =
+              windowWidth.value > 1281
+                ? document.querySelector(
+                    `nav div[data-section="${section.id}"]`
+                  )
+                : document.querySelector(`nav a[data-section="${section.id}"]`);
+            // console.log(activeLink);
+            if (entry.isIntersecting) {
+              // console.log(`Section ${section.id} is in the viewport.`);
+              // Perform actions for the section in the viewport
+              activeLink.classList.add("nav-active");
+            } else {
+              // console.log(`Section ${section.id} is out of the viewport.`);
+              // Perform actions when the section is out of the viewport
+              activeLink.classList.remove("nav-active");
+            }
+          });
+        }, observerOptions);
+        sections.forEach((section) => {
+          observer.observe(section);
+        });
+      };
+      checkSectionsInViewport();
+
+      if (windowWidth.value > 1281) {
         let nav = gsap.utils.toArray("nav div"),
           getMaxWidth = () =>
             sections.reduce(
@@ -180,54 +255,6 @@ export default {
                 onUpdate: () => setActiveNavLink(section.id),
               });
             });
-          });
-        };
-
-        const checkSectionsInViewport = () => {
-          let observerOptions = {
-            root: null, // Use the viewport as the root
-            rootMargin: "0px", // No margin
-            threshold: 0.46, // 0.5 to trigger when 50% of the section is visible or 0 to update dynamically
-          };
-          const getTotalWidth = () => {
-            return sections.reduce(
-              (total, section) => total + section.offsetWidth,
-              0
-            );
-          };
-
-          const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-              const section = entry.target;
-              const sectionWidth = section.offsetWidth;
-              const totalWidth = getTotalWidth(); // Function to calculate the total width of all sections
-
-              // Calculate a dynamic threshold based on the section's width
-              let dynamicThreshold = Math.min(
-                1,
-                entry.intersectionRatio * (sectionWidth / totalWidth)
-              );
-              // console.log((dynamicThreshold /= 2), "threshold");
-
-              // Update the threshold value in the options dynamically
-              observerOptions.threshold = dynamicThreshold;
-
-              const activeLink = document.querySelector(
-                `nav div[data-section="${section.id}"]`
-              );
-              if (entry.isIntersecting) {
-                // console.log(`Section ${section.id} is in the viewport.`);
-                // Perform actions for the section in the viewport
-                activeLink.classList.add("nav-active");
-              } else {
-                // console.log(`Section ${section.id} is out of the viewport.`);
-                // Perform actions when the section is out of the viewport
-                activeLink.classList.remove("nav-active");
-              }
-            });
-          }, observerOptions);
-          sections.forEach((section) => {
-            observer.observe(section);
           });
         };
 
@@ -291,9 +318,12 @@ export default {
 
     onUnmounted(() => {
       document.removeEventListener("resize", updateWidth());
+      window.removeEventListener("resize", () => {
+        window.location.reload();
+      });
     });
 
-    return { urls };
+    return { urls, windowWidth };
   },
 };
 
@@ -322,6 +352,10 @@ section {
   background-color: aquamarine;
 }
 nav div.nav-active {
+  background-color: rgba(242, 232, 254, 1);
+  color: rgba(151, 71, 255, 1) !important;
+}
+nav a.nav-active {
   background-color: rgba(242, 232, 254, 1);
   color: rgba(151, 71, 255, 1) !important;
 }

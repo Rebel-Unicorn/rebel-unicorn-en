@@ -1,15 +1,18 @@
 const state = {
-  sections: [],
+  modalActive: {
+    status: false,
+    message: null,
+  },
 };
 const getters = {};
 const mutations = {
-  setSections(state, sections) {
-    state.sections = sections;
+  setModalActive(state, modalActive) {
+    state.modalActive = modalActive;
   },
 };
 const actions = {
-  setSections({ commit }, sections) {
-    commit("setSections", sections);
+  setModalActive({ commit }, modalActive) {
+    commit("setModalActive", modalActive);
   },
 };
 
