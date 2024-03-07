@@ -1,24 +1,32 @@
 <template>
   <div
-    class="success-proof-wrapper h-full w-full md:max-w-[calc(100%-222px)] max-w-full lg:mx-auto md:pt-[130px] pt-14 pb-14 md:mx-5 mx-4"
+    class="success-proof-wrapper lg:h-screen h-full lg:w-screen md:pt-[130px] py-14 sm:px-[58px] lg:px-[90px] px-4 lg:block flex flex-col justify-center"
   >
-    <div class="heading w-full md:max-w-[43.3%] max-w-full md:mb-10 mb-[62px]">
-      <h2 class="text-[48px] leading-[50px] font-[600] mb-4">Our Successes</h2>
-      <p class="leading-[24px] text-[rgba(0,0,0,0.7)]">
-        We have helped over 5000 students land roles with organizations like
-        these
-      </p>
-    </div>
-    <div
-      class="companies-wrapper w-full md:max-h-[calc(100vh-366px)] grid md:grid-cols-4 grid-cols-3 gap-8 md:gap-x-0 pb-8"
-    >
-      <img
-        v-for="(company, id) in companyLogos"
-        :key="`${company.name}-$${id}`"
-        class="my-2"
-        :src="company.url"
-        :alt="`${company.name} logo`"
-      />
+    <div class="w-full">
+      <div
+        class="heading w-full md:max-w-[43.3%] max-w-full md:mb-10 mb-[62px]"
+      >
+        <h2
+          class="lg:text-[48px] text-[38px] lg:leading-[50px] leading-[38px] font-[600] mb-4"
+        >
+          Our Successes
+        </h2>
+        <p class="leading-[24px] text-[rgba(0,0,0,0.7)]">
+          We have helped over 5000 students land roles with organizations like
+          these
+        </p>
+      </div>
+      <div
+        class="companies-wrapper w-full grid md:grid-cols-4 grid-cols-3 items-center justify-items-center gap-5 lg:gap-y-5 lg:gap-x-5 pb-8"
+      >
+        <img
+          v-for="(company, id) in companyLogos"
+          :key="`${company.name}-$${id}`"
+          class="my-2"
+          :src="company.url"
+          :alt="`${company.name} logo`"
+        />
+      </div>
     </div>
   </div>
 </template>

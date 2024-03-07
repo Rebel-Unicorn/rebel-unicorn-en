@@ -1,21 +1,21 @@
 <template>
   <div
-    class="home-background w-full h-full min-h-screen flex md:flex-row flex-col flex-nowrap md:pb-0 pb-7"
+    class="home-background w-full h-full min-h-screen flex lg:flex-row flex-col flex-nowrap md:pb-0 pb-7"
   >
     <div
-      class="left md:w-[40%] w-auto md:h-full h-screen flex flex-col items-start justify-start pt-[122px] lg:mx-[90px] md:mx-[45px] mx-4 relative"
+      class="left xl:w-[40%] w-auto h-screen xl:h-full flex flex-col items-start xl:justify-start justify-center pt-[122px] sm:mx-10 xl:mx-[90px] mx-4 relative"
     >
       <h1
-        class="mt-[70px] mb-3 xl:text-[82px] lg:text-[60px] md:text-[55px] text-[48px] xl:leading-[82.75px] lg:leading-[62.8px] md:leading-[55.8px] leading-[48.8px] font-[600]"
+        class="mt-[70px] mb-3 xl:text-[82px] lg:text-[55px] text-[48px] xl:leading-[82.75px] lg:leading-[55.8px] leading-[48.8px] font-[600]"
       >
         We turn degrees into careers
       </h1>
-      <p class="leading-6 text-[rgba(0,0,0,0.7)]">
+      <p class="leading-6 text-[rgba(0,0,0,0.7)] mb-[75px]">
         We are the UK's leading graduate career coaching company. We have helped
         over 5000 students and graduates land graduate-level jobs and boost
         their career development with our expert career advice.
       </p>
-      <div class="button-container translate-y-[160px] translate-x-6">
+      <div class="button-container relative ml-8">
         <!-- <span class="rotating-text"></span> -->
         <button id="sign-up" class="sign-up-btn">
           <span class="block w-[40px]">
@@ -37,7 +37,9 @@
         </button>
       </div>
     </div>
-    <div class="right md:w-[58.8%] w-full h-screen"></div>
+    <div
+      class="right xl:w-[58.8%] w-full xl:h-screen lg:h-[1860px] md:h-[1200px] h-[500px]"
+    ></div>
   </div>
 </template>
 
@@ -76,8 +78,15 @@ export default {
   background-origin: initial;
   image-resolution: 300dpi;
 }
-.button-container {
-  position: relative;
+@media only screen and (max-width: 1281px) {
+  .home-background .right {
+    background: url(../../assets/svg/home-img-2.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-origin: initial;
+    image-resolution: 300dpi;
+  }
 }
 
 .sign-up-btn {

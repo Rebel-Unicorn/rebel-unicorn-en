@@ -1,5 +1,5 @@
 import { createStore } from "vuex";
-import createPersistedState from "vuex-persistedstate";
+// import createPersistedState from "vuex-persistedstate";
 import app from "./modules/app";
 
 export default createStore({
@@ -9,5 +9,5 @@ export default createStore({
   modules: {
     app,
   },
-  plugins: [createPersistedState()],
+  // plugins: [createPersistedState()],
 });

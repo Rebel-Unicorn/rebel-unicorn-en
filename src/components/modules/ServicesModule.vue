@@ -2,13 +2,17 @@
   <div
     class="service-background w-full h-full flex flex-1 md:flex-row flex-col"
   >
-    <VerticalAnimatedText content="Services" v-if="windowWidth >= 767" />
+    <VerticalAnimatedText content="Services" v-if="windowWidth >= 769" />
     <HorizontalAnimatedText v-else content="Services" />
     <div
-      class="lg:pt-[130px] md:pt-[60px] pt-[30px] md:pb-0 pb-7 lg:mx-[58px] md:mx-5 mx-4 relative md:w-full w-auto h-full flex md:flex-row flex-col items-centers justify-between"
+      class="lg:pt-[130px] sm:pt-[130px] pt-[60px] lg:pb-0 pb-7 sm:mx-[58px] lg:mx-10 mx-4 relative lg:w-full md:!w-[calc(100vw-18px)] w-auto xl:h-full h-screen flex xl:flex-row flex-col items-center xl:justify-between"
     >
-      <div class="left w-full h-full max-w-[644px] md:mb-0 mb-[65px]">
-        <h2 class="text-[48px] leading-[50px] font-[600] mb-4">
+      <div
+        class="left w-full xl:h-full lg:max-w-[644px] lg:mb-0 sm:mb-[65px] mb-[45px]"
+      >
+        <h2
+          class="lg:text-[48px] text-[38px] lg:leading-[50px] leading-[38px] font-[600] mb-4 lg:max-w-[644px] max-w-[504px]"
+        >
           Graduate career coaching services
         </h2>
         <p class="leading-[24px] text-[rgba(0,0,0,0.7)]">
@@ -21,8 +25,10 @@
           <Accordion :accordionData="items" />
         </div>
       </div>
-      <div class="right w-full md:max-w-[440px] max-w-full h-full pr-[10px]">
-        <div class="ft-img w-full h-[644px]"></div>
+      <div
+        class="right w-full xl:max-w-[440px] max-w-full xl:h-full lg:pl-[20px] pl-0"
+      >
+        <div class="ft-img w-full lg:h-[644px] md:h-[600px] sm:h-[400px]"></div>
       </div>
     </div>
   </div>
