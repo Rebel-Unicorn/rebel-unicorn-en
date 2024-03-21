@@ -1,7 +1,7 @@
 <template>
-  <div class="card hover:rounded-md">
+  <div class="card hover:rounded-md hover:cursor-pointer">
     <div class="top lg:h-[276px] h-auto w-auto mb-8">
-      <img :src="image" :alt="`${title}-image`" class="h-full" />
+      <img :src="image" :alt="`${title}-image`" class="h-full blur-lg" />
     </div>
     <div class="bottom max-h-[300px] w-auto py-[10px]">
       <div class="content h-[max-content] max-h-[260px] overflow-hidden mb-3">

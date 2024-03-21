@@ -336,8 +336,8 @@ export default {
   align-items: center;
   justify-content: space-evenly;
   padding: 0 1.8rem;
-  border-right: solid 1px black;
-  border-left: solid 1px black;
+  border-right: solid 1px #efefef;
+  border-left: solid 1px #efefef;
   position: relative;
 }
 .sticky-text .text-content {

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="success-proof-wrapper lg:h-screen h-full lg:w-screen md:pt-[130px] py-14 sm:px-[58px] lg:px-[90px] px-4 lg:block flex flex-col justify-center"
+    class="success-proof-wrapper lg:h-screen h-full lg:w-screen md:pt-[130px] py-14 xl:px-[90px] px-4 lg:block flex flex-col justify-center"
   >
     <div class="w-full">
       <div

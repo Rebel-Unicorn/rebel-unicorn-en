@@ -1,8 +1,8 @@
 <template>
   <div
-    class="coaching-background w-full h-full flex flex-1 md:flex-row flex-col"
+    class="coaching-background w-full h-full flex flex-1 lg:flex-row flex-col"
   >
-    <VerticalAnimatedText content="Coaching" v-if="windowWidth >= 769" />
+    <VerticalAnimatedText content="Coaching" v-if="windowWidth >= 1025" />
     <HorizontalAnimatedText v-else content="Coaching" />
     <div class="relative w-full h-full lg:grid grid-cols-2 flex flex-col">
       <div class="left w-full md:h-full h-[345px]">
