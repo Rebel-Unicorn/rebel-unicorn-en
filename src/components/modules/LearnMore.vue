@@ -1,8 +1,8 @@
 <template>
   <div
-    class="learn-more-background w-full h-full flex md:flex-row flex-col flex-1"
+    class="learn-more-background w-full h-full flex lg:flex-row flex-col flex-1"
   >
-    <VerticalAnimatedText content="Learn more" v-if="windowWidth >= 769" />
+    <VerticalAnimatedText content="Learn more" v-if="windowWidth >= 1025" />
     <HorizontalAnimatedText v-else content="Learn more" />
     <div class="flex lg:flex-row flex-col w-full h-full">
       <div
@@ -35,7 +35,9 @@
           </div>
           <div class="md:text-right text-left text-[rgba(0,0,0,0.7)] w-full">
             <a href="#">Privacy Policy</a>
-            <p>Copyright © 2024 RebelUnicorn. All rights reserved</p>
+            <p>
+              Copyright © {{ currentDate }} RebelUnicorn. All rights reserved
+            </p>
           </div>
         </div>
       </div>
@@ -46,7 +48,7 @@
 <script>
 import VerticalAnimatedText from "@/components/VerticalAnimatedText.vue";
 import HorizontalAnimatedText from "@/components/HorizontalAnimatedText.vue";
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref, onMounted, onUnmounted, computed } from "vue";
 export default {
   components: {
     VerticalAnimatedText,
@@ -65,13 +67,17 @@ export default {
     const updateWidth = () => {
       windowWidth.value = window.innerWidth;
     };
+
+    const currentDate = computed(() => {
+      return new Date().getFullYear();
+    });
     onMounted(() => {
-      document.addEventListener("resize", updateWidth());
+      window.addEventListener("resize", updateWidth());
     });
     onUnmounted(() => {
-      document.removeEventListener("resize", updateWidth());
+      window.removeEventListener("resize", updateWidth());
     });
-    return { urls, windowWidth };
+    return { urls, windowWidth, currentDate };
   },
 };
 </script>

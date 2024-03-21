@@ -6,14 +6,14 @@
       class="left xl:w-[40%] w-auto h-screen xl:h-full flex flex-col items-start xl:justify-start justify-center pt-[122px] sm:mx-10 xl:mx-[90px] mx-4 relative"
     >
       <h1
-        class="mt-[70px] mb-3 xl:text-[82px] lg:text-[55px] text-[48px] xl:leading-[82.75px] lg:leading-[55.8px] leading-[48.8px] font-[600]"
+        class="mt-[70px] mb-3 xl:text-[62px] lg:text-[55px] text-[48px] xl:leading-[62.75px] lg:leading-[55.8px] leading-[48.8px] font-[700]"
       >
-        We turn degrees into careers
+        Unleash Your Career Potential: RU READY?
       </h1>
       <p class="leading-6 text-[rgba(0,0,0,0.7)] mb-[75px]">
-        We are the UK's leading graduate career coaching company. We have helped
-        over 5000 students and graduates land graduate-level jobs and boost
-        their career development with our expert career advice.
+        We're the UK's top choice for graduate career coaching. With our
+        guidance, over 5000 students and graduates have secured top-tier jobs
+        and unlocked their careers potential through our expert advice.
       </p>
       <div class="button-container relative ml-8">
         <!-- <span class="rotating-text"></span> -->
@@ -90,7 +90,7 @@ export default {
 }
 
 .sign-up-btn {
-  background-color: #9747ff;
+  background-color: #772a8b;
   color: #fff;
   height: 100px;
   width: 100px;

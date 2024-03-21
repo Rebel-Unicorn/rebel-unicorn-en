@@ -8,7 +8,7 @@
     </section>
     <section
       id="services"
-      class="scroll-section section-2 xl:h-screen h-auto w-screen flex items-center justify-center flex-shrink-0"
+      class="scroll-section section-2 md:h-screen h-auto w-screen flex items-center justify-center flex-shrink-0"
     >
       <ServicesModule />
     </section>
@@ -18,12 +18,6 @@
     >
       <SuccessesModule />
     </section>
-    <!-- <section
-      id="success-proof"
-      class="section-4 md:h-screen h-auto w-screen block flex-shrink-0"
-    >
-      <SuccessProofModule />
-    </section> -->
     <section
       id="coaching"
       class="scroll-section section-5 md:h-screen h-screen w-screen flex items-center justify-center flex-shrink-0"
@@ -32,7 +26,7 @@
     </section>
     <section
       id="testimonials"
-      class="scroll-section section-6 md:h-screen h-auto w-screen flex items-center justify-center flex-shrink-0"
+      class="scroll-section section-6 lg:h-screen h-auto w-screen flex items-center justify-center flex-shrink-0"
     >
       <TestimonialsModule />
     </section>
@@ -232,15 +226,6 @@ export default {
           tl.add("label0", 0);
           sections.forEach((section, i) => {
             let progress = position;
-            // let relatedLink = document.querySelector(
-            //   `[data-section="${section.id}"]`
-            // );
-            // console.log(
-            //   relatedLink,
-            //   section,
-            //   `[data-section="${section.id}"]`,
-            //   "this is the info we need"
-            // );
             position += section.offsetWidth / distance;
             tl.add("label" + (i + 1), position);
             nav[i].addEventListener("click", () => {
@@ -353,7 +338,7 @@ section {
 }
 nav div.nav-active {
   background-color: rgba(242, 232, 254, 1);
-  color: rgba(151, 71, 255, 1) !important;
+  color: #772a8b !important;
 }
 nav a.nav-active {
   background-color: rgba(242, 232, 254, 1);

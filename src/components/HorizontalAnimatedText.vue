@@ -237,8 +237,8 @@ Features:
   display: flex;
   align-items: center;
   overflow-x: hidden;
-  border-bottom: 1px solid black;
-  border-top: 1px solid black;
+  border-bottom: 1px solid #efefef;
+  border-top: 1px solid #efefef;
 }
 
 .text-single {

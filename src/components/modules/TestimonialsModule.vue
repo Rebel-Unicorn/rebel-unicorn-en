@@ -1,11 +1,11 @@
 <template>
   <div
-    class="testimonials-background w-full h-full flex md:flex-row flex-col flex-1 relative"
+    class="testimonials-background w-full h-full flex lg:flex-row flex-col flex-1 relative"
   >
-    <VerticalAnimatedText content="Testimonials" v-if="windowWidth >= 769" />
+    <VerticalAnimatedText content="Testimonials" v-if="windowWidth >= 1025" />
     <HorizontalAnimatedText v-else content="Testimonials" />
     <div
-      class="h-full md:w-full w-auto md:mx-10 mx-4 md:pt-[158px] pt-8 md:pb-10 pb-[100px] relative"
+      class="h-full lg:w-full w-auto md:mx-10 mx-4 md:pt-[158px] pt-8 md:pb-10 pb-[100px] relative"
     >
       <div
         class="cards-container grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 lg:gap-12 gap-8"
@@ -20,7 +20,7 @@
           @click="selectTestimonial(card)"
         />
       </div>
-      <div class="cta absolute bottom-10 md:right-10 left-0">
+      <div class="cta">
         <button class="rounded-full py-2 px-4 border border-black">
           Read More Testimonials
         </button>
@@ -29,9 +29,11 @@
     <BaseModal :modalActive="modalActive.status === true">
       <div
         v-if="selectedCard"
-        class="flex flex-col items-center justify-center w-full md:max-w-[calc(100%-250px)] max-w-full mx-auto h-auto px-8 lg:pb-0 py-10 bg-white relative"
+        class="flex flex-col items-center justify-center w-full md:max-w-[calc(100%-250px)] max-w-full mx-auto h-auto px-8 lg:pb-0 py-10 bg-white relative rounded-md"
       >
-        <span class="absolute block right-2 top-2">
+        <span
+          class="absolute block right-2 top-2 border border-transparent hover:border-[#e5e7eb] hover:rounded-lg"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -57,7 +59,7 @@
                 <img
                   :src="selectedCard.image"
                   :alt="selectedCard.title"
-                  class="w-full lg:mb-3"
+                  class="w-full lg:mb-3 blur-lg"
                 />
               </div>
             </div>
@@ -106,28 +108,28 @@ export default {
     const cardsData = ref([
       {
         id: 1,
-        image: require("../../assets/webp/testimonial-1.webp"),
-        title: "Chris is an excellent coach!",
+        image: require("../../assets/webp/testimonial-3.webp"),
+        title: "Success Story - Graduate Coaching",
         content:
-          "Chris has been a huge help to me in getting a job. He turned my cv around so that it was easy and comprehendible to read, really pushed me to think of my key skills and helped me to discover where it was that my skills would be best placed. For me the most helpful thing was the ability and confidence that I was given to answer the hundreds of competency questions that I encountered at phone interview, assessment days and final interviews. In such a competitive environment where one example is not enough, Chris helped me think of numerous creative examples. Chris is extremely friendly and approachable which made it easier for me to tell him exactly what I wanted from a job.",
-        footerContent: "Simon, International Graduate",
+          "My job search journey was challenging, especially in the fields of auditing and consulting where setbacks and self-doubt clouded my path. Despite initial failures, the support from Teachers Yuki and Sophia, despite time differences, was invaluable. Their patience and guidance helped me navigate emotional hurdles and acquire essential skills. The teaching assistants' patience and professionalism were commendable, aiding in my emotional stability and knowledge acquisition. Their dedication, from resume revisions to interview preparation, was pivotal in my success. The mock AC sessions were particularly enlightening, enhancing my confidence and skills. I encourage others to participate in similar opportunities. The journey taught me the importance of effective communication, group discussions, and time management. Thank you to all who contributed to my success!",
+        footerContent: "Brian, MA degree Graduate",
       },
       {
         id: 2,
         image: require("../../assets/webp/testimonial-2.webp"),
-        title: "Chris is an excellent coach!",
+        title: "Success Story - Graduate Coaching",
         content:
-          "Chris Davies is sparklingly intelligent, and sharply perceptive. He has a brilliant knack for understanding the talents and drives of others (which they themselves might not know) and the experience and know-how for getting that first foot in the door. I would urge anyone who is feeling lost since leaving education to pick up The Student Book. You may be surprised at where it takes you. When I first met Chris, I was lost and overwhelmed, in a maze of potential career paths with conflicting advice on which to follow. Having achieved top grades across the board at school I’d gone on to complete a BSc and MSc at one of the world’s top universities before a brief and unfulfilling stint in academic publishing.",
-        footerContent: "Simon, International Graduate",
+          "Throughout my job hunting journey, I discovered that academic excellence doesn't always translate to job hunting skills. As a novice job seeker, the tutors and teaching assistants provided invaluable support, guiding me through every step of the UK job application process, starting with resume revisions. Their dedication not only helped me secure desired offers but also enriched my professional and soft skills, leaving a lasting impact on my career development. Simulated Assessment Centers played a crucial role in my preparation, with teachers like Rachael providing insights into company preferences and offering tailored advice. I'm particularly grateful to Rachael for her analysis post-offer, aiding in my decision-making process. The teachers' patience and encouragement, even amidst repeated mistakes and academic pressures, instilled me with inner strength and resilience. I highly recommend participating in as many AC simulations as possible, as they not only enhance practical interview skills but also bolster confidence and communication habits. My heartfelt thanks to all the mentors for their unwavering support, and I wish all job seekers find the right guidance and achieve their desired offers in the UK job market.",
+        footerContent: "Chole, MA degree Graduate",
       },
-      {
-        id: 3,
-        image: require("../../assets/webp/testimonial-3.webp"),
-        title: "Chris is an excellent coach!",
-        content:
-          "Working with him was a real pleasure because I could sense his passion and enthusiasm for what he does. With his help I refined my interview skills and my first interview, after only one week with him, was a huge success. Due to his extensive work experience and unique insights, he could give me a lot of good advice on how I can stay on top of my industry.",
-        footerContent: "Simon, International Graduate",
-      },
+      // {
+      //   id: 3,
+      //   image: require("../../assets/webp/testimonial-1.webp"),
+      //   title: "Chris is an excellent coach!",
+      //   content:
+      //     "Working with him was a real pleasure because I could sense his passion and enthusiasm for what he does. With his help I refined my interview skills and my first interview, after only one week with him, was a huge success. Due to his extensive work experience and unique insights, he could give me a lot of good advice on how I can stay on top of my industry.",
+      //   footerContent: "Simon, International Graduate",
+      // },
     ]);
     const selectedCard = ref();
     const selectTestimonial = (selected) => {

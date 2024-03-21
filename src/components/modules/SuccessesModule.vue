@@ -1,14 +1,14 @@
 <template>
   <div
-    class="successes-background lg:w-screen w-[inherit] lg:h-screen h-screen flex md:flex-row flex-col flex-1"
+    class="successes-background lg:w-screen w-[inherit] lg:h-screen h-screen flex lg:flex-row flex-col flex-1"
   >
-    <VerticalAnimatedText content="Successes" v-if="windowWidth >= 769" />
+    <VerticalAnimatedText content="Successes" v-if="windowWidth >= 1025" />
     <HorizontalAnimatedText v-else content="Successes" />
     <div
-      class="success-wrapper xl:w-[200vw] lg:w-[revert-layer] md:w-[calc(100vw-120px)] xl:h-screen h-[200vh] flex xl:flex-row xl:flex-nowrap flex-col xl:py-0 py-8"
+      class="success-wrapper xl:w-[200vw] lg:w-[revert-layer] md:w-[calc(100vw-120px)] lg:mx-0 mx-auto xl:h-screen h-[200vh] flex xl:flex-row xl:flex-nowrap flex-col xl:py-0 py-8"
     >
       <div
-        class="sm:mx-[58px] md:mx-0 mx-4 relative lg:w-[calc(100vw-121px)] w-auto h-full flex xl:flex-row xl:flex-nowrap flex-col xl:py-0 py-8 xl:pt-0 sm:pt-[130px] pt-[60px]"
+        class="sm:mx-[58px] md:mx-0 mx-4 relative xl:w-[calc(100vw-121px)] w-auto h-full flex xl:flex-row xl:flex-nowrap flex-col xl:py-0 py-8 xl:pt-0 sm:pt-[130px] pt-[60px]"
       >
         <div
           class="left xl:ml-[58px] xl:w-[calc(100%-130px)] w-full lg:h-[30%] xl:h-full lg:pb-[130px] pb-[52px] flex flex-col xl:justify-end"

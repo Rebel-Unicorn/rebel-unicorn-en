@@ -1,14 +1,14 @@
 <template>
-  <transition>
+  <Transition>
     <div
-      v-if="modalActive"
+      v-show="modalActive"
       @click="closeModal"
       class="p-5 modal bg-[#00000059] fixed h-screen w-screen left-0 top-0 z-[2000] flex items-center justify-center"
     >
       <!-- Modal Content -->
       <slot></slot>
     </div>
-  </transition>
+  </Transition>
 </template>
 
 <script>
@@ -32,4 +32,14 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style>
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+</style>
