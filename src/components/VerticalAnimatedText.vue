@@ -1,54 +1,9 @@
 <template>
-  <!-- <div class="sticky-text left">
-    <div class="text-content lt">
-      <span class="slide-text-up"> {{ content }} </span>
-      <span class="slide-text-up"> {{ content }} </span>
-      <span class="slide-text-up"> {{ content }} </span>
-      <span class="slide-text-up"> {{ content }} </span>
-      <span class="slide-text-up"> {{ content }} </span>
-      <span class="slide-text-up"> {{ content }} </span>
-      <span class="slide-text-up"> {{ content }} </span>
-      <span class="slide-text-up"> {{ content }} </span>
-      <span class="slide-text-up"> {{ content }} </span>
-      <span class="slide-text-up"> {{ content }} </span>
-      <span class="slide-text-up"> {{ content }} </span>
-      <span class="slide-text-up"> {{ content }} </span>
-      <span class="slide-text-up"> {{ content }} </span>
-      <span class="slide-text-up"> {{ content }} </span>
-      <span class="slide-text-up"> {{ content }} </span>
-      <span class="slide-text-up"> {{ content }} </span>
-      <span class="slide-text-up"> {{ content }} </span>
-      <span class="slide-text-up"> {{ content }} </span>
-      <span class="slide-text-up"> {{ content }} </span>
-      <span class="slide-text-up"> {{ content }} </span>
-    </div>
-  </div> -->
   <div class="sticky-text right">
     <div class="text-content rt">
       <span class="slide-text-down">{{ content }}</span>
       <span class="slide-text-down">{{ content }}</span>
       <span class="slide-text-down">{{ content }}</span>
-      <!-- <span class="slide-text-down">{{ content }}</span>
-      <span class="slide-text-down">{{ content }}</span>
-      <span class="slide-text-down">{{ content }}</span>
-      <span class="slide-text-down">{{ content }}</span>
-      <span class="slide-text-down">{{ content }}</span>
-      <span class="slide-text-down">{{ content }}</span>
-      <span class="slide-text-down">{{ content }}</span>
-      <span class="slide-text-down">{{ content }}</span>
-      <span class="slide-text-down">{{ content }}</span>
-      <span class="slide-text-down">{{ content }}</span>
-      <span class="slide-text-down">{{ content }}</span>
-      <span class="slide-text-down">{{ content }}</span>
-      <span class="slide-text-down">{{ content }}</span>
-      <span class="slide-text-down">{{ content }}</span>
-      <span class="slide-text-down">{{ content }}</span>
-      <span class="slide-text-down">{{ content }}</span>
-      <span class="slide-text-down">{{ content }}</span>
-      <span class="slide-text-down">{{ content }}</span>
-      <span class="slide-text-down">{{ content }}</span>
-      <span class="slide-text-down">{{ content }}</span>
-      <span class="slide-text-down">{{ content }}</span> -->
     </div>
   </div>
 </template>
@@ -334,14 +289,14 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
-  padding: 0 1.8rem;
+  justify-content: space-around;
+  padding: 0 1.8rem !important;
   border-right: solid 1px #efefef;
   border-left: solid 1px #efefef;
   position: relative;
 }
 .sticky-text .text-content {
-  /* width: 4rem; */
+  min-width: 4rem;
   position: relative;
 }
 .sticky-text.left {
@@ -354,7 +309,7 @@ export default {
   left: 0;
 }
 .sticky-text.right span {
-  writing-mode: tb-rl;
+  writing-mode: tb;
 }
 .sticky-text span {
   font-size: 2.3rem;

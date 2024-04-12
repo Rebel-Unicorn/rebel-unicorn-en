@@ -13,13 +13,17 @@
         <h2
           class="lg:text-[48px] text-[38px] lg:leading-[50px] leading-[38px] font-[600] mb-4 lg:max-w-[644px] max-w-[504px]"
         >
-          Graduate Scheme Interview 1-on-1 Coaching
+          Graduate Career Coaching Services
         </h2>
-        <p class="leading-[24px] text-[rgba(0,0,0,0.7)]">
-          Transform and elevate your career prospects with personalized
-          mentorship, practical tasks and networking opportunities.
+        <p class="text-[15px] leading-[24px] text-[rgba(0,0,0,0.7)]">
+          Elevate your career with expert coaching tailored to your journey.
+          From mastering interviews to entering the professional world, our
+          dedicated team ensures your success. Experience personalized career
+          coaching and bespoke interview preparation, available in London or via
+          global video calls. Unleash your potential with proven strategies and
+          insights from leading professionals.
         </p>
-        <div class="disclosure mt-[29px] w-full rounded-2xl bg-white">
+        <div class="disclosure mt-5 w-full rounded-2xl bg-white">
           <Accordion :accordionData="items" />
         </div>
       </div>
@@ -57,40 +61,51 @@ export default {
     const items = ref([
       {
         id: 1,
-        title: "One-to-One Graduate Career Coaching",
+        title: "Graduate Career Mastery Program",
         content:
-          "Our one-to-one graduate coaching transforms your career prospects with offers comprehensive job application support including tailored strategies, CV revisions, online test assistance, video interview coaching, assessment center preparation, and final round interview practice.",
+          "Transform your career trajectory with our structured coaching program, designed to navigate you through every stage of the job application process:",
+        details: [
+          "Strategic Application Planning — We tailor your approach, from crafting standout CVs to mastering company-specific research.",
+          "Online Application Mastery — Get personalized support to excel in application forms and psychometric tests.",
+          "Video Interview Perfection — Learn techniques and partake in mock interviews to enhance your presence on screen.",
+          "Assessment Centre Excellence — Engage in real-world scenarios with our case study and group exercise simulations.",
+          "Final Interview Preparation — Receive in-depth coaching tailored to the specifics of your prospective role.",
+        ],
       },
       {
         id: 2,
-        title: "Digital Internship",
+        title: "Internship Accelerator Program",
         content:
-          "At Rebel Unicorn Career we offer a comprehensive internship program, guiding students from consultation to job acquisition, emphasizing early immersion, internal referrals, and tailored career support across various industries.",
+          "Start your career journey with our Internship Accelerator, designed to transform theoretical knowledge into practical expertise. Our program includes:",
+        details: [
+          "Career Path Guidance — Personalized advice to refine your professional goals.",
+          "Enhanced Interview Skills — Specialized coaching to boost your confidence and effectiveness.",
+          "Professional CV and Cover Letter Services — Make your first impression count with expertly crafted application documents.",
+          "Exclusive Industry Referrals — Leverage our network across 30+ industries for internship placements that often lead to full-time offers.",
+        ],
       },
       {
         id: 3,
-        title: "Trainee Program",
+        title: "Traineeship Transformation Program",
         content:
-          "Expand your career journey one step further with our personalized mentorship, tailored guidance, and transition opportunities, including 15 hours of one-on-one classes with Top 500 company mentors and access to 10 key positions.",
+          "Take a significant leap in your career with our Traineeship Program, which offers:",
+        details: [
+          "Customized Mentorship — Gain insights and training from industry leaders in top global companies.",
+          "Targeted Career Initiatives — Specialized programs focusing on high-demand roles in project management, marketing, and more.",
+          "Continual Professional Development — Engage in extensive one-on-one training sessions that prepare you for the professional world.",
+        ],
       },
       {
         id: 4,
-        title: "Visa Success, Worldwide Access.",
+        title: "Visa Consultation Services",
         content:
-          "Streamlined visa application process with expert legal team, offering comprehensive services for T5, T2, and Global Talent Visas, ensuring reliable support from assessment to PR & Nationality Application.",
+          "Simplify your UK visa application process with our Visa Consultation Services, designed to help you navigate the complexities with ease:",
+        details: [
+          "Expert Navigation — Our seasoned team guides you through every step, from choosing the right visa to final submission.",
+          "Comprehensive Coverage — We handle all visa types, including Skilled Worker Visa and Global Talent Visa, ensuring you meet every requirement.",
+          "Success-Driven Support — Benefit from our end-to-end assistance aimed at securing your visa approval efficiently.",
+        ],
       },
-      // {
-      //   id: 5,
-      //   title: "Books",
-      //   content:
-      //     "Our one-to-one graduate coaching transforms your career prospects with lifelong skills gained through personal mentorship, practical tasks and an introduction to a network of contacts.",
-      // },
-      // {
-      //   id: 6,
-      //   title: "Free Resources",
-      //   content:
-      //     "Our one-to-one graduate coaching transforms your career prospects with lifelong skills gained through personal mentorship, practical tasks and an introduction to a network of contacts.",
-      // },
     ]);
     return {
       items,

@@ -11,9 +11,11 @@
         Unleash Your Career Potential: RU READY?
       </h1>
       <p class="leading-6 text-[rgba(0,0,0,0.7)] mb-[75px]">
-        We're the UK's top choice for graduate career coaching. With our
-        guidance, over 5000 students and graduates have secured top-tier jobs
-        and unlocked their careers potential through our expert advice.
+        At Rebel Unicorn, we don't just prepare you for the job market; we
+        propel you into careers of impact. With over 10,000 success stories, our
+        tailored coaching has consistently opened doors to prestigious positions
+        for graduates like you. Join us to turn your career aspirations into
+        reality.
       </p>
       <div class="button-container relative ml-8">
         <!-- <span class="rotating-text"></span> -->

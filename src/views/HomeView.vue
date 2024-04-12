@@ -337,11 +337,9 @@ section {
   background-color: aquamarine;
 }
 nav div.nav-active {
-  background-color: rgba(242, 232, 254, 1);
-  color: #772a8b !important;
+  background-color: #772a8b;
 }
 nav a.nav-active {
-  background-color: rgba(242, 232, 254, 1);
-  color: rgba(151, 71, 255, 1) !important;
+  background-color: #772a8b;
 }
 </style>
