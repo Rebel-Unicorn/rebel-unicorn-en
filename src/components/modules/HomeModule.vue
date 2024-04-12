@@ -6,9 +6,18 @@
       class="left xl:w-[40%] w-auto h-screen xl:h-full flex flex-col items-start xl:justify-start justify-center pt-[122px] sm:mx-10 xl:mx-[90px] mx-4 relative"
     >
       <h1
-        class="mt-[70px] mb-3 xl:text-[62px] lg:text-[55px] text-[48px] xl:leading-[62.75px] lg:leading-[55.8px] leading-[48.8px] font-[500]"
+        class="mt-[70px] mb-3 xl:text-[62px] lg:text-[55px] text-[48px] xl:leading-[62.75px] lg:leading-[55.8px] leading-[48.8px] font-[500] min-h-[125px]"
       >
-        Unleash Your Career Potential: RU READY?
+        <VueTyped
+          :strings="typedStrings"
+          :startDelay="1000"
+          :typeSpeed="100"
+          :backSpeed="50"
+          :loop="true"
+          :showCursor="false"
+        >
+          <span class="typing block"></span>
+        </VueTyped>
       </h1>
       <p class="leading-6 text-[rgba(0,0,0,0.7)] mb-[75px]">
         At Rebel Unicorn, we don't just prepare you for the job market; we
@@ -46,9 +55,16 @@
 </template>
 
 <script>
+import { ref } from "vue";
+
 export default {
   setup() {
-    return {};
+    const typedStrings = ref([
+      "",
+      "Unleash Your Career Potential",
+      "RU READY?",
+    ]);
+    return { typedStrings };
   },
 };
 </script>
