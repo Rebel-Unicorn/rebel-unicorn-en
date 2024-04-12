@@ -7,13 +7,17 @@
         v-slot="{ open, close }"
       >
         <DisclosureButton
-          class="flex justify-between w-full px-[10px] lg:py-4 py-3 lg:text-[16px] text-[14px] leading-[24px] font-normal text-left text-[rgba(0,0,0,0.7)] outline-transparent ring-transparent ring-offset-transparent focus:outline-none focus-visible:ring"
-          :class="!open && 'border-b-[1px] border-[rgba(0,0,0,0.7)]'"
+          class="flex justify-between w-full px-[10px] lg:py-3 py-3 my-1 lg:text-[15px] text-[13px] leading-[24px] font-normal text-left transition-all outline-transparent ring-transparent ring-offset-transparent focus:outline-none focus-visible:ring"
+          :class="
+            !open
+              ? 'border-b-[1px] border-[rgba(0,0,0,0.7)] text-[rgba(0,0,0,0.7)]'
+              : 'bg-[#772a8b] text-white rounded-md'
+          "
         >
           <span>{{ item.title }}</span>
           <span
             :class="open ? 'duration-200' : 'duration-200 rotate-180'"
-            class="w-6 h-6 flex items-center justify-center text-purple-500"
+            class="w-6 h-6 flex items-center justify-center"
           >
             <svg
               width="24"
@@ -24,7 +28,7 @@
             >
               <path
                 d="M6 9L12 15L18 9"
-                stroke="black"
+                stroke="currentColor"
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
@@ -40,8 +44,13 @@
           "
           unmount
         >
-          <div class="pt-[10px] pb-4 text-[15px] leading-20 text-gray-500">
+          <div class="pt-[10px] pb-4 text-[12px] leading-20 text-gray-500">
             {{ decode(item.content) }}
+            <ul class="mt-3 list-disc ml-2">
+              <li v-for="detail in item.details" :key="detail">
+                <span v-html="formatDetail(detail)"> </span>
+              </li>
+            </ul>
           </div>
         </DisclosurePanel>
 
@@ -85,11 +94,25 @@ export default {
       items.forEach((elm) => elm.click());
     };
 
+    const formatDetail = (detail) => {
+      // Split the detail string at the first occurrence of the hyphen
+      const parts = detail.split(" — ");
+
+      // Check if there is a hyphen in the string
+      if (parts.length >= 2) {
+        // Wrap the part before the hyphen in <strong> tags and concatenate with the part after
+        return `<strong>${parts[0]}</strong> — ${parts[1]}`;
+      } else {
+        // If no hyphen is found, return the detail as it is
+        return detail;
+      }
+    };
+
     const doClose = (close) => {
       close();
     };
 
-    return { items, hideOther, elements, doClose, decode };
+    return { items, hideOther, elements, doClose, decode, formatDetail };
   },
 };
 </script>
