@@ -11,11 +11,11 @@
         class="left w-full xl:h-full lg:max-w-[644px] lg:mb-0 sm:mb-[65px] mb-[45px]"
       >
         <h2
-          class="lg:text-[48px] text-[38px] lg:leading-[50px] leading-[38px] font-[600] mb-4 lg:max-w-[644px] max-w-[504px]"
+          class="lg:text-[45px] text-[38px] lg:leading-[48px] leading-[38px] font-[500] mb-4 lg:max-w-[644px] max-w-[504px]"
         >
           Graduate Career Coaching Services
         </h2>
-        <p class="text-[15px] leading-[24px] text-[rgba(0,0,0,0.7)]">
+        <p class="text-[14px] leading-[24px] text-[rgba(0,0,0,0.7)]">
           Elevate your career with expert coaching tailored to your journey.
           From mastering interviews to entering the professional world, our
           dedicated team ensures your success. Experience personalized career
