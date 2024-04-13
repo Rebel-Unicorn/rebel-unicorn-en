@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full max-w-[618px] fixed bottom-[50px] left-[50%] translate-x-[-50%] bg-[rgba(0,0,0,0.3)] rounded-full p-1 z-[-1]"
+    class="w-[max-content] max-w-[618px] fixed bottom-[50px] left-[50%] translate-x-[-50%] bg-[rgba(0,0,0,0.3)] rounded-full p-1 z-[-1]"
   >
     <ul class="flex items-center w-full">
       <li v-for="url in urls" :key="url.id">

@@ -7,10 +7,10 @@
         v-slot="{ open, close }"
       >
         <DisclosureButton
-          class="flex justify-between w-full px-[10px] lg:py-3 py-3 my-1 lg:text-[15px] text-[13px] leading-[24px] font-normal text-left transition-all outline-transparent ring-transparent ring-offset-transparent focus:outline-none focus-visible:ring"
+          class="flex justify-between w-full px-[10px] lg:py-2 py-2 my-1 lg:text-[14px] text-[13px] leading-[24px] font-normal text-left transition-all outline-transparent ring-transparent ring-offset-transparent focus:outline-none focus-visible:ring"
           :class="
             !open
-              ? 'border-b-[1px] border-[rgba(0,0,0,0.7)] text-[rgba(0,0,0,0.7)]'
+              ? 'border-b-[1px] border-[rgba(175,175,175,0.86)] text-[rgba(0,0,0,0.7)]'
               : 'bg-[#772a8b] text-white rounded-md'
           "
         >
@@ -40,11 +40,11 @@
           class="panel transition-all opacity-0 duration-200 max-h-0 overflow-hidden outline-transparent ring-transparent ring-offset-transparent focus:outline-none focus-visible:ring"
           :class="
             open &&
-            'max-h-[max-content] opacity-100 border-b-[1px] border-[rgba(0,0,0,0.7)] px-[10px]'
+            'max-h-[max-content] opacity-100 border-b-[1px] border-[rgba(175,175,175,0.86)] px-[10px]'
           "
           unmount
         >
-          <div class="pt-[10px] pb-4 text-[12px] leading-20 text-gray-500">
+          <div class="pt-[10px] pb-4 text-[13px] leading-20 text-gray-500">
             {{ decode(item.content) }}
             <ul class="mt-3 list-disc ml-2">
               <li v-for="detail in item.details" :key="detail">
