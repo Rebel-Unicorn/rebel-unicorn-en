@@ -38,18 +38,18 @@
     </section>
   </div>
   <div
-    class="w-full max-w-[632px] fixed bottom-[50px] left-[50%] translate-x-[-50%] rounded-full p-1 backdrop-blur-lg backdrop-opacity-80 shadow-md bg-[#80808073] sm:mx-0 mx-1"
+    class="w-[max-content] max-w-[max-content] fixed bottom-[50px] left-[50%] translate-x-[-50%] rounded-full p-1 backdrop-blur-lg backdrop-opacity-80 shadow-md bg-[#80808073] sm:mx-0 mx-1"
   >
     <nav
       v-if="windowWidth > 1281"
-      class="bottom-nav w-full rounded-full flex items-center overflow-x-auto"
+      class="bottom-nav w-[max-content] rounded-full flex items-center overflow-x-auto"
     >
       <div
         v-for="url in urls"
         :key="url.id"
         :data-section="url.href"
         :class="[
-          `sm:py-2 py-[5px] sm:px-4 px-2 rounded-full font-normal text-[16px] leading-[19.36px] text-white cursor-pointer transition duration-300 delay-500 ease-in-out whitespace-nowrap`,
+          `sm:py-2 py-[5px] sm:px-4 px-2 rounded-full font-normal text-[16px] leading-[19.36px] !tracking-[0.6px] text-white cursor-pointer transition duration-300 delay-500 ease-in-out whitespace-nowrap`,
         ]"
       >
         {{ url.name }}
@@ -57,7 +57,7 @@
     </nav>
     <nav
       v-else
-      class="bottom-nav w-full rounded-full flex items-center overflow-x-auto"
+      class="bottom-nav w-full md:max-w-[max-content] max-w-[calc(100vw-35px)] mx-auto rounded-full flex items-center overflow-x-auto"
     >
       <a
         v-for="url in urls"
