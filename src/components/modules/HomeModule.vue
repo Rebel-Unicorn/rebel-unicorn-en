@@ -55,15 +55,20 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, onBeforeMount, onUnmounted, onMounted } from "vue";
 
 export default {
   setup() {
-    const typedStrings = ref([
-      "",
-      "Unleash Your Career Potential",
-      "RU READY?",
-    ]);
+    const typedStrings = ref([""]);
+    onBeforeMount(() => {
+      typedStrings.value.push("Unleash Your Career Potential", "RU READY?");
+    });
+    onMounted(() => {
+      // console.log(typedStrings.value);
+    });
+    onUnmounted(() => {
+      typedStrings.value = typedStrings.value.slice(0, 1);
+    });
     return { typedStrings };
   },
 };
