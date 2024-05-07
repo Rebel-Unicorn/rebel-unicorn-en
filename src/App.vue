@@ -7,10 +7,60 @@
 
 <script>
 import TopNavbar from "@/components/TopNavbar.vue";
+import { onMounted } from "vue";
+import { useStore } from "vuex";
+import axios from "axios";
 
 export default {
   components: {
     TopNavbar,
+  },
+  setup() {
+    const store = useStore();
+    const baseUrl = process.env.VUE_APP_CMS_BASEURL;
+    const successesUrl = process.env.VUE_APP_CMS_RECENTSUCCESSES_ENDPOINT;
+    const coachesUrl = process.env.VUE_APP_CMS_COACHES_ENDPOINT;
+
+    const getCoaches = async () => {
+      try {
+        const response = await axios.get(`${baseUrl}${coachesUrl}`);
+        let res = response.data.data;
+        // console.log(res, "resss");
+        store.commit("setAvailableCoaches", res);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    const getSuccesses = async () => {
+      try {
+        const response = await axios.get(`${baseUrl}${successesUrl}`);
+        let res = response.data.data;
+        // console.log(res, "resss");
+        store.commit("setAvailableSuccesses", res);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    onMounted(() => {
+      console.log(
+        "message from app",
+        store.state.app,
+        process.env.VUE_APP_CMS_COACHES_ENDPOINT
+      );
+      store.commit("setModalActive", {
+        status: false,
+        message: null,
+      });
+      getCoaches();
+      getSuccesses();
+      // store.commit("setModalActive", {
+      //   status: false,
+      //   message: null,
+      // });
+    });
+
+    return {};
   },
 };
 </script>

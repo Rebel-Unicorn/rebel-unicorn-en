@@ -2,7 +2,7 @@
   <div
     class="success-proof-wrapper lg:h-screen h-full lg:w-screen md:pt-[130px] py-14 xl:px-[90px] px-4 lg:block flex flex-col justify-center"
   >
-    <div class="w-full">
+    <!-- <div class="w-full">
       <div
         class="heading w-full md:max-w-[43.3%] max-w-full md:mb-10 mb-[62px]"
       >
@@ -27,14 +27,19 @@
           :alt="`${company.name} logo`"
         />
       </div>
-    </div>
+    </div> -->
+    {{ availableSuccesses }}
   </div>
 </template>
 
 <script>
-import { ref } from "vue";
+import { computed, ref } from "vue";
+import { useStore } from "vuex";
+
 export default {
   setup() {
+    const store = useStore();
+    // console.log(availableSuccesses.value);
     const companyLogos = ref([
       { name: "tesco", url: require("../../assets/svg/tesco-logo.svg") },
       {
@@ -81,7 +86,12 @@ export default {
         url: require("../../assets/svg/waltdisney-logo.svg"),
       },
     ]);
-    return { companyLogos };
+    const successObj = ref(null);
+    return {
+      companyLogos,
+      successObj,
+      availableSuccesses: computed(() => store.state.app.availableSuccesses),
+    };
   },
 };
 </script>
