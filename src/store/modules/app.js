@@ -5,6 +5,7 @@ const state = {
   },
   availableCoaches: [],
   availableSuccesses: [],
+  accordionActive: false,
 };
 const getters = {};
 const mutations = {
@@ -17,6 +18,9 @@ const mutations = {
   setAvailableSuccesses(state, availableSuccesses) {
     state.availableSuccesses = availableSuccesses;
   },
+  setAccordionActive(state, accordionActive) {
+    state.accordionActive = accordionActive;
+  },
 };
 const actions = {
   setModalActive({ commit }, modalActive) {
@@ -27,6 +31,9 @@ const actions = {
   },
   setAvailableSuccesses({ commit }, availableSuccesses) {
     commit("setAvailableSuccesses", availableSuccesses);
+  },
+  setAccordionActive({ commit }, accordionActive) {
+    commit("setAccordionActive", accordionActive);
   },
 };
 

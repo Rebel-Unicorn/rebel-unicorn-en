@@ -28,7 +28,7 @@
         />
       </div>
     </div> -->
-    {{ availableSuccesses }}
+    {{ availableCoaches }}
   </div>
 </template>
 
@@ -91,6 +91,7 @@ export default {
       companyLogos,
       successObj,
       availableSuccesses: computed(() => store.state.app.availableSuccesses),
+      availableCoaches: computed(() => store.state.app.availableCoaches),
     };
   },
 };

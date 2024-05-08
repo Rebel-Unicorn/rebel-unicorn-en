@@ -14,7 +14,10 @@
         <h2 class="text-[48px] leading-[50px] font-[600] mb-4">
           Our career coaches help you to...
         </h2>
-        <p class="leading-[24px] text-[rgba(0,0,0,0.7)]">
+        <p
+          v-show="!accordionActive"
+          class="leading-[24px] text-[rgba(0,0,0,0.7)]"
+        >
           We help you to discover your career path and create career plans to
           get you from where you are today to your ideal job.
         </p>
@@ -30,7 +33,8 @@
 import VerticalAnimatedText from "@/components/VerticalAnimatedText.vue";
 import Accordion from "@/components/disclosure/DisclosureComponent.vue";
 import HorizontalAnimatedText from "@/components/HorizontalAnimatedText.vue";
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref, onMounted, onUnmounted, computed } from "vue";
+import { useStore } from "vuex";
 
 export default {
   components: {
@@ -39,6 +43,8 @@ export default {
     HorizontalAnimatedText,
   },
   setup() {
+    const store = useStore();
+
     const items = ref([
       {
         id: 1,
@@ -69,7 +75,11 @@ export default {
     onUnmounted(() => {
       document.removeEventListener("resize", updateWidth());
     });
-    return { items, windowWidth };
+    return {
+      items,
+      windowWidth,
+      accordionActive: computed(() => store.state.app.accordionActive),
+    };
   },
 };
 </script>

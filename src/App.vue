@@ -21,12 +21,16 @@ export default {
     const successesUrl = process.env.VUE_APP_CMS_RECENTSUCCESSES_ENDPOINT;
     const coachesUrl = process.env.VUE_APP_CMS_COACHES_ENDPOINT;
 
+    const reorderResponse = (res) => {
+      return res.sort((a, b) => a.id - b.id);
+    };
+
     const getCoaches = async () => {
       try {
         const response = await axios.get(`${baseUrl}${coachesUrl}`);
         let res = response.data.data;
-        // console.log(res, "resss");
-        store.commit("setAvailableCoaches", res);
+        console.log(res, "resss");
+        store.commit("setAvailableCoaches", reorderResponse(res));
       } catch (error) {
         console.error(error);
       }
@@ -36,7 +40,7 @@ export default {
         const response = await axios.get(`${baseUrl}${successesUrl}`);
         let res = response.data.data;
         // console.log(res, "resss");
-        store.commit("setAvailableSuccesses", res);
+        store.commit("setAvailableSuccesses", reorderResponse(res));
       } catch (error) {
         console.error(error);
       }
