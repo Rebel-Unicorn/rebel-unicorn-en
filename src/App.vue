@@ -20,6 +20,7 @@ export default {
     const baseUrl = process.env.VUE_APP_CMS_BASEURL;
     const successesUrl = process.env.VUE_APP_CMS_RECENTSUCCESSES_ENDPOINT;
     const coachesUrl = process.env.VUE_APP_CMS_COACHES_ENDPOINT;
+    const testimonialsUrl = process.env.VUE_APP_CMS_TESTIMONIALS_ENDPOINT;
 
     const reorderResponse = (res) => {
       return res.sort((a, b) => a.id - b.id);
@@ -29,7 +30,7 @@ export default {
       try {
         const response = await axios.get(`${baseUrl}${coachesUrl}`);
         let res = response.data.data;
-        console.log(res, "resss");
+        // console.log(res, "resss");
         store.commit("setAvailableCoaches", reorderResponse(res));
       } catch (error) {
         console.error(error);
@@ -45,19 +46,26 @@ export default {
         console.error(error);
       }
     };
+    const getTestimonials = async () => {
+      try {
+        const response = await axios.get(`${baseUrl}${testimonialsUrl}`);
+        let res = response.data.data;
+        // console.log(res, "resss");
+        store.commit("setAvailableTestimonials", reorderResponse(res));
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
     onMounted(() => {
-      console.log(
-        "message from app",
-        store.state.app,
-        process.env.VUE_APP_CMS_COACHES_ENDPOINT
-      );
+      console.log("message from app", baseUrl, testimonialsUrl);
       store.commit("setModalActive", {
         status: false,
         message: null,
       });
       getCoaches();
       getSuccesses();
+      getTestimonials();
       // store.commit("setModalActive", {
       //   status: false,
       //   message: null,

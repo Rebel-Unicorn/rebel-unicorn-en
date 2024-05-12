@@ -11,6 +11,15 @@
         class="cards-container grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 lg:gap-12 gap-8"
       >
         <Card
+          v-for="card in coaches.slice(0, 3)"
+          :key="`${card.id}`"
+          :image="`http://localhost:1337${card?.attributes?.image?.data?.attributes?.url}`"
+          :title="card?.attributes?.name"
+          :graduated="card?.attributes?.graduate"
+          :content="card?.attributes?.brief"
+          @click="selectTestimonial(card)"
+        />
+        <!-- <Card
           v-for="card in cardsData"
           :key="`${card.id}-${card.title}`"
           :image="card.image"
@@ -18,7 +27,8 @@
           :content="card.content"
           :footerContent="card.footerContent"
           @click="selectTestimonial(card)"
-        />
+        /> -->
+        <!-- {{ coaches[0]?.attributes?.image?.data?.attributes?.url }} -->
       </div>
       <div class="cta">
         <button class="rounded-full py-2 px-4 border border-black">
@@ -105,6 +115,8 @@ export default {
   setup() {
     const store = useStore();
 
+    const coaches = computed(() => store.state.app.availableTestimonials);
+
     const cardsData = ref([
       {
         id: 1,
@@ -164,6 +176,7 @@ export default {
       modalActive: computed(() => store.state.app.modalActive),
       selectedCard,
       selectTestimonial,
+      coaches,
     };
   },
 };

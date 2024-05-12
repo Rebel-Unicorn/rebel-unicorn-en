@@ -28,7 +28,7 @@
         />
       </div>
     </div> -->
-    {{ availableCoaches }}
+    <!-- {{ availableCoaches }} -->
   </div>
 </template>
 

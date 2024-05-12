@@ -1,12 +1,12 @@
 <template>
   <div
-    class="home-background w-full h-full min-h-screen flex lg:flex-row flex-col flex-nowrap md:pb-0 pb-7"
+    class="home-background w-full h-full min-h-screen lg:flex flex-row flex-nowrap md:pb-0 pb-7"
   >
     <div
-      class="left xl:w-[40%] w-auto h-screen xl:h-full flex flex-col items-start xl:justify-start justify-center pt-[122px] sm:mx-10 xl:mx-[90px] mx-4 relative"
+      class="left lg:w-[45%] w-auto h-screen xl:h-full flex flex-col items-start xl:justify-start justify-center pt-[122px] sm:mx-10 xl:mx-[90px] mx-4 relative"
     >
       <h1
-        class="mt-[70px] mb-3 xl:text-[62px] lg:text-[55px] text-[48px] xl:leading-[62.75px] lg:leading-[55.8px] leading-[48.8px] font-[700] min-h-[125px] flex items-end"
+        class="mt-[70px] mb-3 xl:text-[62px] lg:text-[55px] text-[48px] xl:leading-[62.75px] lg:leading-[55.8px] leading-[48.8px] font-[700] min-h-[125px] flex items-start"
       >
         <VueTyped
           :strings="typedStrings"
@@ -49,8 +49,10 @@
       </div>
     </div>
     <div
-      class="right xl:w-[58.8%] w-full xl:h-screen lg:h-[1860px] md:h-[1200px] h-[500px]"
-    ></div>
+      class="right lg:w-[50%] w-full lg:h-screen md:h-[680px] sm:h-[1200px] h-[500px]"
+    >
+      <div class="hero-img h-full w-full"></div>
+    </div>
   </div>
 </template>
 
@@ -88,17 +90,17 @@ export default {
       transparent 100px
     );
 }
-.home-background .right {
-  background: url(../../assets/webp/home-image-1.webp);
-  background-position: center;
+.home-background .right .hero-img {
+  background: url(../../assets/svg/home-img-2.svg);
+  background-position: left;
   background-repeat: no-repeat;
   background-size: cover;
   background-origin: initial;
   image-resolution: 300dpi;
 }
-@media only screen and (max-width: 1281px) {
-  .home-background .right {
-    background: url(../../assets/svg/home-img-2.svg);
+@media only screen and (max-width: 1024px) {
+  .home-background .right .hero-img {
+    background: url(../../assets/webp/home-image-1.webp);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

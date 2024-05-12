@@ -2,7 +2,7 @@
   <div class="scroll-wrapper xl:flex xl:flex-nowrap overflow-x-hidden w-screen">
     <section
       id="home"
-      class="scroll-section section-1 md:h-screen h-auto w-screen flex items-center justify-center flex-shrink-0"
+      class="scroll-section section-1 lg:h-screen h-auto w-screen flex items-center justify-center flex-shrink-0"
     >
       <HomeModule />
     </section>
