@@ -1,11 +1,31 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
+import TestimonialView from "../views/TestimonialView.vue";
+import TestimonialPage from "@/components/modules/TestimonialPage.vue";
+import TestimonialsLayout from "@/components/layouts/TestimonialsLayout.vue";
 
 const routes = [
   {
     path: "/",
     name: "home",
     component: HomeView,
+  },
+  {
+    path: "/testimonials",
+    name: "TestimonialsLayout",
+    component: TestimonialsLayout,
+    children: [
+      {
+        path: "",
+        name: "AllTestimonials",
+        component: TestimonialView,
+      },
+      {
+        path: "/testimonials/:id",
+        name: "TestimonialPage",
+        component: TestimonialPage,
+      },
+    ],
   },
   // {
   //   path: "/about",

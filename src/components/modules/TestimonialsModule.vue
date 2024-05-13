@@ -7,19 +7,24 @@
     <div
       class="h-full lg:w-full w-auto md:mx-10 mx-4 md:pt-[158px] pt-8 md:pb-10 pb-[100px] relative"
     >
-      <div
-        class="cards-container grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 lg:gap-12 gap-8"
-      >
-        <Card
-          v-for="card in coaches.slice(0, 3)"
-          :key="`${card.id}`"
-          :image="`http://localhost:1337${card?.attributes?.image?.data?.attributes?.url}`"
-          :title="card?.attributes?.name"
-          :graduated="card?.attributes?.graduate"
-          :content="card?.attributes?.brief"
-          @click="selectTestimonial(card)"
-        />
-        <!-- <Card
+      <div class="cards w-full">
+        <div
+          class="cards-container w-full grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 lg:gap-12 gap-6"
+        >
+          <RouterLink
+            :to="`/testimonials/${card?.id}`"
+            v-for="card in testimonials.slice(0, 4)"
+            :key="`${card?.id}`"
+          >
+            <Card
+              :image="`${card?.attributes?.image?.data?.attributes?.url}`"
+              :title="card?.attributes?.name"
+              :graduated="card?.attributes?.graduate"
+              :content="card?.attributes?.brief"
+              @click="selectTestimonial(card?.id)"
+            />
+          </RouterLink>
+          <!-- <Card
           v-for="card in cardsData"
           :key="`${card.id}-${card.title}`"
           :image="card.image"
@@ -28,20 +33,25 @@
           :footerContent="card.footerContent"
           @click="selectTestimonial(card)"
         /> -->
-        <!-- {{ coaches[0]?.attributes?.image?.data?.attributes?.url }} -->
+          <!-- {{ testimonials[0]?.attributes?.image }} -->
+        </div>
       </div>
-      <div class="cta">
-        <button class="rounded-full py-2 px-4 border border-black">
+      <div class="cta text-center mt-6">
+        <RouterLink
+          to="/testimonials"
+          class="rounded-full py-2 px-4 border border-black"
+        >
           Read More Testimonials
-        </button>
+        </RouterLink>
       </div>
     </div>
-    <BaseModal :modalActive="modalActive.status === true">
+    <BaseModal :modalActive="modalActive.status === true && selectedCard">
       <div
         v-if="selectedCard"
-        class="flex flex-col items-center justify-center w-full md:max-w-[calc(100%-250px)] max-w-full mx-auto h-auto px-8 lg:pb-0 py-10 bg-white relative rounded-md"
+        class="flex flex-col items-center justify-center w-full md:max-w-[calc(100%-250px)] max-w-full mx-auto h-auto px-8 lg:pb-0 py-10 bg-white relative rounded-sm z-[2000]"
       >
-        <span
+        <button
+          @click="closeModal"
           class="absolute block right-2 top-2 border border-transparent hover:border-[#e5e7eb] hover:rounded-lg"
         >
           <svg
@@ -58,27 +68,27 @@
               d="M6 18 18 6M6 6l12 12"
             />
           </svg>
-        </span>
-        <div class="flex flex-col h-full w-full">
+        </button>
+        <div class="flex flex-col h-full w-full overflow-y-auto">
           <p class="text-[20px] leading-[30px] font-[600] mb-3">
-            {{ selectedCard.footerContent }}
+            {{ selectedCard?.graduated }}
           </p>
           <div class="content flex lg:flex-row flex-col h-full w-full">
-            <div class="left lg:h-[40%] h-full lg:w-[40%] py-4">
+            <div class="left lg:h-[150px] h-full lg:w-[150px] py-4">
               <div class="card-img">
                 <img
-                  :src="selectedCard.image"
-                  :alt="selectedCard.title"
+                  :src="selectedCard?.image?.data?.attributes?.url"
+                  :alt="selectedCard?.name"
                   class="w-full lg:mb-3 blur-lg"
                 />
               </div>
             </div>
-            <div class="right lg:h-[60%] h-full lg:w-[60%] w-full lg:px-6 py-4">
+            <div class="right lg:h-[60%] h-full lg:px-6 py-4">
               <p class="mb-3 text-[18px] leading-[28px]">
-                {{ selectedCard.title }}
+                {{ selectedCard?.name }}
               </p>
               <p class="text-sm text-[rgba(0,0,0,0.8)] mb-3">
-                {{ selectedCard.content }}
+                {{ selectedCard?.brief }}
               </p>
             </div>
           </div>
@@ -104,6 +114,7 @@ import { ref, onMounted, onUnmounted, computed } from "vue";
 import Card from "@/components/TestimonialCard.vue";
 import BaseModal from "@/components/modal/BaseModal.vue";
 import { useStore } from "vuex";
+import { useRouter } from "vue-router";
 
 export default {
   components: {
@@ -114,42 +125,22 @@ export default {
   },
   setup() {
     const store = useStore();
+    const router = useRouter();
+    const testimonials = computed(() => store.state.app.availableTestimonials);
+    const cmsBaseUrl = process.env.VUE_APP_CMS_BASEURL;
 
-    const coaches = computed(() => store.state.app.availableTestimonials);
-
-    const cardsData = ref([
-      {
-        id: 1,
-        image: require("../../assets/webp/testimonial-3.webp"),
-        title: "Success Story - Graduate Coaching",
-        content:
-          "My job search journey was challenging, especially in the fields of auditing and consulting where setbacks and self-doubt clouded my path. Despite initial failures, the support from Teachers Yuki and Sophia, despite time differences, was invaluable. Their patience and guidance helped me navigate emotional hurdles and acquire essential skills. The teaching assistants' patience and professionalism were commendable, aiding in my emotional stability and knowledge acquisition. Their dedication, from resume revisions to interview preparation, was pivotal in my success. The mock AC sessions were particularly enlightening, enhancing my confidence and skills. I encourage others to participate in similar opportunities. The journey taught me the importance of effective communication, group discussions, and time management. Thank you to all who contributed to my success!",
-        footerContent: "Brian, MA degree Graduate",
-      },
-      {
-        id: 2,
-        image: require("../../assets/webp/testimonial-2.webp"),
-        title: "Success Story - Graduate Coaching",
-        content:
-          "Throughout my job hunting journey, I discovered that academic excellence doesn't always translate to job hunting skills. As a novice job seeker, the tutors and teaching assistants provided invaluable support, guiding me through every step of the UK job application process, starting with resume revisions. Their dedication not only helped me secure desired offers but also enriched my professional and soft skills, leaving a lasting impact on my career development. Simulated Assessment Centers played a crucial role in my preparation, with teachers like Rachael providing insights into company preferences and offering tailored advice. I'm particularly grateful to Rachael for her analysis post-offer, aiding in my decision-making process. The teachers' patience and encouragement, even amidst repeated mistakes and academic pressures, instilled me with inner strength and resilience. I highly recommend participating in as many AC simulations as possible, as they not only enhance practical interview skills but also bolster confidence and communication habits. My heartfelt thanks to all the mentors for their unwavering support, and I wish all job seekers find the right guidance and achieve their desired offers in the UK job market.",
-        footerContent: "Chole, MA degree Graduate",
-      },
-      // {
-      //   id: 3,
-      //   image: require("../../assets/webp/testimonial-1.webp"),
-      //   title: "Chris is an excellent coach!",
-      //   content:
-      //     "Working with him was a real pleasure because I could sense his passion and enthusiasm for what he does. With his help I refined my interview skills and my first interview, after only one week with him, was a huge success. Due to his extensive work experience and unique insights, he could give me a lot of good advice on how I can stay on top of my industry.",
-      //   footerContent: "Simon, International Graduate",
-      // },
-    ]);
+    const goToTestimonial = (id) => {
+      router.push({ name: "Testimonial Page", params: { id: id } });
+    };
     const selectedCard = ref();
     const selectTestimonial = (selected) => {
       selectedCard.value = selected;
-      store.dispatch("setModalActive", {
-        status: true,
-        message: null,
-      });
+      // console.log(selectedCard.value, "selected");
+      // router.push(`/testimonials/${selectedCard.value}`);
+      // store.dispatch("setModalActive", {
+      //   status: true,
+      //   message: null,
+      // });
     };
     const windowWidth = ref(window.innerWidth);
     const updateWidth = () => {
@@ -170,13 +161,14 @@ export default {
     });
 
     return {
-      cardsData,
       windowWidth,
       closeModal,
       modalActive: computed(() => store.state.app.modalActive),
       selectedCard,
       selectTestimonial,
-      coaches,
+      testimonials,
+      cmsBaseUrl,
+      goToTestimonial,
     };
   },
 };

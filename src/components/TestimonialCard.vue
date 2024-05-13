@@ -1,20 +1,21 @@
 <template>
-  <div class="card hover:rounded-md hover:cursor-pointer">
-    <div
-      class="top lg:h-[300px] h-auto lg:w-[300px] w-auto mb-8 flex items-start justify-center"
-    >
+  <div
+    class="card hover:rounded-md hover:shadow-md hover:scale-[1.01] hover:cursor-pointer px-4 transition-all"
+  >
+    <div class="top w-auto mb-8 flex items-start justify-center">
       <img
         :src="image"
         :alt="`${title}-testimonial-image`"
-        class="h-full w-full object-cover object-center rounded-full"
+        class="lg:h-[200px] h-auto lg:w-[200px] w-auto object-cover object-left rounded-full"
       />
     </div>
+    <hr class="my-1" />
     <div class="bottom max-h-[300px] w-auto py-[10px]">
       <div class="content h-[max-content] max-h-[260px] overflow-hidden mb-3">
         <p class="mb-2 text-[18px] leading-[28px] font-medium">
           {{ `"${title}"` }}
         </p>
-        <p class="text-sm text-[rgba(0,0,0,0.8)] h-[40px]">
+        <p class="text-sm text-[rgba(0,0,0,0.8)] h-[60px]">
           {{ graduated }}
         </p>
         <hr class="my-1" />
