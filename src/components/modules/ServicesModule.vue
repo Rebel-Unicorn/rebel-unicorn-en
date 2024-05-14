@@ -11,11 +11,14 @@
         class="left w-full xl:h-full lg:max-w-[644px] lg:mb-0 sm:mb-[65px] mb-[45px]"
       >
         <h2
-          class="lg:text-[45px] text-[38px] lg:leading-[48px] leading-[38px] font-[700] mb-4 lg:max-w-[644px] max-w-[504px]"
+          class="lg:text-[45px] text-[38px] lg:leading-[48px] leading-[38px] font-[600] mb-4 lg:max-w-[644px] max-w-[504px]"
         >
           Graduate Career Coaching Services
         </h2>
-        <p class="text-[14px] leading-[24px] text-[rgba(0,0,0,0.7)]">
+        <p
+          v-show="!accordionActive"
+          class="text-[14px] leading-[24px] text-[rgba(0,0,0,0.7)]"
+        >
           Elevate your career with expert coaching tailored to your journey.
           From mastering interviews to entering the professional world, our
           dedicated team ensures your success. Experience personalized career
@@ -39,8 +42,10 @@
 <script>
 import VerticalAnimatedText from "@/components/VerticalAnimatedText.vue";
 import Accordion from "@/components/disclosure/DisclosureComponent.vue";
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref, onMounted, onUnmounted, computed } from "vue";
 import HorizontalAnimatedText from "@/components/HorizontalAnimatedText.vue";
+import { useStore } from "vuex";
+
 export default {
   components: {
     VerticalAnimatedText,
@@ -48,15 +53,16 @@ export default {
     HorizontalAnimatedText,
   },
   setup() {
+    const store = useStore();
     const windowWidth = ref(window.innerWidth);
     const updateWidth = () => {
       windowWidth.value = window.innerWidth;
     };
     onMounted(() => {
-      document.addEventListener("resize", updateWidth());
+      window.addEventListener("resize", updateWidth());
     });
     onUnmounted(() => {
-      document.removeEventListener("resize", updateWidth());
+      window.removeEventListener("resize", updateWidth());
     });
     const items = ref([
       {
@@ -110,6 +116,7 @@ export default {
     return {
       items,
       windowWidth,
+      accordionActive: computed(() => store.state.app.accordionActive),
     };
   },
 };

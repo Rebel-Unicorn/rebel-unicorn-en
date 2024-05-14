@@ -14,12 +14,25 @@
         <h2 class="text-[48px] leading-[50px] font-[600] mb-4">
           Our career coaches help you to...
         </h2>
-        <p class="leading-[24px] text-[rgba(0,0,0,0.7)]">
+        <p
+          v-show="!accordionActive"
+          class="leading-[24px] text-[rgba(0,0,0,0.7)]"
+        >
           We help you to discover your career path and create career plans to
           get you from where you are today to your ideal job.
         </p>
         <div class="items-wrap mt-9">
           <Accordion :accordionData="items" />
+        </div>
+        <div>
+          <router-link to="/coaches" class="block my-4">
+            <button
+              class="fill-btn overflow-hidden py-2 px-4 border border-black relative"
+              id="dynamic-coaches-pseudo-content"
+            >
+              See Our Coaches
+            </button>
+          </router-link>
         </div>
       </div>
     </div>
@@ -30,7 +43,8 @@
 import VerticalAnimatedText from "@/components/VerticalAnimatedText.vue";
 import Accordion from "@/components/disclosure/DisclosureComponent.vue";
 import HorizontalAnimatedText from "@/components/HorizontalAnimatedText.vue";
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref, onMounted, onUnmounted, computed } from "vue";
+import { useStore } from "vuex";
 
 export default {
   components: {
@@ -39,6 +53,8 @@ export default {
     HorizontalAnimatedText,
   },
   setup() {
+    const store = useStore();
+
     const items = ref([
       {
         id: 1,
@@ -64,12 +80,27 @@ export default {
       windowWidth.value = window.innerWidth;
     };
     onMounted(() => {
-      document.addEventListener("resize", updateWidth());
+      window.addEventListener("resize", updateWidth());
+      // Get the element
+      const fillBtn = document.getElementById("dynamic-coaches-pseudo-content");
+
+      // Update the CSS variable dynamically
+      fillBtn.addEventListener("mouseover", () => {
+        fillBtn.style.setProperty("--dynamic-content", '"See Our Coaches"');
+      });
+
+      fillBtn.addEventListener("mouseout", () => {
+        fillBtn.style.setProperty("--dynamic-content", "");
+      });
     });
     onUnmounted(() => {
-      document.removeEventListener("resize", updateWidth());
+      window.removeEventListener("resize", updateWidth());
     });
-    return { items, windowWidth };
+    return {
+      items,
+      windowWidth,
+      accordionActive: computed(() => store.state.app.accordionActive),
+    };
   },
 };
 </script>

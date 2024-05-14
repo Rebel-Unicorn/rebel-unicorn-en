@@ -1,11 +1,51 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
+import TestimonialView from "../views/TestimonialView.vue";
+import CoachesView from "../views/CoachesView.vue";
+import SuccessesView from "../views/SuccessesView.vue";
+import TestimonialPage from "@/components/modules/TestimonialPage.vue";
+import CoachPage from "@/components/modules/CoachPage.vue";
+import TestimonialsLayout from "@/components/layouts/TestimonialsLayout.vue";
 
 const routes = [
   {
     path: "/",
     name: "home",
     component: HomeView,
+  },
+  {
+    path: "/testimonials",
+    name: "TestimonialsLayout",
+    component: TestimonialsLayout,
+    children: [
+      {
+        path: "",
+        name: "AllTestimonials",
+        component: TestimonialView,
+      },
+      {
+        path: "/testimonials/:id",
+        name: "TestimonialPage",
+        component: TestimonialPage,
+      },
+    ],
+  },
+  {
+    path: "/coaches",
+    name: "Coaches",
+    component: CoachesView,
+    children: [
+      {
+        path: "/coaches/:id",
+        name: "CoachPage",
+        component: CoachPage,
+      },
+    ],
+  },
+  {
+    path: "/successes",
+    name: "Successes",
+    component: SuccessesView,
   },
   // {
   //   path: "/about",
