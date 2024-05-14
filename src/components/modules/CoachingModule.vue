@@ -80,7 +80,7 @@ export default {
       windowWidth.value = window.innerWidth;
     };
     onMounted(() => {
-      document.addEventListener("resize", updateWidth());
+      window.addEventListener("resize", updateWidth());
       // Get the element
       const fillBtn = document.getElementById("dynamic-coaches-pseudo-content");
 
@@ -94,7 +94,7 @@ export default {
       });
     });
     onUnmounted(() => {
-      document.removeEventListener("resize", updateWidth());
+      window.removeEventListener("resize", updateWidth());
     });
     return {
       items,

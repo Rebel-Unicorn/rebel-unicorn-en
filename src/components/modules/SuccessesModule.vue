@@ -207,7 +207,7 @@ export default {
       },
     ]);
     onMounted(() => {
-      document.addEventListener("resize", updateWidth());
+      window.addEventListener("resize", updateWidth());
 
       const fillBtn = document.getElementById(
         "dynamic-successes-pseudo-content"
@@ -226,7 +226,7 @@ export default {
       });
     });
     onUnmounted(() => {
-      document.removeEventListener("resize", updateWidth());
+      window.removeEventListener("resize", updateWidth());
     });
     return { windowWidth, companyLogos };
   },

@@ -48,9 +48,7 @@
         </button>
       </div>
     </div>
-    <div
-      class="right lg:w-[50%] w-full lg:h-screen md:h-[680px] sm:h-[1200px] h-[500px]"
-    >
+    <div class="right lg:w-[50%] w-full lg:h-screen md:h-[680px] h-[500px]">
       <div class="hero-img h-full w-full"></div>
     </div>
   </div>

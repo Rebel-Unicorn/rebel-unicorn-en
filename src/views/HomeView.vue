@@ -8,19 +8,19 @@
     </section>
     <section
       id="services"
-      class="scroll-section section-2 md:h-screen h-auto w-screen flex items-center justify-center flex-shrink-0"
+      class="scroll-section section-2 md:h-screen h-auto min-h-screen w-screen flex items-center justify-center flex-shrink-0"
     >
       <ServicesModule />
     </section>
     <section
       id="successes"
-      class="scroll-section section-3 h-screen xl:h-screen xl:w-screen md:w-screen w-full flex xl:flex-row flex-col items-center justify-center flex-shrink-0"
+      class="scroll-section section-3 h-auto xl:h-screen min-h-screen xl:w-screen md:w-screen w-full flex xl:flex-row flex-col items-center justify-center flex-shrink-0"
     >
       <SuccessesModule />
     </section>
     <section
       id="coaching"
-      class="scroll-section section-5 md:h-screen h-screen w-screen flex items-center justify-center flex-shrink-0"
+      class="scroll-section section-5 md:h-screen h-auto min-h-screen w-screen flex items-center justify-center flex-shrink-0"
     >
       <CoachingModule />
     </section>
@@ -32,7 +32,7 @@
     </section>
     <section
       id="learn-more"
-      class="scroll-section section-7 md:h-screen h-auto w-screen flex items-center justify-center flex-shrink-0"
+      class="scroll-section section-7 lg:h-screen h-auto w-screen flex items-center justify-center flex-shrink-0"
     >
       <LearnMore />
     </section>
@@ -119,11 +119,7 @@ export default {
     });
     onMounted(() => {
       // const activeSection = ref();
-      document.addEventListener("resize", updateWidth());
-      window.addEventListener("resize", () => {
-        console.log("resized");
-        window.location.reload();
-      });
+      // document.addEventListener("resize", updateWidth());
       const nav = gsap.utils.toArray("nav div");
       const setActiveNavLink = (sectionId) => {
         // Remove active class from all nav links
@@ -203,6 +199,10 @@ export default {
       checkSectionsInViewport();
 
       if (windowWidth.value > 1281) {
+        window.addEventListener("resize", () => {
+          console.log("resized");
+          updateWidth();
+        });
         let nav = gsap.utils.toArray("nav div"),
           getMaxWidth = () =>
             sections.reduce(
@@ -302,9 +302,9 @@ export default {
     });
 
     onUnmounted(() => {
-      document.removeEventListener("resize", updateWidth());
+      // document.removeEventListener("resize", updateWidth());
       window.removeEventListener("resize", () => {
-        window.location.reload();
+        updateWidth();
       });
     });
 

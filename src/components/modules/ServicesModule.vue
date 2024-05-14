@@ -11,7 +11,7 @@
         class="left w-full xl:h-full lg:max-w-[644px] lg:mb-0 sm:mb-[65px] mb-[45px]"
       >
         <h2
-          class="lg:text-[45px] text-[38px] lg:leading-[48px] leading-[38px] font-[700] mb-4 lg:max-w-[644px] max-w-[504px]"
+          class="lg:text-[45px] text-[38px] lg:leading-[48px] leading-[38px] font-[600] mb-4 lg:max-w-[644px] max-w-[504px]"
         >
           Graduate Career Coaching Services
         </h2>
@@ -59,10 +59,10 @@ export default {
       windowWidth.value = window.innerWidth;
     };
     onMounted(() => {
-      document.addEventListener("resize", updateWidth());
+      window.addEventListener("resize", updateWidth());
     });
     onUnmounted(() => {
-      document.removeEventListener("resize", updateWidth());
+      window.removeEventListener("resize", updateWidth());
     });
     const items = ref([
       {

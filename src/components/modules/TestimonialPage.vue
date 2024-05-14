@@ -1,11 +1,15 @@
 <template>
   <div class="px-4 pb-6">
     <div
-      class="w-full max-w-[calc(100vw-200px)] mx-auto mt-[120px] bg-[#F4F4F4] rounded-md p-10"
+      class="w-full lg:max-w-[calc(100vw-200px)] mx-auto mt-[120px] bg-[#F4F4F4] rounded-md py-10 lg:px-10 px-6"
     >
       <!-- {{ testimonial }} -->
-      <div class="head flex items-start justify-normal mb-8">
-        <div class="image w-[250px] h-[250px] rounded-full overflow-hidden">
+      <div
+        class="head flex flex-col lg:flex-row items-start justify-normal mb-8"
+      >
+        <div
+          class="image w-[250px] h-[250px] rounded-full overflow-hidden lg:mb-0 mb-6"
+        >
           <img
             :src="testimonial?.attributes?.image?.data?.attributes?.url"
             :alt="`${testimonial?.attributes?.name}-avatar`"
@@ -13,29 +17,33 @@
           />
           {{ testimonial?.attributes?.image?.data?.attributes?.url }}
         </div>
-        <div class="details ml-12 w-[calc(100%-250px)]">
+        <div class="details lg:ml-12 lg:w-[calc(100%-250px)] w-full">
           <h2 class="text-[35px] leading-[45px] font-bold">
             {{ testimonial?.attributes?.name }}
           </h2>
           <hr class="my-4" />
           <div class="">
-            <table>
+            <table class="table-fixed w-full">
               <thead>
                 <tr>
-                  <td></td>
+                  <td class="lg:w-[110px] w-[90px]"></td>
                   <td></td>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td class="font-medium text-[20px]">Graduated:</td>
-                  <td class="text-[18px]">
+                  <td class="font-medium lg:text-[20px] align-text-top">
+                    Graduated:
+                  </td>
+                  <td class="lg:text-[18px]">
                     {{ testimonial?.attributes?.graduate }}
                   </td>
                 </tr>
                 <tr>
-                  <td class="font-medium text-[20px]">Employed:</td>
-                  <td class="text-[18px]">
+                  <td class="font-medium lg:text-[20px] align-text-top">
+                    Employed:
+                  </td>
+                  <td class="lg:text-[18px]">
                     {{ testimonial?.attributes?.specialization }}
                   </td>
                 </tr>
@@ -45,7 +53,7 @@
         </div>
       </div>
       <div
-        class="body bg-[#E3E3E3] rounded-md p-8 text-[18px] leading-[28px] tracking-wide"
+        class="body bg-[#E3E3E3] rounded-md lg:py-8 py-6 lg:px-8 px-4 lg:text-[18px] lg:leading-[28px] tracking-wide"
       >
         {{ testimonial?.attributes?.brief }}
       </div>

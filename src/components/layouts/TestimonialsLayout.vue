@@ -56,7 +56,6 @@ export default {
       window.addEventListener("resize", () => {
         updateWidth();
         console.log("resized");
-        window.location.reload();
       });
     });
     onUnmounted(() => {
@@ -64,7 +63,6 @@ export default {
       window.removeEventListener("resize", () => {
         updateWidth();
         console.log("resized");
-        window.location.reload();
       });
     });
     const urls = ref([

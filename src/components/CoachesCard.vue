@@ -16,7 +16,9 @@
     <hr class="my-1 border-gray-300" />
     <div class="bottom max-h-auto w-auto py-[10px]">
       <div class="content h-[max-content] max-h-auto overflow-hidden mb-3">
-        <p class="mb-2 text-[18px] leading-[28px] font-medium">
+        <p
+          class="mb-2 lg:text-[22px] text-[20px] lg:leading-[38px] leading-[30px] font-medium"
+        >
           {{ `"${name}"` }}
         </p>
         <p class="text-sm">

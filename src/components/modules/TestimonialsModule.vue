@@ -155,7 +155,7 @@ export default {
       });
     };
     onMounted(() => {
-      document.addEventListener("resize", updateWidth());
+      window.addEventListener("resize", updateWidth());
       // Get the element
       const fillBtn = document.getElementById(
         "dynamic-testimonials-pseudo-content"
@@ -174,7 +174,7 @@ export default {
       });
     });
     onUnmounted(() => {
-      document.removeEventListener("resize", updateWidth());
+      window.removeEventListener("resize", updateWidth());
       closeModal();
     });
 

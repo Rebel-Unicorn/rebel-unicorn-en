@@ -1,7 +1,7 @@
 <template>
-  <div class="mt-20 py-8 px-4 max-w-[calc(100vw-180px)] mx-auto">
+  <div class="mt-20 py-8 px-4 lg:max-w-[calc(100vw-180px)] mx-auto">
     <h1 class="my-4 text-[36px] leading-[46px] font-bold">Our Coaches</h1>
-    <p class="mb-8 text-[20px] leading-[30px]">
+    <p class="mb-8 lg:text-[20px] lg:leading-[30px]">
       We help you to discover your career path and create career plans to get
       you from where you are today to your ideal job.
     </p>
@@ -77,7 +77,6 @@ export default {
       window.addEventListener("resize", () => {
         updateWidth();
         console.log("resized");
-        window.location.reload();
       });
     });
     onUnmounted(() => {
@@ -85,7 +84,6 @@ export default {
       window.removeEventListener("resize", () => {
         updateWidth();
         console.log("resized");
-        window.location.reload();
       });
     });
     const urls = ref([

@@ -1,6 +1,8 @@
 <template>
-  <div class="w-full max-w-[calc(100vw-180px)] mx-auto py-10 mt-20 relative">
-    <div class="min-h-screen py-10">
+  <div
+    class="w-full lg:max-w-[calc(100vw-180px)] px-4 mx-auto py-10 mt-20 relative"
+  >
+    <div class="py-10">
       <div
         class="heading w-full md:max-w-[63.3%] max-w-full md:mb-10 mb-[62px]"
       >
@@ -26,7 +28,7 @@
         />
       </div>
     </div>
-    <div class="min-h-screen py-10">
+    <div class="py-10">
       <div
         class="heading w-full md:max-w-[63.3%] max-w-full md:mb-10 mb-[62px]"
       >
@@ -39,32 +41,36 @@
           View some of the highlights of our achievements.
         </p>
       </div>
-      <table
-        class="table-auto border-collapse w-full border border-gray-400 !text-left"
-      >
-        <thead class="bg-[#E5E5E5]">
-          <tr class="border-b border-b-gray-400">
-            <th class="py-2 px-4 border border-gray-400">Name</th>
-            <th class="py-2 px-4 border border-gray-400">Company</th>
-            <th class="py-2 px-4 border border-gray-400">University</th>
-            <th class="py-2 px-4 border border-gray-400">Major</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            v-for="(ind, indId) in successesData"
-            :key="indId"
-            class="border-t border-t-gray-400"
-          >
-            <td class="py-2 px-4 border border-gray-400">{{ ind?.Name }}</td>
-            <td class="py-2 px-4 border border-gray-400">{{ ind?.Company }}</td>
-            <td class="py-2 px-4 border border-gray-400">
-              {{ ind?.University }}
-            </td>
-            <td class="py-2 px-4 border border-gray-400">{{ ind?.Major }}</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="successes-table w-full overflow-x-auto">
+        <table
+          class="table-auto border-collapse w-full border border-gray-400 !text-left"
+        >
+          <thead class="bg-[#E5E5E5]">
+            <tr class="border-b border-b-gray-400">
+              <th class="py-2 px-4 border border-gray-400">Name</th>
+              <th class="py-2 px-4 border border-gray-400">Company</th>
+              <th class="py-2 px-4 border border-gray-400">University</th>
+              <th class="py-2 px-4 border border-gray-400">Major</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              v-for="(ind, indId) in successesData"
+              :key="indId"
+              class="border-t border-t-gray-400"
+            >
+              <td class="py-2 px-4 border border-gray-400">{{ ind?.Name }}</td>
+              <td class="py-2 px-4 border border-gray-400">
+                {{ ind?.Company }}
+              </td>
+              <td class="py-2 px-4 border border-gray-400">
+                {{ ind?.University }}
+              </td>
+              <td class="py-2 px-4 border border-gray-400">{{ ind?.Major }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
   <div
@@ -156,7 +162,6 @@ export default {
       window.addEventListener("resize", () => {
         updateWidth();
         console.log("resized");
-        window.location.reload();
       });
     });
     onUnmounted(() => {
@@ -164,7 +169,6 @@ export default {
       window.removeEventListener("resize", () => {
         updateWidth();
         console.log("resized");
-        window.location.reload();
       });
     });
     const companyLogos = ref([

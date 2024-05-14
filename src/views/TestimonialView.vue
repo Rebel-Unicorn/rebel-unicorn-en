@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-20 py-8 px-4 max-w-[calc(100vw-180px)] mx-auto">
+  <div class="mt-20 py-8 px-4 lg:max-w-[calc(100vw-180px)] mx-auto">
     <h1 class="mt-4 mb-8 text-[36px] leading-[46px] font-bold">
       Our Testimonials
     </h1>
@@ -82,7 +82,6 @@ export default {
       window.addEventListener("resize", () => {
         updateWidth();
         console.log("resized");
-        window.location.reload();
       });
     });
     onUnmounted(() => {
@@ -90,7 +89,6 @@ export default {
       window.removeEventListener("resize", () => {
         updateWidth();
         console.log("resized");
-        window.location.reload();
       });
     });
     const urls = ref([
