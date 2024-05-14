@@ -1,24 +1,22 @@
 <template>
   <div class="mt-20 py-8 px-4 max-w-[calc(100vw-180px)] mx-auto">
-    <h1 class="mt-4 mb-8 text-[36px] leading-[46px] font-bold">
-      Our Testimonials
-    </h1>
+    <h1 class="my-4 text-[36px] leading-[46px] font-bold">Our Coaches</h1>
+    <p class="mb-8 text-[20px] leading-[30px]">
+      We help you to discover your career path and create career plans to get
+      you from where you are today to your ideal job.
+    </p>
     <div class="cards w-full">
       <div
-        class="cards-container w-full grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 lg:gap-12 gap-6"
+        class="cards-container w-full grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 lg:gap-12 gap-6"
       >
-        <RouterLink
-          :to="`/testimonials/${card?.id}`"
-          v-for="card in allTestimonials"
-          :key="`${card?.id}`"
-        >
-          <Card
+        <div v-for="card in coaches" :key="`${card?.id}`">
+          <CoachesCard
             :image="`${card?.attributes?.image?.data?.attributes?.url}`"
-            :title="card?.attributes?.name"
-            :graduated="card?.attributes?.graduate"
-            :content="card?.attributes?.brief"
+            :name="card?.attributes?.name"
+            :specialization="card?.attributes?.specializations"
+            :biography="card?.attributes?.biography"
           />
-        </RouterLink>
+        </div>
       </div>
     </div>
   </div>
@@ -60,19 +58,16 @@
 </template>
 
 <script>
-import Card from "@/components/TestimonialCard.vue";
+import CoachesCard from "@/components/CoachesCard.vue";
 import { computed, onMounted, onUnmounted, ref } from "vue";
 import { useStore } from "vuex";
 
 export default {
   components: {
-    Card,
+    CoachesCard,
   },
   setup() {
     const store = useStore();
-    const allTestimonials = computed(
-      () => store.state.app.availableTestimonials
-    );
     const windowWidth = ref(window.innerWidth);
     const updateWidth = () => {
       windowWidth.value = window.innerWidth;
@@ -101,8 +96,8 @@ export default {
       { id: 5, name: "Testimonials", href: "testimonials", active: false },
       { id: 6, name: "Learn more", href: "learn-more", active: false },
     ]);
-
-    return { urls, allTestimonials, windowWidth };
+    const coaches = computed(() => store.state.app.availableCoaches);
+    return { urls, coaches, windowWidth };
   },
 };
 </script>

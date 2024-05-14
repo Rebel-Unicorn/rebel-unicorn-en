@@ -24,6 +24,11 @@
         <div class="items-wrap mt-9">
           <Accordion :accordionData="items" />
         </div>
+        <div>
+          <router-link to="/coaches" class="block my-4">
+            <button class="underline font-medium">See Our Coaches</button>
+          </router-link>
+        </div>
       </div>
     </div>
   </div>

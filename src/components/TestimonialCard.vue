@@ -2,12 +2,16 @@
   <div
     class="card hover:rounded-md hover:shadow-md hover:scale-[1.01] hover:cursor-pointer px-4 transition-all"
   >
-    <div class="top w-auto mb-8 flex items-start justify-center">
-      <img
-        :src="image"
-        :alt="`${title}-testimonial-image`"
-        class="lg:h-[200px] h-auto lg:w-[200px] w-auto object-cover object-left rounded-full"
-      />
+    <div class="flex items-center justify-center w-full">
+      <div
+        class="top mb-8 flex items-start justify-center rounded-full overflow-hidden lg:h-[200px] h-auto max-h-[200px] lg:w-[200px] w-auto max-w-[200px]"
+      >
+        <img
+          :src="image"
+          :alt="`${title}-testimonial-image`"
+          class="w-full h-[200px] object-cover object-left"
+        />
+      </div>
     </div>
     <hr class="my-1" />
     <div class="bottom max-h-[300px] w-auto py-[10px]">
