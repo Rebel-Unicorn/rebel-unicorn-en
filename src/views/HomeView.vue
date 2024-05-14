@@ -14,7 +14,7 @@
     </section>
     <section
       id="successes"
-      class="scroll-section section-3 h-[200vh] xl:h-screen xl:w-[200vw] md:w-screen w-full flex xl:flex-row flex-col items-center justify-center flex-shrink-0"
+      class="scroll-section section-3 h-screen xl:h-screen xl:w-screen md:w-screen w-full flex xl:flex-row flex-col items-center justify-center flex-shrink-0"
     >
       <SuccessesModule />
     </section>

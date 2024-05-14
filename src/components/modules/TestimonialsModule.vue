@@ -37,11 +37,13 @@
         </div>
       </div>
       <div class="cta text-center mt-6">
-        <RouterLink
-          to="/testimonials"
-          class="rounded-full py-2 px-4 border border-black"
-        >
-          Read More Testimonials
+        <RouterLink to="/testimonials">
+          <button
+            class="fill-btn overflow-hidden py-2 px-4 border border-black relative"
+            id="dynamic-testimonials-pseudo-content"
+          >
+            Read More Testimonials
+          </button>
         </RouterLink>
       </div>
     </div>
@@ -154,6 +156,22 @@ export default {
     };
     onMounted(() => {
       document.addEventListener("resize", updateWidth());
+      // Get the element
+      const fillBtn = document.getElementById(
+        "dynamic-testimonials-pseudo-content"
+      );
+
+      // Update the CSS variable dynamically
+      fillBtn.addEventListener("mouseover", () => {
+        fillBtn.style.setProperty(
+          "--dynamic-content",
+          '"Read More Testimonials"'
+        );
+      });
+
+      fillBtn.addEventListener("mouseout", () => {
+        fillBtn.style.setProperty("--dynamic-content", "");
+      });
     });
     onUnmounted(() => {
       document.removeEventListener("resize", updateWidth());

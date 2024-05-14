@@ -26,7 +26,12 @@
         </div>
         <div>
           <router-link to="/coaches" class="block my-4">
-            <button class="underline font-medium">See Our Coaches</button>
+            <button
+              class="fill-btn overflow-hidden py-2 px-4 border border-black relative"
+              id="dynamic-coaches-pseudo-content"
+            >
+              See Our Coaches
+            </button>
           </router-link>
         </div>
       </div>
@@ -76,6 +81,17 @@ export default {
     };
     onMounted(() => {
       document.addEventListener("resize", updateWidth());
+      // Get the element
+      const fillBtn = document.getElementById("dynamic-coaches-pseudo-content");
+
+      // Update the CSS variable dynamically
+      fillBtn.addEventListener("mouseover", () => {
+        fillBtn.style.setProperty("--dynamic-content", '"See Our Coaches"');
+      });
+
+      fillBtn.addEventListener("mouseout", () => {
+        fillBtn.style.setProperty("--dynamic-content", "");
+      });
     });
     onUnmounted(() => {
       document.removeEventListener("resize", updateWidth());

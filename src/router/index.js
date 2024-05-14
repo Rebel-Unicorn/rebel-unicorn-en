@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import TestimonialView from "../views/TestimonialView.vue";
 import CoachesView from "../views/CoachesView.vue";
+import SuccessesView from "../views/SuccessesView.vue";
 import TestimonialPage from "@/components/modules/TestimonialPage.vue";
 import CoachPage from "@/components/modules/CoachPage.vue";
 import TestimonialsLayout from "@/components/layouts/TestimonialsLayout.vue";
@@ -40,6 +41,11 @@ const routes = [
         component: CoachPage,
       },
     ],
+  },
+  {
+    path: "/successes",
+    name: "Successes",
+    component: SuccessesView,
   },
   // {
   //   path: "/about",
