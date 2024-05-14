@@ -8,6 +8,7 @@
       >
         <DisclosureButton
           class="flex justify-between w-full px-[10px] lg:py-2 py-2 my-1 lg:text-[14px] text-[13px] leading-[24px] font-normal text-left transition-all outline-transparent ring-transparent ring-offset-transparent focus:outline-none focus-visible:ring"
+          @click="clickedFn(open)"
           :class="
             !open
               ? 'border-b-[1px] border-[rgba(175,175,175,0.86)] text-[rgba(0,0,0,0.7)]'
@@ -72,6 +73,7 @@ import { ref } from "vue";
 import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
 import DisclosureStateEmitter from "./DisclosureStateEmitter.vue";
 import { decode } from "html-entities";
+import { useStore } from "vuex";
 
 export default {
   components: {
@@ -82,10 +84,13 @@ export default {
   },
   props: ["accordionData"],
   setup(props) {
+    const store = useStore();
+
     // console.log(props.accordionData);
     const items = ref(props.accordionData);
 
     const elements = ref([]);
+    const activeState = ref(false);
 
     const hideOther = (id) => {
       const items = elements.value.filter((elm) => {
@@ -108,11 +113,25 @@ export default {
       }
     };
 
+    const clickedFn = (state) => {
+      state ? (activeState.value = false) : (activeState.value = true);
+      store.commit("setAccordionActive", activeState.value);
+      console.log("wheee", state);
+    };
+
     const doClose = (close) => {
       close();
     };
 
-    return { items, hideOther, elements, doClose, decode, formatDetail };
+    return {
+      items,
+      hideOther,
+      elements,
+      doClose,
+      decode,
+      formatDetail,
+      clickedFn,
+    };
   },
 };
 </script>

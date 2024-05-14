@@ -29,6 +29,30 @@ svg {
   width: 100%;
   height: auto;
 }
+.fill-btn::before {
+  content: "";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 90%;
+  left: 0;
+  background: #772A8A;
+  color: #fff;
+  transition: all .6s;
+}
+.fill-btn:hover::before {
+  content: var(--dynamic-content, '');
+  height: 100%;
+  width: 100%;
+  background: #772A8A;
+  color: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 @keyframes rotateVector {
   from {
     transform: rotate(360deg);

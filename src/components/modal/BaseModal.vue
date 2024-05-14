@@ -2,7 +2,6 @@
   <Transition>
     <div
       v-show="modalActive"
-      @click="closeModal"
       class="p-5 modal bg-[#00000059] fixed h-screen w-screen left-0 top-0 z-[2000] flex items-center justify-center"
     >
       <!-- Modal Content -->

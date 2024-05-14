@@ -14,34 +14,151 @@
       </div>
       <div class="right">
         <div
-          class="lg:px-[65px] md:px-[45px] px-4 md:pt-[100px] pt-12 pb-10 h-full relative flex flex-col justify-between"
+          class="lg:px-[45px] md:px-[25px] px-4 md:pt-[100px] pt-12 pb-4 h-full relative flex flex-col justify-between"
         >
           <div class="w-full md:mb-0 mb-6">
-            <h2 class="text-[48px] leading-[50.8px] font-[600] mb-8">
+            <h2
+              class="lg:text-[35px] text-[30px] lg:leading-[40px] leading-[30px] font-[700] mb-8"
+            >
               Learn more about us by...
             </h2>
             <ul class="mb-6">
               <li
+                class="border-b text-[18px] border-[rgba(11,11,11,0.2)] py-3 px-2"
+              >
+                <button @click="openWWModal">Whatsapp/WeChat</button>
+              </li>
+              <li
                 v-for="(url, i) in urls"
                 :key="`${url.name}-${i}`"
-                class="border-b text-[18px] border-[rgba(11,11,11,0.2)] py-4 px-3"
+                class="border-b text-[18px] border-[rgba(11,11,11,0.2)] py-3 px-2"
               >
                 <a :href="url.url">{{ url.name }}</a>
               </li>
             </ul>
-            <p class="md:text-right text-left">
-              Graduate CoachSpaces, 25 Wilton Rd, London <br />SW1V 1LW
-            </p>
+            <a
+              target="_blank"
+              href="https://www.google.com/maps/dir/?api=1&destination=New%20Broad%20Street%20House,%2035%20New%20Broad%20St,%20London%20EC2M%201NH,%20United%20Kingdom"
+              class="block md:text-right text-left"
+            >
+              3 New Broad Street House, 35 New Broad Street, <br />London,
+              England, <br />EC2M 1NH
+            </a>
           </div>
           <div class="md:text-right text-left text-[rgba(0,0,0,0.7)] w-full">
-            <a href="#">Privacy Policy</a>
-            <p>
-              Copyright © {{ currentDate }} RebelUnicorn. All rights reserved
+            <a href="#" class="underline mb-2">Privacy Policy</a>
+            <p class="text-xs">
+              © {{ currentDate }} Rebel Unicorn Group Ltd. All rights reserved.
+              Registered Company 13448853. Offices in London.
             </p>
           </div>
         </div>
       </div>
     </div>
+    <BaseModal :modalActive="modalActive.status === true && selectWW === true">
+      <div
+        v-if="selectWW"
+        class="w-[400px] h-auto flex flex-col items-start border border-gray-700 bg-[#772a8b] px-4"
+      >
+        <div class="top-utils w-full flex items-center justify-between my-2">
+          <h4 class="font-[500] text-28px text-white">Connect</h4>
+          <button
+            @click="closeModal"
+            class="block border border-transparent hover:border-[#e5e7eb] text-[#e5e7eb] hover:rounded-lg"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 18 18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+        <div class="w-full max-w-md px-2 py-4 sm:px-0">
+          <TabGroup>
+            <TabList class="flex space-x-1 bg-blue-900/20 p-1">
+              <Tab as="template" v-slot="{ selected }">
+                <button
+                  :class="[
+                    'w-full py-2.5 text-sm font-medium leading-5',
+                    selected
+                      ? 'bg-white text-[#772a8b] shadow'
+                      : 'text-blue-100 hover:bg-white/[0.12] hover:text-white',
+                  ]"
+                >
+                  WhatsApp
+                </button>
+              </Tab>
+              <Tab as="template" v-slot="{ selected }">
+                <button
+                  :class="[
+                    'w-full py-2.5 text-sm font-medium leading-5',
+                    selected
+                      ? 'bg-white text-[#772a8b] shadow'
+                      : 'text-blue-100 hover:bg-white/[0.12] hover:text-white',
+                  ]"
+                >
+                  WeChat
+                </button>
+              </Tab>
+            </TabList>
+            <TabPanels class="mt-2">
+              <TabPanel
+                :class="[
+                  'bg-white p-3',
+                  'ring-white/60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2',
+                ]"
+              >
+                <div class="relative p-3 hover:bg-gray-100">
+                  Chat with us on WhatsApp by clicking this
+                  <a
+                    href="#"
+                    :class="[
+                      'relative inset-0',
+                      'text-[#772a8b]',
+                      'ring-blue-400 focus:z-10 focus:outline-none focus:ring-2',
+                      'underline',
+                    ]"
+                  >
+                    link
+                  </a>
+                </div>
+              </TabPanel>
+              <TabPanel
+                :class="[
+                  ' bg-white p-3',
+                  'ring-white/60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2',
+                ]"
+              >
+                <div class="relative p-3 hover:bg-gray-100">
+                  <a
+                    href="#"
+                    :class="[
+                      'relative inset-0 rounded-md',
+                      'ring-blue-400 focus:z-10 focus:outline-none focus:ring-2',
+                      'w-full h-auto',
+                    ]"
+                  >
+                    <div class="font-[500] text-[16px] text-center">
+                      Scan the QR code to start a chat
+                    </div>
+                    <img src="../../assets/webp/wechat-qr.webp" alt="WeChat" />
+                  </a>
+                </div>
+              </TabPanel>
+            </TabPanels>
+          </TabGroup>
+        </div>
+      </div>
+    </BaseModal>
   </div>
 </template>
 
@@ -49,15 +166,26 @@
 import VerticalAnimatedText from "@/components/VerticalAnimatedText.vue";
 import HorizontalAnimatedText from "@/components/HorizontalAnimatedText.vue";
 import { ref, onMounted, onUnmounted, computed } from "vue";
+import { useStore } from "vuex";
+import BaseModal from "@/components/modal/BaseModal.vue";
+import { TabGroup, TabList, Tab, TabPanels, TabPanel } from "@headlessui/vue";
+
 export default {
   components: {
     VerticalAnimatedText,
     HorizontalAnimatedText,
+    BaseModal,
+    TabGroup,
+    TabList,
+    Tab,
+    TabPanels,
+    TabPanel,
   },
   setup() {
+    const store = useStore();
     const urls = [
-      { name: "Our Blog", url: "#" },
-      { name: "Subscribe to Our Newsletter", url: "#" },
+      // { name: "Whatsapp/WeChat", url: "#" },
+      { name: "LinkedIn", url: "#" },
       { name: "Instagram", url: "#" },
       { name: "Facebook", url: "#" },
       { name: "WeChat", url: "#" },
@@ -71,13 +199,37 @@ export default {
     const currentDate = computed(() => {
       return new Date().getFullYear();
     });
+    const selectWW = ref(false);
+    const openWWModal = () => {
+      selectWW.value = !selectWW.value;
+      console.log("clicked");
+      store.dispatch("setModalActive", {
+        status: true,
+        message: null,
+      });
+    };
+    const closeModal = () => {
+      selectWW.value = false;
+      store.commit("setModalActive", {
+        status: false,
+        message: null,
+      });
+    };
     onMounted(() => {
       window.addEventListener("resize", updateWidth());
     });
     onUnmounted(() => {
       window.removeEventListener("resize", updateWidth());
     });
-    return { urls, windowWidth, currentDate };
+    return {
+      urls,
+      windowWidth,
+      currentDate,
+      openWWModal,
+      modalActive: computed(() => store.state.app.modalActive),
+      selectWW,
+      closeModal,
+    };
   },
 };
 </script>
