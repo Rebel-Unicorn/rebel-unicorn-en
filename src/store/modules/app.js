@@ -1,4 +1,5 @@
 const state = {
+  appLoading: true,
   modalActive: {
     status: false,
     message: null,
@@ -10,6 +11,9 @@ const state = {
 };
 const getters = {};
 const mutations = {
+  setAppLoading(state, appLoading) {
+    state.appLoading = appLoading;
+  },
   setModalActive(state, modalActive) {
     state.modalActive = modalActive;
   },
@@ -27,6 +31,9 @@ const mutations = {
   },
 };
 const actions = {
+  setAppLoading({ commit }, appLoading) {
+    commit("setAppLoading", appLoading);
+  },
   setModalActive({ commit }, modalActive) {
     commit("setModalActive", modalActive);
   },

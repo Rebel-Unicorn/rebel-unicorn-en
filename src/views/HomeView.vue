@@ -113,11 +113,11 @@ export default {
       windowWidth.value = window.innerWidth;
     };
 
-    onBeforeMount(() => {
+    onBeforeMount(async () => {
       gsap.registerPlugin(ScrollTrigger);
       gsap.registerPlugin(ScrollToPlugin);
     });
-    onMounted(() => {
+    onMounted(async () => {
       // const activeSection = ref();
       // document.addEventListener("resize", updateWidth());
       const nav = gsap.utils.toArray("nav div");
@@ -301,7 +301,7 @@ export default {
       }
     });
 
-    onUnmounted(() => {
+    onUnmounted(async () => {
       // document.removeEventListener("resize", updateWidth());
       window.removeEventListener("resize", () => {
         updateWidth();

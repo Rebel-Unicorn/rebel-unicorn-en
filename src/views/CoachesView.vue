@@ -1,4 +1,5 @@
 <template>
+  <SplashScreen v-show="loading" />
   <div class="mt-20 py-8 px-4 lg:max-w-[calc(100vw-180px)] mx-auto">
     <h1 class="my-4 text-[36px] leading-[46px] font-bold">Our Coaches</h1>
     <p class="mb-8 lg:text-[20px] lg:leading-[30px]">
@@ -61,10 +62,12 @@
 import CoachesCard from "@/components/CoachesCard.vue";
 import { computed, onMounted, onUnmounted, ref } from "vue";
 import { useStore } from "vuex";
+import SplashScreen from "./../components/SplashScreen.vue";
 
 export default {
   components: {
     CoachesCard,
+    SplashScreen,
   },
   setup() {
     const store = useStore();
@@ -72,14 +75,16 @@ export default {
     const updateWidth = () => {
       windowWidth.value = window.innerWidth;
     };
-    onMounted(() => {
+    const loading = ref(true);
+    onMounted(async () => {
       // document.addEventListener("resize", updateWidth());
+      loading.value = false;
       window.addEventListener("resize", () => {
         updateWidth();
         console.log("resized");
       });
     });
-    onUnmounted(() => {
+    onUnmounted(async () => {
       // document.addEventListener("resize", updateWidth());
       window.removeEventListener("resize", () => {
         updateWidth();
@@ -95,7 +100,7 @@ export default {
       { id: 6, name: "Learn more", href: "learn-more", active: false },
     ]);
     const coaches = computed(() => store.state.app.availableCoaches);
-    return { urls, coaches, windowWidth };
+    return { urls, coaches, windowWidth, loading };
   },
 };
 </script>
