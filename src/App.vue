@@ -1,5 +1,6 @@
 <template>
-  <main class="relative w-screen">
+  <SplashScreen v-if="loading" />
+  <main class="relative w-screen transition-all">
     <TopNavbar />
     <router-view />
   </main>
@@ -7,13 +8,15 @@
 
 <script>
 import TopNavbar from "@/components/TopNavbar.vue";
-import { onMounted } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { useStore } from "vuex";
 import axios from "axios";
+import SplashScreen from "@/components/SplashScreen.vue";
 
 export default {
   components: {
     TopNavbar,
+    SplashScreen,
   },
   setup() {
     const store = useStore();
@@ -25,54 +28,57 @@ export default {
     const reorderResponse = (res) => {
       return res.sort((a, b) => a.id - b.id);
     };
+    const loading = ref(true);
+    const getData = async () => {
+      loading.value = true;
+      try {
+        const coachesResponse = await axios.get(`${baseUrl}${coachesUrl}`);
+        const successesResponse = await axios.get(`${baseUrl}${successesUrl}`);
+        const testimonialsResponse = await axios.get(
+          `${baseUrl}${testimonialsUrl}`
+        );
 
-    const getCoaches = async () => {
-      try {
-        const response = await axios.get(`${baseUrl}${coachesUrl}`);
-        let res = response.data.data;
+        if (
+          coachesResponse.status === 200 &&
+          successesResponse.status === 200 &&
+          testimonialsResponse.status === 200
+        ) {
+          loading.value = false;
+          console.log(loading.value);
+        }
         // console.log(res, "resss");
-        store.commit("setAvailableCoaches", reorderResponse(res));
+        store.commit(
+          "setAvailableCoaches",
+          reorderResponse(coachesResponse.data.data)
+        );
+        store.commit(
+          "setAvailableSuccesses",
+          reorderResponse(successesResponse.data.data)
+        );
+        store.commit(
+          "setAvailableTestimonials",
+          reorderResponse(testimonialsResponse.data.data)
+        );
+        store.commit("setAppLoading", false);
       } catch (error) {
         console.error(error);
       }
     };
-    const getSuccesses = async () => {
-      try {
-        const response = await axios.get(`${baseUrl}${successesUrl}`);
-        let res = response.data.data;
-        // console.log(res, "resss");
-        store.commit("setAvailableSuccesses", reorderResponse(res));
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    const getTestimonials = async () => {
-      try {
-        const response = await axios.get(`${baseUrl}${testimonialsUrl}`);
-        let res = response.data.data;
-        // console.log(res, "resss");
-        store.commit("setAvailableTestimonials", reorderResponse(res));
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
     onMounted(() => {
-      console.log("message from app", baseUrl, testimonialsUrl);
+      window.addEventListener("load", (event) => {
+        console.log(event, "page is fully loaded");
+      });
       store.commit("setModalActive", {
         status: false,
         message: null,
       });
-      getCoaches();
-      getSuccesses();
-      getTestimonials();
-      // store.commit("setModalActive", {
-      //   status: false,
-      //   message: null,
-      // });
+      getData();
     });
 
-    return {};
+    return {
+      appLoading: computed(() => store.state.app.appLoading),
+      loading,
+    };
   },
 };
 </script>

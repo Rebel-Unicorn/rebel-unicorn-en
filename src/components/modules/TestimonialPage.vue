@@ -1,5 +1,6 @@
 <template>
-  <div class="px-4 pb-6">
+  <SplashScreen v-show="loading" />
+  <div v-show="!loading" class="px-4 pb-6">
     <div
       class="w-full lg:max-w-[calc(100vw-200px)] mx-auto mt-[120px] bg-[#F4F4F4] rounded-md py-10 lg:px-10 px-6"
     >
@@ -65,10 +66,14 @@
 import axios from "axios";
 import { onBeforeMount, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import SplashScreen from "../SplashScreen.vue";
 // import { useStore } from "vuex";
 
 export default {
   name: "TestimonialPage",
+  components: {
+    SplashScreen,
+  },
   setup() {
     // const store = useStore();
     const route = useRoute();
@@ -77,16 +82,21 @@ export default {
     const testimonialId = ref();
     const getCurrentRouteSlug = router.currentRoute.value.params.id;
     const baseUrl = process.env.VUE_APP_CMS_BASEURL;
+    const loading = ref(true);
 
     onBeforeMount(() => {
       testimonialId.value = route.params.id;
     });
 
     const getTestimonials = async () => {
+      loading.value = true;
       try {
         const response = await axios.get(
           `${baseUrl}testimonials/${Number(getCurrentRouteSlug)}?populate=*`
         );
+        if (response.status === 200) {
+          loading.value = false;
+        }
         testimonial.value = response.data.data;
         // store.commit("setAvailableTestimonials", reorderResponse(res));
       } catch (error) {
@@ -95,7 +105,7 @@ export default {
     };
     getTestimonials();
 
-    return { testimonial };
+    return { testimonial, loading };
   },
 };
 </script>
