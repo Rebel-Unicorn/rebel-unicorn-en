@@ -1,6 +1,6 @@
 <template>
   <SplashScreen v-if="loading" />
-  <main class="relative w-screen transition-all">
+  <main class="relative w-screen transition-all tracking-wide">
     <TopNavbar />
     <router-view />
   </main>
