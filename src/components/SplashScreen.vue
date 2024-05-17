@@ -20,7 +20,7 @@
         />
       </svg>
     </span>
-    <p class="text-xs font-medium tracking-wide">Loading...</p>
+    <p class="text-xs font-medium tracking-wider">Loading...</p>
   </div>
 </template>
 
