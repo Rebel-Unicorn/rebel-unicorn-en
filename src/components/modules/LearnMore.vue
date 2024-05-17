@@ -20,22 +20,27 @@
             <h2
               class="lg:text-[35px] text-[30px] lg:leading-[40px] leading-[30px] font-[700] mb-8"
             >
-              Learn more about us by...
+              Learn more about us...
             </h2>
-            <ul class="mb-6">
-              <li
-                class="border-b text-[18px] border-[rgba(11,11,11,0.2)] py-3 px-2"
-              >
-                <button @click="openWWModal">Whatsapp/WeChat</button>
-              </li>
-              <li
+            <div class="mb-6 flex items-center justify-between">
+              <button @click="openWWModal">
+                <!-- WeChat -->
+                <img src="../../assets/svg/wechat.svg" alt="" class="w-8 h-8" />
+              </button>
+              <div
                 v-for="(url, i) in urls"
                 :key="`${url.name}-${i}`"
-                class="border-b text-[18px] border-[rgba(11,11,11,0.2)] py-3 px-2"
+                class="text-[18px] py-3 px-2"
               >
-                <a :href="url.url">{{ url.name }}</a>
-              </li>
-            </ul>
+                <a :href="url.url">
+                  <img
+                    :src="url.icon"
+                    :alt="`${url.name}-icon`"
+                    class="w-6 h-6"
+                  />
+                </a>
+              </div>
+            </div>
             <a
               target="_blank"
               href="https://www.google.com/maps/dir/?api=1&destination=New%20Broad%20Street%20House,%2035%20New%20Broad%20St,%20London%20EC2M%201NH,%20United%20Kingdom"
@@ -85,7 +90,7 @@
         <div class="w-full max-w-md px-2 py-4 sm:px-0">
           <TabGroup>
             <TabList class="flex space-x-1 bg-blue-900/20 p-1">
-              <Tab as="template" v-slot="{ selected }">
+              <!-- <Tab as="template" v-slot="{ selected }">
                 <button
                   :class="[
                     'w-full py-2.5 text-sm font-medium leading-5',
@@ -96,7 +101,7 @@
                 >
                   WhatsApp
                 </button>
-              </Tab>
+              </Tab> -->
               <Tab as="template" v-slot="{ selected }">
                 <button
                   :class="[
@@ -111,7 +116,7 @@
               </Tab>
             </TabList>
             <TabPanels class="mt-2">
-              <TabPanel
+              <!-- <TabPanel
                 :class="[
                   'bg-white p-3',
                   'ring-white/60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2',
@@ -131,7 +136,7 @@
                     link
                   </a>
                 </div>
-              </TabPanel>
+              </TabPanel> -->
               <TabPanel
                 :class="[
                   ' bg-white p-3',
@@ -185,11 +190,27 @@ export default {
     const store = useStore();
     const urls = [
       // { name: "Whatsapp/WeChat", url: "#" },
-      { name: "LinkedIn", url: "#" },
-      { name: "Instagram", url: "#" },
-      { name: "Facebook", url: "#" },
-      { name: "WeChat", url: "#" },
-      { name: "X.com", url: "#" },
+      {
+        name: "LinkedIn",
+        url: "#",
+        icon: require("../../assets/svg/linkedin.svg"),
+      },
+      {
+        name: "Instagram",
+        url: "#",
+        icon: require("../../assets/svg/instagram.svg"),
+      },
+      {
+        name: "Facebook",
+        url: "#",
+        icon: require("../../assets/svg/facebook.svg"),
+      },
+      {
+        name: "Whatsapp",
+        url: "#",
+        icon: require("../../assets/svg/whatsapp.svg"),
+      },
+      { name: "X.com", url: "#", icon: require("../../assets/svg/x.svg") },
     ];
     const windowWidth = ref(window.innerWidth);
     const updateWidth = () => {

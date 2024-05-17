@@ -8,6 +8,7 @@ const state = {
   availableSuccesses: [],
   availableTestimonials: [],
   accordionActive: false,
+  applicationModal: false,
 };
 const getters = {};
 const mutations = {
@@ -29,6 +30,9 @@ const mutations = {
   setAccordionActive(state, accordionActive) {
     state.accordionActive = accordionActive;
   },
+  setApplicationModal(state, applicationModal) {
+    state.applicationModal = applicationModal;
+  },
 };
 const actions = {
   setAppLoading({ commit }, appLoading) {
@@ -48,6 +52,9 @@ const actions = {
   },
   setAccordionActive({ commit }, accordionActive) {
     commit("setAccordionActive", accordionActive);
+  },
+  setApplicationModal({ commit }, applicationModal) {
+    commit("setApplicationModal", applicationModal);
   },
 };
 

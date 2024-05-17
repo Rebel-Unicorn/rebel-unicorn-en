@@ -1,13 +1,26 @@
 <template>
   <SplashScreen v-show="loading" />
-  <div v-show="!loading" class="px-4 pb-6">
+  <div v-show="!loading" class="px-4 pb-6 relative">
     <div
       class="w-full lg:max-w-[calc(100vw-200px)] mx-auto mt-[120px] bg-[#F4F4F4] rounded-md py-10 lg:px-10 px-6"
     >
       <!-- {{ testimonial }} -->
       <div
-        class="head flex flex-col lg:flex-row items-start justify-normal mb-8"
+        class="head flex flex-col lg:flex-row items-start justify-normal mb-8 relative"
       >
+        <div class="w-full absolute flex items-center justify-end right-0 to-0">
+          <router-link
+            to="/testimonials"
+            type="button"
+            class="bg-gray-300 text-white font-medium rounded-full w-12 h-12"
+          >
+            <img
+              src="../../assets/svg/cancel.svg"
+              alt="cancel"
+              class="w-full h-full"
+            />
+          </router-link>
+        </div>
         <div
           class="image w-[250px] h-[250px] rounded-full overflow-hidden lg:mb-0 mb-6"
         >

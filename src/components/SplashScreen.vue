@@ -1,8 +1,8 @@
 <template>
   <div
-    class="bg-white w-screen h-screen fixed top-0 left-0 flex items-center justify-center transition-all z-[3000]"
+    class="bg-white w-screen h-screen fixed top-0 left-0 flex flex-col items-center justify-center transition-all z-[3000]"
   >
-    <span class="splash-icon-type block relative w-[40px]">
+    <span class="splash-icon-type block relative w-[40px] mb-10">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -20,6 +20,7 @@
         />
       </svg>
     </span>
+    <p class="text-xs font-medium tracking-wide">Loading...</p>
   </div>
 </template>
 

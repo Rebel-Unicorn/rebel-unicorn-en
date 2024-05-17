@@ -6,6 +6,7 @@
       <Logo />
     </RouterLink>
     <button
+      @click="addApplication"
       class="md:text-[16px] text-[13px] leading-[19.36px] text-black rounded-full border shadow-sm py-2 md:px-4 px-3 bg-[#ffffff7d] mix-blend-difference"
     >
       Apply now
@@ -15,13 +16,33 @@
 
 <script>
 import Logo from "@/components/LogoComponent.vue";
+import ApplicationService from "@/services/applications.service";
+import { useStore } from "vuex";
 
 export default {
   components: {
     Logo,
   },
   setup() {
-    return {};
+    const store = useStore();
+    async function getApplications() {
+      try {
+        const response = await ApplicationService.getAllApplications();
+        // Handle response
+        console.log(response.data);
+      } catch (error) {
+        // Handle error
+        console.error({ error: "Error fetching the resource" });
+      }
+    }
+    getApplications();
+    const addApplication = () => {
+      store.commit("setApplicationModal", true);
+    };
+
+    return {
+      addApplication,
+    };
   },
 };
 </script>

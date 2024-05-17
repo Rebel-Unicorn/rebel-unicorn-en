@@ -24,7 +24,7 @@
         <div class="items-wrap mt-9">
           <Accordion :accordionData="items" />
         </div>
-        <div>
+        <div class="w-full text-center">
           <router-link to="/coaches" class="block my-4">
             <button
               class="fill-btn overflow-hidden py-2 px-4 border border-black relative"
