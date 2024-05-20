@@ -4,11 +4,7 @@
     <TopNavbar />
     <router-view />
     <BaseModal :modalActive="applicationModal">
-      <div
-        class="lg:w-[50%] w-full max-h-[90vh] overflow-hidden overflow-y-auto flex flex-col items-start border border-gray-300 bg-[white] px-4 rounded-md"
-      >
-        <ApplicationForm />
-      </div>
+      <ApplicationForm />
     </BaseModal>
   </main>
 </template>
