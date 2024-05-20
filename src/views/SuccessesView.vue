@@ -6,32 +6,6 @@
       <div
         class="heading w-full md:max-w-[63.3%] max-w-full md:mb-10 mb-[62px]"
       >
-        <h2
-          class="lg:text-[48px] text-[38px] lg:leading-[50px] leading-[38px] font-[600] mb-3"
-        >
-          Hear About Our Successes
-        </h2>
-        <p class="text-[18px] leading-[32px] text-[rgba(0,0,0,0.7)]">
-          We have helped over 5000 students land roles with organizations like
-          these
-        </p>
-      </div>
-      <div
-        class="companies-wrapper w-full h-full max-h-[70%] grid md:grid-cols-4 grid-cols-3 items-center justify-items-center gap-5 lg:gap-y-5 lg:gap-x-5 pb-8"
-      >
-        <img
-          v-for="(company, id) in companyLogos"
-          :key="`${company.name}-$${id}`"
-          class="my-2"
-          :src="company.url"
-          :alt="`${company.name}-logo`"
-        />
-      </div>
-    </div>
-    <div class="py-10">
-      <div
-        class="heading w-full md:max-w-[63.3%] max-w-full md:mb-10 mb-[62px]"
-      >
         <h3
           class="lg:text-[48px] text-[38px] lg:leading-[50px] leading-[38px] font-[600] mb-3"
         >
