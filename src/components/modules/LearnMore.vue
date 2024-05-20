@@ -223,7 +223,7 @@ export default {
     const selectWW = ref(false);
     const openWWModal = () => {
       selectWW.value = !selectWW.value;
-      console.log("clicked");
+      // console.log("clicked");
       store.dispatch("setModalActive", {
         status: true,
         message: null,

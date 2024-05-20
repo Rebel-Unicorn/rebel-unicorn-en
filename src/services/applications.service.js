@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const baseurl = `${process.env.VUE_APP_BACKEND_BASEURL}`;
-console.log();
 const url = `${baseurl}/applications`;
 const token = process.env.VUE_APP_BACKEND_JWT_SECRET; // Or retrieve from your state management
 

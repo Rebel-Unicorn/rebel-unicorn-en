@@ -51,7 +51,6 @@ export default {
           testimonialsResponse.status === 200
         ) {
           loading.value = false;
-          console.log(loading.value);
         }
         // console.log(res, "resss");
         store.commit(

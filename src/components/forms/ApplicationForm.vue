@@ -587,7 +587,7 @@ export default {
           completed.value = true;
           // closeForm();
           loading.value = false;
-          console.log(response.data);
+          // console.log(response.data);
         }
       } catch (error) {
         // Handle error

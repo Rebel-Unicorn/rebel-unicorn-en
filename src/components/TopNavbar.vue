@@ -16,7 +16,6 @@
 
 <script>
 import Logo from "@/components/LogoComponent.vue";
-import ApplicationService from "@/services/applications.service";
 import { useStore } from "vuex";
 
 export default {
@@ -25,17 +24,6 @@ export default {
   },
   setup() {
     const store = useStore();
-    async function getApplications() {
-      try {
-        const response = await ApplicationService.getAllApplications();
-        // Handle response
-        console.log(response.data);
-      } catch (error) {
-        // Handle error
-        console.error({ error: "Error fetching the resource" });
-      }
-    }
-    getApplications();
     const addApplication = () => {
       store.commit("setApplicationModal", true);
     };
