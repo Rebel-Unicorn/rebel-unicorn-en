@@ -2,8 +2,14 @@
   <div
     class="learn-more-background w-full h-full flex lg:flex-row flex-col flex-1"
   >
-    <VerticalAnimatedText content="Learn more" v-if="windowWidth >= 1025" />
-    <HorizontalAnimatedText v-else content="Learn more" />
+    <VerticalAnimatedText
+      :content="landingPageData?.LearnMoreComponent?.sectionTitle"
+      v-if="windowWidth >= 1025"
+    />
+    <HorizontalAnimatedText
+      v-else
+      :content="landingPageData?.LearnMoreComponent?.sectionTitle"
+    />
     <div class="flex lg:flex-row flex-col w-full h-full">
       <div
         class="left footer-img-container relative lg:w-[63.3%] w-full h-screen lg:max-h-full max-h-[489px]"
@@ -20,42 +26,58 @@
             <h2
               class="lg:text-[35px] text-[30px] lg:leading-[40px] leading-[30px] font-[700] mb-8"
             >
-              Learn more about us...
+              {{ landingPageData?.LearnMoreComponent?.title }}
             </h2>
-            <div class="mb-6 flex items-center justify-between">
-              <button @click="openWWModal">
-                <!-- WeChat -->
-                <img src="../../assets/svg/wechat.svg" alt="" class="w-8 h-8" />
-              </button>
-              <div
-                v-for="(url, i) in urls"
-                :key="`${url.name}-${i}`"
-                class="text-[18px] py-3 px-2"
-              >
-                <a :href="url.url">
+            <div class="w-full flex items-center justify-end">
+              <div class="mb-6 grid grid-cols-3 max-w-[50%]">
+                <button @click="openWWModal">
+                  <!-- WeChat -->
                   <img
-                    :src="url.icon"
-                    :alt="`${url.name}-icon`"
-                    class="w-6 h-6"
+                    src="../../assets/svg/wechat.svg"
+                    alt=""
+                    class="w-8 h-8"
                   />
-                </a>
+                </button>
+                <div
+                  v-for="(url, i) in urls"
+                  :key="`${url.name}-${i}`"
+                  class="text-[18px] py-3 px-2"
+                >
+                  <a :href="url.url">
+                    <img
+                      :src="url.icon"
+                      :alt="`${url.name}-icon`"
+                      class="w-6 h-6"
+                    />
+                  </a>
+                </div>
               </div>
             </div>
             <a
+              v-html="landingPageData?.LearnMoreComponent?.officeAddress?.title"
+              target="_blank"
+              :href="landingPageData?.LearnMoreComponent?.officeAddress?.url"
+              class="block md:text-right text-left"
+            ></a>
+            <!-- <a
               target="_blank"
               href="https://www.google.com/maps/dir/?api=1&destination=New%20Broad%20Street%20House,%2035%20New%20Broad%20St,%20London%20EC2M%201NH,%20United%20Kingdom"
               class="block md:text-right text-left"
             >
               3 New Broad Street House, 35 New Broad Street, <br />London,
               England, <br />EC2M 1NH
-            </a>
+            </a> -->
           </div>
           <div class="md:text-right text-left text-[rgba(0,0,0,0.7)] w-full">
-            <a href="#" class="underline mb-2">Privacy Policy</a>
-            <p class="text-xs">
-              © {{ currentDate }} Rebel Unicorn Group Ltd. All rights reserved.
-              Registered Company 13448853. Offices in London.
-            </p>
+            <a
+              :href="landingPageData?.LearnMoreComponent?.privacy?.url"
+              class="underline mb-2"
+              >{{ landingPageData?.LearnMoreComponent?.privacy?.title }}</a
+            >
+            <div
+              v-html="landingPageData?.LearnMoreComponent?.copyright"
+              class="text-xs"
+            ></div>
           </div>
         </div>
       </div>
@@ -188,6 +210,8 @@ export default {
   },
   setup() {
     const store = useStore();
+    const landingPageData = computed(() => store.state.app.landingPageData);
+
     const urls = [
       // { name: "Whatsapp/WeChat", url: "#" },
       {
@@ -250,6 +274,7 @@ export default {
       modalActive: computed(() => store.state.app.modalActive),
       selectWW,
       closeModal,
+      landingPageData,
     };
   },
 };

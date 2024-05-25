@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full">
+  <div id="accordion-disclosure" class="w-full">
     <div class="w-full mx-auto bg-white rounded-2xl">
       <Disclosure
         v-for="(item, idx) in items"
@@ -45,14 +45,18 @@
           "
           unmount
         >
-          <div class="pt-[10px] pb-4 text-[13px] leading-20 text-gray-500">
+          <div
+            v-html="item.details"
+            class="pt-[10px] pb-4 text-[13px] leading-20 text-gray-500"
+          ></div>
+          <!-- <div class="pt-[10px] pb-4 text-[13px] leading-20 text-gray-500">
             {{ decode(item.content) }}
             <ul class="mt-3 list-disc ml-2">
               <li v-for="detail in item.details" :key="detail">
                 <span v-html="formatDetail(detail)"> </span>
               </li>
             </ul>
-          </div>
+          </div> -->
         </DisclosurePanel>
 
         <button
@@ -135,3 +139,10 @@ export default {
   },
 };
 </script>
+<style>
+#accordion-disclosure > ul > li {
+  list-style-type: disc;
+  margin-left: 8px;
+  margin-top: 12px;
+}
+</style>
