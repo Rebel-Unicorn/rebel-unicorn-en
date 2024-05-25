@@ -19,13 +19,17 @@
           <span class="typing block"></span>
         </VueTyped>
       </h1>
-      <p class="leading-6 text-[rgba(0,0,0,0.7)] mb-[75px]">
+      <div
+        v-html="landingPageData?.mainHeading?.subtitle"
+        class="leading-6 text-[rgba(0,0,0,0.7)] mb-[75px]"
+      ></div>
+      <!-- <p class="leading-6 text-[rgba(0,0,0,0.7)] mb-[75px]">
         At Rebel Unicorn, we don't just prepare you for the job market; we
         propel you into careers of impact. With over 10,000 success stories, our
         tailored coaching has consistently opened doors to prestigious positions
         for graduates like you. Join us to turn your career aspirations into
         reality.
-      </p>
+      </p> -->
       <div class="button-container relative ml-8">
         <!-- <span class="rotating-text"></span> -->
         <button id="sign-up" class="sign-up-btn">
@@ -55,16 +59,28 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { computed, onBeforeMount, ref } from "vue";
+import { useStore } from "vuex";
 
 export default {
   setup() {
-    const typedStrings = ref([
-      "",
-      "Unleash Your Career Potential",
-      "RU READY?",
-    ]);
-    return { typedStrings };
+    const store = useStore();
+    // const appLoaded = computed(() => store.state.app.appLoaded);
+    const typedStrings = ref([""]);
+    const landingPageData = computed(() => store.state.app.landingPageData);
+
+    if (landingPageData.value) {
+      onBeforeMount(() => {
+        const landingPageData = computed(() => store.state.app.landingPageData);
+        typedStrings.value = [
+          ...typedStrings.value,
+          landingPageData.value?.mainHeading?.title1,
+          landingPageData.value?.mainHeading?.title2,
+        ];
+        console.log(landingPageData.value?.mainHeading?.title1, "home");
+      });
+    }
+    return { typedStrings, landingPageData };
   },
 };
 </script>

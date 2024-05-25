@@ -1,5 +1,5 @@
 const state = {
-  appLoading: true,
+  appLoading: null,
   modalActive: {
     status: false,
     message: null,
@@ -8,6 +8,8 @@ const state = {
   availableSuccesses: [],
   availableTestimonials: [],
   accordionActive: false,
+  locale: "en",
+  landingPageData: null,
   applicationModal: false,
 };
 const getters = {};
@@ -33,6 +35,12 @@ const mutations = {
   setApplicationModal(state, applicationModal) {
     state.applicationModal = applicationModal;
   },
+  setLocale(state, locale) {
+    state.locale = locale;
+  },
+  setLandingPageData(state, landingPageData) {
+    state.landingPageData = landingPageData;
+  },
 };
 const actions = {
   setAppLoading({ commit }, appLoading) {
@@ -55,6 +63,12 @@ const actions = {
   },
   setApplicationModal({ commit }, applicationModal) {
     commit("setApplicationModal", applicationModal);
+  },
+  setLocale({ commit }, locale) {
+    commit("setLocale", locale);
+  },
+  setLandingPageData({ commit }, landingPageData) {
+    commit("setLandingPageData", landingPageData);
   },
 };
 

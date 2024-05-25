@@ -2,8 +2,14 @@
   <div
     class="testimonials-background w-full h-full flex lg:flex-row flex-col flex-1 relative"
   >
-    <VerticalAnimatedText content="Testimonials" v-if="windowWidth >= 1025" />
-    <HorizontalAnimatedText v-else content="Testimonials" />
+    <VerticalAnimatedText
+      :content="landingPageData?.TestimonialComponent?.sectionTitle"
+      v-if="windowWidth >= 1025"
+    />
+    <HorizontalAnimatedText
+      v-else
+      :content="landingPageData?.TestimonialComponent?.sectionTitle"
+    />
     <div
       class="h-full lg:w-full w-auto md:mx-10 mx-4 md:pt-[158px] pt-8 md:pb-10 pb-[100px] relative"
     >
@@ -42,7 +48,7 @@
             class="fill-btn overflow-hidden py-2 px-4 border border-black relative"
             id="dynamic-testimonials-pseudo-content"
           >
-            Read More Testimonials
+            {{ landingPageData?.TestimonialComponent?.testimonialsCTA.title }}
           </button>
         </RouterLink>
       </div>
@@ -130,6 +136,8 @@ export default {
     const router = useRouter();
     const testimonials = computed(() => store.state.app.availableTestimonials);
     const cmsBaseUrl = process.env.VUE_APP_CMS_BASEURL;
+    const appLoading = computed(() => store.state.app.appLoading);
+    const landingPageData = computed(() => store.state.app.landingPageData);
 
     const goToTestimonial = (id) => {
       router.push({ name: "Testimonial Page", params: { id: id } });
@@ -165,7 +173,7 @@ export default {
       fillBtn.addEventListener("mouseover", () => {
         fillBtn.style.setProperty(
           "--dynamic-content",
-          '"Read More Testimonials"'
+          `"${landingPageData.value?.TestimonialComponent?.testimonialsCTA.title}"`
         );
       });
 
@@ -187,6 +195,8 @@ export default {
       testimonials,
       cmsBaseUrl,
       goToTestimonial,
+      appLoading,
+      landingPageData,
     };
   },
 };

@@ -4,37 +4,37 @@
       id="home"
       class="scroll-section section-1 lg:h-screen h-auto w-screen flex items-center justify-center flex-shrink-0"
     >
-      <HomeModule />
+      <HomeModule v-if="!appLoading && landingPageData" />
     </section>
     <section
       id="services"
       class="scroll-section section-2 md:h-screen h-auto min-h-screen w-screen flex items-center justify-center flex-shrink-0"
     >
-      <ServicesModule />
+      <ServicesModule v-if="!appLoading && landingPageData" />
     </section>
     <section
       id="successes"
       class="scroll-section section-3 h-auto xl:h-screen min-h-screen xl:w-screen md:w-screen w-full flex xl:flex-row flex-col items-center justify-center flex-shrink-0"
     >
-      <SuccessesModule />
+      <SuccessesModule v-if="!appLoading && landingPageData" />
     </section>
     <section
       id="coaching"
       class="scroll-section section-5 md:h-screen h-auto min-h-screen w-screen flex items-center justify-center flex-shrink-0"
     >
-      <CoachingModule />
+      <CoachingModule v-if="!appLoading && landingPageData" />
     </section>
     <section
       id="testimonials"
       class="scroll-section section-6 lg:h-screen h-auto w-screen flex items-center justify-center flex-shrink-0"
     >
-      <TestimonialsModule />
+      <TestimonialsModule v-if="!appLoading && landingPageData" />
     </section>
     <section
       id="learn-more"
       class="scroll-section section-7 lg:h-screen h-auto w-screen flex items-center justify-center flex-shrink-0"
     >
-      <LearnMore />
+      <LearnMore v-if="!appLoading && landingPageData" />
     </section>
   </div>
   <div
@@ -76,7 +76,7 @@
 
 <script>
 // @ is an alias to /src
-import { onMounted, onBeforeMount, ref, onUnmounted } from "vue";
+import { onMounted, onBeforeMount, ref, onUnmounted, computed } from "vue";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
@@ -87,6 +87,7 @@ import SuccessesModule from "@/components/modules/SuccessesModule.vue";
 import CoachingModule from "@/components/modules/CoachingModule.vue";
 import TestimonialsModule from "@/components/modules/TestimonialsModule.vue";
 import LearnMore from "@/components/modules/LearnMore.vue";
+import { useStore } from "vuex";
 
 export default {
   name: "HomeView",
@@ -100,6 +101,10 @@ export default {
     LearnMore,
   },
   setup() {
+    const store = useStore();
+    const landingPageData = computed(() => store.state.app.landingPageData);
+    const appLoading = computed(() => store.state.app.appLoading);
+
     const urls = ref([
       { id: 1, name: "Home", href: "home", active: true },
       { id: 2, name: "Services", href: "services", active: false },
@@ -308,7 +313,7 @@ export default {
       });
     });
 
-    return { urls, windowWidth };
+    return { urls, windowWidth, landingPageData, appLoading };
   },
 };
 

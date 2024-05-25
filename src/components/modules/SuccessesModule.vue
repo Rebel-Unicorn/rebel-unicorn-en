@@ -2,8 +2,14 @@
   <div
     class="successes-background lg:w-screen w-[inherit] lg:h-screen h-screen flex lg:flex-row flex-col flex-1"
   >
-    <VerticalAnimatedText content="Successes" v-if="windowWidth >= 1025" />
-    <HorizontalAnimatedText v-else content="Successes" />
+    <VerticalAnimatedText
+      :content="landingPageData?.SuccessComponent?.sectionTitle"
+      v-if="windowWidth >= 1025"
+    />
+    <HorizontalAnimatedText
+      v-else
+      :content="landingPageData?.SuccessComponent?.sectionTitle"
+    />
     <!-- <div
       class="success-wrapper xl:w-screen lg:w-[revert-layer] md:w-[calc(100vw-120px)] lg:mx-0 mx-auto xl:h-screen h-[200vh] flex xl:flex-row xl:flex-nowrap flex-col xl:py-0 py-8"
     >
@@ -111,12 +117,20 @@
         <h2
           class="lg:text-[48px] text-[38px] lg:leading-[50px] leading-[38px] font-[600] mb-3"
         >
-          Hear About Our Successes
+          {{ landingPageData?.SuccessComponent?.title }}
         </h2>
+        <!-- <h2
+          class="lg:text-[48px] text-[38px] lg:leading-[50px] leading-[38px] font-[600] mb-3"
+        >
+          Hear About Our Successes
+        </h2> -->
         <p class="text-[18px] leading-[32px] text-[rgba(0,0,0,0.7)]">
+          {{ landingPageData?.SuccessComponent?.subtitle }}
+        </p>
+        <!-- <p class="text-[18px] leading-[32px] text-[rgba(0,0,0,0.7)]">
           We have helped over 5000 students land roles with organizations like
           these
-        </p>
+        </p> -->
       </div>
       <div
         class="companies-wrapper w-full h-full max-h-[70%] grid md:grid-cols-4 grid-cols-3 items-center justify-items-center gap-5 lg:gap-y-5 lg:gap-x-5 pb-8"
@@ -135,7 +149,9 @@
             class="fill-btn overflow-hidden py-2 px-4 border border-black relative"
             id="dynamic-successes-pseudo-content"
           >
-            See Recent Successes
+            <span class="block z-[2]">
+              {{ landingPageData?.SuccessComponent?.successesCTA.title }}</span
+            >
           </button>
         </router-link>
       </div>
@@ -147,7 +163,8 @@
 import VerticalAnimatedText from "@/components/VerticalAnimatedText.vue";
 import HorizontalAnimatedText from "@/components/HorizontalAnimatedText.vue";
 // import SuccessProofModule from "./SuccessProof.vue";
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref, onMounted, onUnmounted, computed } from "vue";
+import { useStore } from "vuex";
 
 export default {
   components: {
@@ -156,7 +173,10 @@ export default {
     // SuccessProofModule,
   },
   setup() {
+    const store = useStore();
     const windowWidth = ref(window.innerWidth);
+    const landingPageData = computed(() => store.state.app.landingPageData);
+
     const updateWidth = () => {
       windowWidth.value = window.innerWidth;
     };
@@ -215,9 +235,12 @@ export default {
 
       // Update the CSS variable dynamically
       fillBtn.addEventListener("mouseover", () => {
+        console.log(
+          `${landingPageData.value?.SuccessComponent?.successesCTA.title}`
+        );
         fillBtn.style.setProperty(
           "--dynamic-content",
-          '"See Recent Successes"'
+          `"${landingPageData.value?.SuccessComponent?.successesCTA.title}"`
         );
       });
 
@@ -228,7 +251,7 @@ export default {
     onUnmounted(() => {
       window.removeEventListener("resize", updateWidth());
     });
-    return { windowWidth, companyLogos };
+    return { windowWidth, companyLogos, landingPageData };
   },
 };
 </script>
@@ -248,5 +271,8 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.dynamic-successes-pseudo-content::before {
+  z-index: 1;
 }
 </style>
