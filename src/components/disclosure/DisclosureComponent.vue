@@ -120,7 +120,6 @@ export default {
     const clickedFn = (state) => {
       state ? (activeState.value = false) : (activeState.value = true);
       store.commit("setAccordionActive", activeState.value);
-      console.log("wheee", state);
     };
 
     const doClose = (close) => {

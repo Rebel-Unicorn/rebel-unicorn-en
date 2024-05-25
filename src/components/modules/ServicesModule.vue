@@ -131,7 +131,6 @@ export default {
     onBeforeMount(() => {
       const landingPageData = computed(() => store.state.app.landingPageData);
       items.value = landingPageData.value?.ServicesComponent?.servicesAccordion;
-      console.log(items.value, "services");
     });
     return {
       items,

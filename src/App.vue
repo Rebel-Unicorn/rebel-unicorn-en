@@ -18,7 +18,7 @@
 
 <script>
 import TopNavbar from "@/components/TopNavbar.vue";
-import { computed, onMounted, ref } from "vue";
+import { computed, onMounted, ref, watchEffect } from "vue";
 import { useStore } from "vuex";
 import axios from "axios";
 import SplashScreen from "@/components/SplashScreen.vue";
@@ -46,6 +46,7 @@ export default {
     // eslint-disable-next-line no-unused-vars
     const modalActive = computed(() => store.state.app.modalActive);
     // const landingPageData = computed(() => store.state.app.landingPageData);
+    const savedLocale = computed(() => store.state.app.locale);
 
     const reorderResponse = (res) => {
       return res.sort((a, b) => a.id - b.id);
@@ -56,10 +57,14 @@ export default {
       store.commit("setAppLoading", true);
 
       try {
-        const coachesResponse = await axios.get(`${baseUrl}${coachesUrl}`);
-        const successesResponse = await axios.get(`${baseUrl}${successesUrl}`);
+        const coachesResponse = await axios.get(
+          `${baseUrl}${coachesUrl}&locale=${storedLocale.value}`
+        );
+        const successesResponse = await axios.get(
+          `${baseUrl}${successesUrl}&locale=${storedLocale.value}`
+        );
         const testimonialsResponse = await axios.get(
-          `${baseUrl}${testimonialsUrl}`
+          `${baseUrl}${testimonialsUrl}&locale=${storedLocale.value}`
         );
         const allDataResponse = await CMSService.getAllDataByLocale(
           storedLocale.value
@@ -99,16 +104,6 @@ export default {
     };
     // eslint-disable-next-line no-unused-vars
     onMounted(() => {
-      // const body = document.getElementsByTagName("body");
-      // if (applicationModal.value) {
-      //   body[0].style.overflow = "hidden";
-      // }
-      // console.log(
-      //   applicationModal.value,
-      //   modalActive.value.status,
-      //   appLoading.value,
-      //   body[0].style.overflow
-      // );
       window.addEventListener("load", (event) => {
         console.log(event, "page is fully loaded");
       });
@@ -118,6 +113,11 @@ export default {
       });
       store.commit("setApplicationModal", false);
       getData();
+    });
+    watchEffect(() => {
+      if (savedLocale.value !== "en") {
+        getData();
+      }
     });
 
     return {

@@ -77,7 +77,6 @@ export default {
           landingPageData.value?.mainHeading?.title1,
           landingPageData.value?.mainHeading?.title2,
         ];
-        console.log(landingPageData.value?.mainHeading?.title1, "home");
       });
     }
     return { typedStrings, landingPageData };

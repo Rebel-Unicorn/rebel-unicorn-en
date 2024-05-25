@@ -145,12 +145,6 @@ export default {
     const selectedCard = ref();
     const selectTestimonial = (selected) => {
       selectedCard.value = selected;
-      // console.log(selectedCard.value, "selected");
-      // router.push(`/testimonials/${selectedCard.value}`);
-      // store.dispatch("setModalActive", {
-      //   status: true,
-      //   message: null,
-      // });
     };
     const windowWidth = ref(window.innerWidth);
     const updateWidth = () => {

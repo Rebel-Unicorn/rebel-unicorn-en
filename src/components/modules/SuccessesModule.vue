@@ -235,9 +235,6 @@ export default {
 
       // Update the CSS variable dynamically
       fillBtn.addEventListener("mouseover", () => {
-        console.log(
-          `${landingPageData.value?.SuccessComponent?.successesCTA.title}`
-        );
         fillBtn.style.setProperty(
           "--dynamic-content",
           `"${landingPageData.value?.SuccessComponent?.successesCTA.title}"`
