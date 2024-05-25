@@ -17,7 +17,7 @@
               <span class="block mr-2 w-3 h-3 rounded-full overflow-hidden">
                 <img :src="selectedLocale.icon" :alt="selectedLocale.name" />
               </span>
-              {{ selectedLocale.name }}
+              <span class="md:block hidden">{{ selectedLocale.name }}</span>
             </span>
             <span class="w-4 h-4 flex items-center justify-center pl-1">
               <svg
@@ -64,7 +64,7 @@
                   <span class="block mr-1 w-3 h-3 rounded-full overflow-hidden">
                     <img :src="locale.icon" :alt="locale.name" />
                   </span>
-                  {{ locale.name }}
+                  <span class="md:block hidden">{{ locale.name }}</span>
                 </span>
               </ListboxOption>
             </ListboxOptions>

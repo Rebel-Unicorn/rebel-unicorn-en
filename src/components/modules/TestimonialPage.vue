@@ -1,6 +1,6 @@
 <template>
-  <SplashScreen v-show="loading" />
-  <div v-show="!loading" class="px-4 pb-6 relative">
+  <SplashScreen v-show="appLoading" />
+  <div v-show="!appLoading" class="px-4 pb-6 relative">
     <div
       class="w-full lg:max-w-[calc(100vw-200px)] mx-auto mt-[120px] bg-[#F4F4F4] rounded-md py-10 lg:px-10 px-6"
     >
@@ -95,7 +95,7 @@ export default {
     const testimonialId = ref();
     const getCurrentRouteSlug = router.currentRoute.value.params.id;
     const baseUrl = process.env.VUE_APP_CMS_BASEURL;
-    const loading = ref(true);
+    const appLoading = computed(() => store.state.app.appLoading);
     const storedLocale = computed(() => store.state.app.locale);
 
     onBeforeMount(() => {
@@ -103,7 +103,7 @@ export default {
     });
 
     const getTestimonials = async () => {
-      loading.value = true;
+      appLoading.value = true;
       try {
         const response = await axios.get(
           `${baseUrl}testimonials/${Number(
@@ -111,9 +111,10 @@ export default {
           )}?populate=*&locale=${storedLocale.value}`
         );
         if (response.status === 200) {
-          loading.value = false;
+          console.log(response.statusText);
+          appLoading.value = false;
+          testimonial.value = response.data.data;
         }
-        testimonial.value = response.data.data;
         // store.commit("setAvailableTestimonials", reorderResponse(res));
       } catch (error) {
         console.error(error);
@@ -121,7 +122,7 @@ export default {
     };
     getTestimonials();
 
-    return { testimonial, loading };
+    return { testimonial, appLoading };
   },
 };
 </script>
