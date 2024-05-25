@@ -28,7 +28,7 @@
             >
               {{ landingPageData?.LearnMoreComponent?.title }}
             </h2>
-            <div class="w-full flex items-center justify-end">
+            <div class="w-full flex items-center md:justify-end">
               <div class="mb-6 grid grid-cols-3 max-w-[50%]">
                 <button @click="openWWModal">
                   <!-- WeChat -->

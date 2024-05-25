@@ -31,12 +31,10 @@ export default {
 
     onMounted(() => {
       sections.value = document.querySelectorAll(".scroll-section");
-      // console.log(sections.value);
     });
 
     const scrollToSection = (item) => {
       const anchorElement = document.getElementById(item.href);
-      // closeSidebar()
       if (anchorElement) {
         anchorElement.scrollIntoView({ behavior: "smooth", block: "start" });
       }

@@ -39,7 +39,6 @@ import { useStore } from "vuex";
 export default {
   setup() {
     const store = useStore();
-    // console.log(availableSuccesses.value);
     const companyLogos = ref([
       { name: "tesco", url: require("../../assets/svg/tesco-logo.svg") },
       {

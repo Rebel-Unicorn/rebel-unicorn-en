@@ -125,7 +125,6 @@ export default {
       selectedLocale.value = s;
       store.commit("setLocale", selectedLocale.value.locale);
       getAppData();
-      console.log(storedLocale.value ? storedLocale.value : "not found");
     };
 
     const getAppData = async () => {

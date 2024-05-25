@@ -111,7 +111,6 @@ export default {
           )}?populate=*&locale=${storedLocale.value}`
         );
         if (response.status === 200) {
-          console.log(response.statusText);
           appLoading.value = false;
           testimonial.value = response.data.data;
         }
