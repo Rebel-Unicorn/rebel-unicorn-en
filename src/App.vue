@@ -56,10 +56,14 @@ export default {
       store.commit("setAppLoading", true);
 
       try {
-        const coachesResponse = await axios.get(`${baseUrl}${coachesUrl}`);
-        const successesResponse = await axios.get(`${baseUrl}${successesUrl}`);
+        const coachesResponse = await axios.get(
+          `${baseUrl}${coachesUrl}&locale=${storedLocale.value}`
+        );
+        const successesResponse = await axios.get(
+          `${baseUrl}${successesUrl}&locale=${storedLocale.value}`
+        );
         const testimonialsResponse = await axios.get(
-          `${baseUrl}${testimonialsUrl}`
+          `${baseUrl}${testimonialsUrl}&locale=${storedLocale.value}`
         );
         const allDataResponse = await CMSService.getAllDataByLocale(
           storedLocale.value

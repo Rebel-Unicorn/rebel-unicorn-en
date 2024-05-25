@@ -142,6 +142,9 @@ export default {
         console.log(error);
       }
     };
+    const addApplication = () => {
+      store.commit("setApplicationModal", true);
+    };
 
     // const coachesUrl = process.env.VUE_APP_CMS_LANDING_PAGE_ENDPOINT;
 
@@ -150,6 +153,7 @@ export default {
       selectedLocale,
       getSelectedLocale,
       appLoading,
+      addApplication,
     };
   },
 };

@@ -77,10 +77,10 @@
 
 <script>
 import axios from "axios";
-import { onBeforeMount, ref } from "vue";
+import { computed, onBeforeMount, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import SplashScreen from "../SplashScreen.vue";
-// import { useStore } from "vuex";
+import { useStore } from "vuex";
 
 export default {
   name: "TestimonialPage",
@@ -88,7 +88,7 @@ export default {
     SplashScreen,
   },
   setup() {
-    // const store = useStore();
+    const store = useStore();
     const route = useRoute();
     const router = useRouter();
     const testimonial = ref(null);
@@ -96,6 +96,7 @@ export default {
     const getCurrentRouteSlug = router.currentRoute.value.params.id;
     const baseUrl = process.env.VUE_APP_CMS_BASEURL;
     const loading = ref(true);
+    const storedLocale = computed(() => store.state.app.locale);
 
     onBeforeMount(() => {
       testimonialId.value = route.params.id;
@@ -105,7 +106,9 @@ export default {
       loading.value = true;
       try {
         const response = await axios.get(
-          `${baseUrl}testimonials/${Number(getCurrentRouteSlug)}?populate=*`
+          `${baseUrl}testimonials/${Number(
+            getCurrentRouteSlug
+          )}?populate=*&locale=${storedLocale.value}`
         );
         if (response.status === 200) {
           loading.value = false;

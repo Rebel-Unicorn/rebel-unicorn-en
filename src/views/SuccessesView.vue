@@ -86,7 +86,7 @@
 
 <script>
 import axios from "axios";
-import { onMounted, onUnmounted, ref } from "vue";
+import { computed, onMounted, onUnmounted, ref } from "vue";
 import { useStore } from "vuex";
 
 export default {
@@ -95,6 +95,8 @@ export default {
     const baseUrl = process.env.VUE_APP_CMS_BASEURL;
     const successesUrl = process.env.VUE_APP_CMS_RECENTSUCCESSES_ENDPOINT;
     const successesData = ref(null);
+    const storedLocale = computed(() => store.state.app.locale);
+
     const urls = ref([
       { id: 1, name: "Home", href: "home", active: true },
       { id: 2, name: "Services", href: "services", active: false },
@@ -112,7 +114,9 @@ export default {
     };
     const getSuccesses = async () => {
       try {
-        const response = await axios.get(`${baseUrl}${successesUrl}`);
+        const response = await axios.get(
+          `${baseUrl}${successesUrl}&locale=${storedLocale.value}`
+        );
         let res = response.data.data;
         successesData.value = reorderResponse(res);
         let refinedData;
