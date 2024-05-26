@@ -133,10 +133,10 @@
         </p> -->
       </div>
       <div
-        class="companies-wrapper w-full h-full max-h-[70%] grid md:grid-cols-4 grid-cols-3 items-center justify-items-center gap-5 lg:gap-y-5 lg:gap-x-5 pb-8"
+        class="companies-wrapper w-full h-full max-h-[70%] grid md:grid-cols-7 grid-cols-3 items-center justify-items-center gap-5 lg:gap-y-5 lg:gap-x-5 pb-8"
       >
         <img
-          v-for="(company, id) in companyLogos.slice(0, 12)"
+          v-for="(company, id) in companyLogos"
           :key="`${company.name}-$${id}`"
           class="my-2"
           :src="company.url"
