@@ -23,16 +23,8 @@
         v-html="landingPageData?.mainHeading?.subtitle"
         class="leading-6 text-[rgba(0,0,0,0.7)] mb-[75px]"
       ></div>
-      <!-- <p class="leading-6 text-[rgba(0,0,0,0.7)] mb-[75px]">
-        At Rebel Unicorn, we don't just prepare you for the job market; we
-        propel you into careers of impact. With over 10,000 success stories, our
-        tailored coaching has consistently opened doors to prestigious positions
-        for graduates like you. Join us to turn your career aspirations into
-        reality.
-      </p> -->
       <div class="button-container relative ml-8">
-        <!-- <span class="rotating-text"></span> -->
-        <button id="sign-up" class="sign-up-btn">
+        <!-- <button id="sign-up" class="sign-up-btn">
           <span class="block w-[40px]">
             <svg
               width="41"
@@ -49,17 +41,17 @@
               />
             </svg>
           </span>
-        </button>
+        </button> -->
       </div>
     </div>
     <div class="right lg:w-[50%] w-full lg:h-screen md:h-[680px] h-[500px]">
-      <div class="hero-img h-full w-full"></div>
+      <div id="hero-img" class="hero-img h-full w-full"></div>
     </div>
   </div>
 </template>
 
 <script>
-import { computed, onBeforeMount, ref } from "vue";
+import { computed, onBeforeMount, onMounted, ref } from "vue";
 import { useStore } from "vuex";
 
 export default {
@@ -77,6 +69,10 @@ export default {
           landingPageData.value?.mainHeading?.title1,
           landingPageData.value?.mainHeading?.title2,
         ];
+      });
+      onMounted(() => {
+        const imageContainer = document.getElementById("hero-img");
+        imageContainer.style.backgroundImage = `url(${landingPageData.value?.mainHeading?.mainHeroImage?.data?.attributes?.url})`;
       });
     }
     return { typedStrings, landingPageData };
@@ -104,7 +100,7 @@ export default {
     );
 }
 .home-background .right .hero-img {
-  background: url(../../assets/svg/home-img-2.svg);
+  /* background: url(../../assets/svg/home-img-2.svg); */
   background-position: left;
   background-repeat: no-repeat;
   background-size: cover;
@@ -113,7 +109,7 @@ export default {
 }
 @media only screen and (max-width: 1024px) {
   .home-background .right .hero-img {
-    background: url(../../assets/webp/home-image-1.webp);
+    /* background: url(../../assets/webp/home-image-1.webp); */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
