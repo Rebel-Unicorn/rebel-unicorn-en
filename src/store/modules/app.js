@@ -12,7 +12,9 @@ const state = {
   landingPageData: null,
   applicationModal: false,
 };
-const getters = {};
+const getters = {
+  locale: (state) => state.locale,
+};
 const mutations = {
   setAppLoading(state, appLoading) {
     state.appLoading = appLoading;

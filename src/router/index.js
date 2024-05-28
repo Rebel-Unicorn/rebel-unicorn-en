@@ -1,17 +1,22 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
+// import HomeView from "../views/HomeView.vue";
 import TestimonialView from "../views/TestimonialView.vue";
 import CoachesView from "../views/CoachesView.vue";
 import SuccessesView from "../views/SuccessesView.vue";
 import TestimonialPage from "@/components/modules/TestimonialPage.vue";
 import CoachPage from "@/components/modules/CoachPage.vue";
 import TestimonialsLayout from "@/components/layouts/TestimonialsLayout.vue";
+import { useStore } from "vuex";
 
 const routes = [
   {
     path: "/",
-    name: "home",
-    component: HomeView,
+    name: "HomeView",
+    component: () => import("../views/HomeView.vue"),
+    props: () => {
+      const store = useStore();
+      return { key: store.getters.locale };
+    },
   },
   {
     path: "/testimonials",

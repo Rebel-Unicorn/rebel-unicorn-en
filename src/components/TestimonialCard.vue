@@ -23,11 +23,10 @@
           {{ graduated }}
         </p>
         <hr class="my-1" />
-        <p
-          class="text-sm text-[rgba(0,0,0,0.8)] h-[100px] text-ellipsis overflow-hidden"
-        >
-          {{ content }}
-        </p>
+        <div
+          v-html="content"
+          class="content text-sm text-[rgba(0,0,0,0.8)] h-[100px] text-ellipsis overflow-hidden"
+        ></div>
       </div>
       <!-- <div class="footer">
         <p class="text-[18px] leading-[28px] font-[600]">{{ footerContent }}</p>
@@ -45,4 +44,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.content p > span {
+  font-family: "Urbanist", sans-serif !important;
+}
+</style>
