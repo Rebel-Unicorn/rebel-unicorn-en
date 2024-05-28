@@ -1,10 +1,11 @@
 <template>
   <SplashScreen v-show="appLoading" />
   <div class="mt-20 py-8 px-4 lg:max-w-[calc(100vw-180px)] mx-auto">
-    <h1 class="my-4 text-[36px] leading-[46px] font-bold">Our Coaches</h1>
+    <h1 class="my-4 text-[36px] leading-[46px] font-bold">
+      {{ landingPageData?.CoachPage?.title }}
+    </h1>
     <p class="mb-8 lg:text-[20px] lg:leading-[30px]">
-      We help you to discover your career path and create career plans to get
-      you from where you are today to your ideal job.
+      {{ landingPageData?.CoachPage?.subtitle }}
     </p>
     <div class="cards w-full">
       <div
@@ -74,6 +75,7 @@ export default {
     const windowWidth = ref(window.innerWidth);
     const appLoading = computed(() => store.state.app.appLoading);
     const coaches = computed(() => store.state.app.availableCoaches);
+    const landingPageData = computed(() => store.state.app.landingPageData);
 
     const updateWidth = () => {
       windowWidth.value = window.innerWidth;
@@ -100,7 +102,7 @@ export default {
       { id: 5, name: "Testimonials", href: "testimonials", active: false },
       { id: 6, name: "Learn more", href: "learn-more", active: false },
     ]);
-    return { urls, coaches, windowWidth, appLoading };
+    return { urls, coaches, windowWidth, appLoading, landingPageData };
   },
 };
 </script>

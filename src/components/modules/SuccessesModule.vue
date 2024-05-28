@@ -150,7 +150,7 @@
             id="dynamic-successes-pseudo-content"
           >
             <span class="block z-[2]">
-              {{ landingPageData?.SuccessComponent?.successesCTA.title }}</span
+              {{ landingPageData?.SuccessComponent?.successesCTA?.title }}</span
             >
           </button>
         </router-link>

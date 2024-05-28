@@ -2,7 +2,7 @@
   <div
     class="bg-white w-screen h-screen fixed top-0 left-0 flex flex-col items-center justify-center transition-all z-[3000]"
   >
-    <span class="splash-icon-type block relative w-[40px] mb-10">
+    <span class="splash-icon-type block relative w-[80px] mb-10">
       <img src="../assets/webp/ru-purple.webp" alt="ru" />
     </span>
     <!-- <p class="text-xs font-medium tracking-wider">Loading...</p> -->

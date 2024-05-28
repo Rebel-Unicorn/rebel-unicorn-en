@@ -73,9 +73,13 @@
       </div>
       <button
         @click="addApplication"
-        class="md:text-sm text-[13px] leading-[19.36px] text-black rounded-full border shadow-sm py-2 md:px-4 px-3 bg-[#ffffff7d] mix-blend-difference"
+        id="dynamic-applycta-pseudo-content"
+        class="fill-btn overflow-hidden relative md:text-sm text-[13px] leading-[19.36px] text-black rounded-full border shadow-sm py-2 md:px-4 px-3 bg-[#ffffff7d]"
       >
-        Apply now
+        {{ landingPageData?.mainHeading?.applyCTA }}
+        <!-- <span class="block z-[2]">
+        </span> -->
+        <!-- Apply now -->
       </button>
     </div>
   </header>
@@ -83,7 +87,7 @@
 
 <script>
 import Logo from "@/components/LogoComponent.vue";
-import { computed, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import {
   Listbox,
   ListboxButton,
@@ -105,17 +109,18 @@ export default {
     const store = useStore();
     const storedLocale = computed(() => store.state.app.locale);
     const appLoading = computed(() => store.state.app.appLoading);
+    const landingPageData = computed(() => store.state.app.landingPageData);
 
     const locales = [
       {
         id: 1,
-        name: "English",
+        name: "English (EN)",
         locale: "en",
         icon: require("../assets/svg/gb.svg"),
       },
       {
         id: 2,
-        name: "Chinese (cn)",
+        name: "Chinese (CN)",
         locale: "zh",
         icon: require("../assets/svg/cn.svg"),
       },
@@ -144,8 +149,23 @@ export default {
     const addApplication = () => {
       store.commit("setApplicationModal", true);
     };
+    onMounted(() => {
+      const fillBtn = document.getElementById(
+        "dynamic-applycta-pseudo-content"
+      );
 
-    // const coachesUrl = process.env.VUE_APP_CMS_LANDING_PAGE_ENDPOINT;
+      // Update the CSS variable dynamically
+      fillBtn.addEventListener("mouseover", () => {
+        fillBtn.style.setProperty(
+          "--dynamic-content",
+          `"${landingPageData.value?.mainHeading?.applyCTA}"`
+        );
+      });
+
+      fillBtn.addEventListener("mouseout", () => {
+        fillBtn.style.setProperty("--dynamic-content", "");
+      });
+    });
 
     return {
       locales,
@@ -153,6 +173,7 @@ export default {
       getSelectedLocale,
       appLoading,
       addApplication,
+      landingPageData,
     };
   },
 };

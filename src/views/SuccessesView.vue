@@ -9,10 +9,10 @@
         <h3
           class="lg:text-[48px] text-[38px] lg:leading-[50px] leading-[38px] font-[600] mb-3"
         >
-          Achievements
+          {{ landingPageData?.SuccessPage?.title }}
         </h3>
         <p class="text-[18px] leading-[32px] text-[rgba(0,0,0,0.7)]">
-          View some of the highlights of our achievements.
+          {{ landingPageData?.SuccessPage?.subtitle }}
         </p>
       </div>
       <div class="successes-table w-full overflow-x-auto">
@@ -96,6 +96,7 @@ export default {
     const successesUrl = process.env.VUE_APP_CMS_RECENTSUCCESSES_ENDPOINT;
     const successesData = ref(null);
     const storedLocale = computed(() => store.state.app.locale);
+    const landingPageData = computed(() => store.state.app.landingPageData);
 
     const urls = ref([
       { id: 1, name: "Home", href: "home", active: true },
@@ -195,7 +196,7 @@ export default {
         url: require("../assets/svg/waltdisney-logo.svg"),
       },
     ]);
-    return { urls, companyLogos, windowWidth, successesData };
+    return { urls, companyLogos, windowWidth, successesData, landingPageData };
   },
 };
 </script>
