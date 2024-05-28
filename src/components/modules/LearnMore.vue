@@ -12,12 +12,9 @@
     />
     <div class="flex lg:flex-row flex-col w-full h-full">
       <div
+        id="footer-img-container"
         class="left footer-img-container relative lg:w-[63.3%] w-full h-screen lg:max-h-full max-h-[489px]"
-      >
-        <!-- <img src="" alt="">
-        <img src="" alt="">
-        <img src="" alt=""> -->
-      </div>
+      ></div>
       <div class="right">
         <div
           class="lg:px-[45px] md:px-[25px] px-4 md:pt-[100px] pt-12 pb-4 h-full relative flex flex-col justify-between"
@@ -261,6 +258,9 @@ export default {
       });
     };
     onMounted(() => {
+      const imageContainer = document.getElementById("footer-img-container");
+      console.log(imageContainer);
+      // imageContainer.style.backgroundImage = `url(${landingPageData.value?.LearnMoreComponent?.coachingImage?.data?.attributes?.url})`;
       window.addEventListener("resize", updateWidth());
     });
     onUnmounted(() => {

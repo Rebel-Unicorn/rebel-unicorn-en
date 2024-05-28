@@ -45,13 +45,13 @@
       </div>
     </div>
     <div class="right lg:w-[50%] w-full lg:h-screen md:h-[680px] h-[500px]">
-      <div class="hero-img h-full w-full"></div>
+      <div id="hero-img" class="hero-img h-full w-full"></div>
     </div>
   </div>
 </template>
 
 <script>
-import { computed, onBeforeMount, ref } from "vue";
+import { computed, onBeforeMount, onMounted, ref } from "vue";
 import { useStore } from "vuex";
 
 export default {
@@ -69,6 +69,10 @@ export default {
           landingPageData.value?.mainHeading?.title1,
           landingPageData.value?.mainHeading?.title2,
         ];
+      });
+      onMounted(() => {
+        const imageContainer = document.getElementById("hero-img");
+        imageContainer.style.backgroundImage = `url(${landingPageData.value?.mainHeading?.mainHeroImage?.data?.attributes?.url})`;
       });
     }
     return { typedStrings, landingPageData };
@@ -96,7 +100,7 @@ export default {
     );
 }
 .home-background .right .hero-img {
-  background: url(../../assets/svg/home-img-2.svg);
+  /* background: url(../../assets/svg/home-img-2.svg); */
   background-position: left;
   background-repeat: no-repeat;
   background-size: cover;
@@ -105,7 +109,7 @@ export default {
 }
 @media only screen and (max-width: 1024px) {
   .home-background .right .hero-img {
-    background: url(../../assets/webp/home-image-1.webp);
+    /* background: url(../../assets/webp/home-image-1.webp); */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

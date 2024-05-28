@@ -12,7 +12,7 @@
     />
     <div class="relative w-full h-full lg:grid grid-cols-2 flex flex-col">
       <div class="left w-full md:h-full h-[345px]">
-        <div class="coaching-img w-full h-full"></div>
+        <div id="coaching-img" class="coaching-img w-full h-full"></div>
       </div>
       <div
         class="right md:w-[calc(100%-130px)] w-auto h-full md:pt-[130px] pt-[56px] md:mx-0 mx-4 md:ml-[58px] md:mb-0 mb-6 flex flex-col justify-start"
@@ -65,26 +65,7 @@ export default {
     onBeforeMount(() => {
       items.value = landingPageData.value?.CoachingComponent?.coachActivity;
     });
-    // const items = ref([
-    //   {
-    //     id: 1,
-    //     title: "Help you understand yourself.",
-    //     content:
-    //       "Feel unsure of your skills and competencies? Struggle to articulate them on your CV or in interviews? Talk to us. We’re experts at teasing them out of you.",
-    //   },
-    //   {
-    //     id: 2,
-    //     title: "Help you understand the graduate career market.",
-    //     content:
-    //       "Our one-to-one graduate coaching transforms your career prospects with lifelong skills gained through personal mentorship, practical tasks and an introduction to a network of contacts.",
-    //   },
-    //   {
-    //     id: 3,
-    //     title: "Help you discover the career that's right for you. ",
-    //     content:
-    //       "Our one-to-one graduate coaching transforms your career prospects with lifelong skills gained through personal mentorship, practical tasks and an introduction to a network of contacts.",
-    //   },
-    // ]);
+
     const windowWidth = ref(window.innerWidth);
     const updateWidth = () => {
       windowWidth.value = window.innerWidth;
@@ -108,6 +89,11 @@ export default {
     });
     onUnmounted(() => {
       window.removeEventListener("resize", updateWidth());
+    });
+    // coaching-img
+    onMounted(() => {
+      const imageContainer = document.getElementById("coaching-img");
+      imageContainer.style.backgroundImage = `url(${landingPageData.value?.CoachingComponent?.coachingImage?.data?.attributes?.url})`;
     });
     return {
       items,
