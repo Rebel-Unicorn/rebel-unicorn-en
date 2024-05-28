@@ -12,13 +12,6 @@
   </main>
 </template>
 
-<!-- Create a dropdown switch that holds all available locales to be accessible anywhere within the app, preferably on the top nav -->
-<!-- Create a function that fetches all data from the website according to the local selected and stores the data in vuex store - English first as the default locale -->
-<!-- Use the provided data response that was gotten from the request and sent to the vuex store (the localized data) to populate the rest of the website -->
-<!-- Should store the selected locale (either in vuex store persisting/local storage) -->
-<!-- Whenever a refresh is made the selected locale should be used to fetch the data for that locale -->
-<!-- Anywhere the user switches the locale on the website, it should trigger an entire refetch of all data in the newly selected locale -->
-
 <script>
 import TopNavbar from "@/components/TopNavbar.vue";
 import { computed, onMounted, ref, watchEffect } from "vue";
