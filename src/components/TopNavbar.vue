@@ -115,7 +115,7 @@ export default {
       },
       {
         id: 2,
-        name: "Chinese (zh)",
+        name: "Chinese (cn)",
         locale: "zh",
         icon: require("../assets/svg/cn.svg"),
       },
@@ -135,8 +135,8 @@ export default {
         );
         if (response.status === 200) {
           store.commit("setLandingPageData", response.data?.data?.attributes);
-          store.commit("setAppLoading", false);
         }
+        store.commit("setAppLoading", false);
       } catch (error) {
         console.log(error);
       }

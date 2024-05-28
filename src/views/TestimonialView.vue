@@ -65,8 +65,9 @@
 <script>
 import SplashScreen from "@/components/SplashScreen.vue";
 import Card from "@/components/TestimonialCard.vue";
-import { computed, onMounted, onUnmounted, ref } from "vue";
+import { computed, onMounted, onUnmounted, ref, watchEffect } from "vue";
 import { useStore } from "vuex";
+import axios from "axios";
 
 export default {
   components: {
@@ -78,19 +79,42 @@ export default {
     const allTestimonials = computed(
       () => store.state.app.availableTestimonials
     );
+    const baseUrl = process.env.VUE_APP_CMS_BASEURL;
+    const appLoading = computed(() => store.state.app.appLoading);
+    const storedLocale = computed(() => store.state.app.locale);
     const windowWidth = ref(window.innerWidth);
     const updateWidth = () => {
       windowWidth.value = window.innerWidth;
     };
+    const reorderResponse = (res) => {
+      return res.sort((a, b) => a.id - b.id);
+    };
+    const getTestimonials = async () => {
+      store.commit("setAppLoading", true);
+      try {
+        const response = await axios.get(
+          `${baseUrl}testimonials?locale=${storedLocale.value}&populate=*`
+        );
+        if (response.status === 200) {
+          console.log(response.data.data, "page");
+
+          store.commit(
+            "setAvailableTestimonials",
+            reorderResponse(response.data.data)
+          );
+          store.commit("setAppLoading", false);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
     onMounted(() => {
-      // document.addEventListener("resize", updateWidth());
       window.addEventListener("resize", () => {
         updateWidth();
         console.log("resized");
       });
     });
     onUnmounted(() => {
-      // document.addEventListener("resize", updateWidth());
       window.removeEventListener("resize", () => {
         updateWidth();
         console.log("resized");
@@ -104,8 +128,11 @@ export default {
       { id: 5, name: "Testimonials", href: "testimonials", active: false },
       { id: 6, name: "Learn more", href: "learn-more", active: false },
     ]);
+    watchEffect(() => {
+      getTestimonials();
+    });
 
-    return { urls, allTestimonials, windowWidth };
+    return { urls, allTestimonials, windowWidth, appLoading };
   },
 };
 </script>

@@ -1,7 +1,10 @@
 <template>
   <SplashScreen v-if="appLoading" />
-  <main class="relative w-screen transition-all tracking-wide">
-    <TopNavbar />
+  <main
+    v-if="landingPageData || !appLoading"
+    class="relative w-screen transition-all tracking-wide"
+  >
+    <TopNavbar v-if="landingPageData" />
     <router-view />
     <BaseModal :modalActive="applicationModal">
       <ApplicationForm />
@@ -47,6 +50,7 @@ export default {
     const modalActive = computed(() => store.state.app.modalActive);
     // const landingPageData = computed(() => store.state.app.landingPageData);
     const savedLocale = computed(() => store.state.app.locale);
+    const landingPageData = computed(() => store.state.app.landingPageData);
 
     const reorderResponse = (res) => {
       return res.sort((a, b) => a.id - b.id);
@@ -117,6 +121,8 @@ export default {
     watchEffect(() => {
       if (savedLocale.value !== "en") {
         getData();
+      } else {
+        getData();
       }
     });
 
@@ -125,6 +131,7 @@ export default {
       loading,
       applicationModal,
       modalActive,
+      landingPageData,
     };
   },
 };

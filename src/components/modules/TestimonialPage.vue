@@ -2,6 +2,7 @@
   <SplashScreen v-show="appLoading" />
   <div v-show="!appLoading" class="px-4 pb-6 relative">
     <div
+      v-if="testimonial"
       class="w-full lg:max-w-[calc(100vw-200px)] mx-auto mt-[120px] bg-[#F4F4F4] rounded-md py-10 lg:px-10 px-6"
     >
       <!-- {{ testimonial }} -->
@@ -67,17 +68,23 @@
         </div>
       </div>
       <div
+        v-html="testimonial?.attributes?.brief"
         class="body bg-[#E3E3E3] rounded-md lg:py-8 py-6 lg:px-8 px-4 lg:text-[18px] lg:leading-[28px] tracking-wide"
-      >
-        {{ testimonial?.attributes?.brief }}
-      </div>
+      ></div>
+    </div>
+    <div
+      v-else
+      class="flex flex-col items-center justify-center h-screen w-screen"
+    >
+      <p>Entry not found</p>
+      <router-link to="/testimonials" class="underline">Go back</router-link>
     </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
-import { computed, onBeforeMount, ref } from "vue";
+import { computed, onBeforeMount, ref, watchEffect } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import SplashScreen from "../SplashScreen.vue";
 import { useStore } from "vuex";
@@ -97,33 +104,53 @@ export default {
     const baseUrl = process.env.VUE_APP_CMS_BASEURL;
     const appLoading = computed(() => store.state.app.appLoading);
     const storedLocale = computed(() => store.state.app.locale);
-
+    // const availableTestimonials = computed(
+    //   () => store.state.app.availableTestimonials
+    // );
+    const reorderResponse = (res) => {
+      return res.sort((a, b) => a.id - b.id);
+    };
     onBeforeMount(() => {
       testimonialId.value = route.params.id;
     });
 
     const getTestimonials = async () => {
-      appLoading.value = true;
+      store.commit("setAppLoading", true);
       try {
         const response = await axios.get(
-          `${baseUrl}testimonials/${Number(
-            getCurrentRouteSlug
-          )}?populate=*&locale=${storedLocale.value}`
+          `${baseUrl}testimonials?locale=${storedLocale.value}&populate=*`
         );
         if (response.status === 200) {
-          appLoading.value = false;
-          testimonial.value = response.data.data;
+          console.log(response.data.data, "page");
+
+          store.commit(
+            "setAvailableTestimonials",
+            reorderResponse(response.data.data)
+          );
+          store.commit("setAppLoading", false);
+          const data = response.data.data;
+          testimonial.value = data?.find(
+            (obj) => obj.id == getCurrentRouteSlug
+          );
+          console.log(testimonial.value, "okrrr");
         }
         // store.commit("setAvailableTestimonials", reorderResponse(res));
       } catch (error) {
         console.error(error);
       }
     };
-    getTestimonials();
+
+    watchEffect(() => {
+      getTestimonials();
+    });
 
     return { testimonial, appLoading };
   },
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style>
+.body p > span {
+  font-family: "Urbanist", sans-serif !important;
+}
+</style>

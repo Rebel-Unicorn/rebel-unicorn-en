@@ -139,8 +139,8 @@ export default {
 };
 </script>
 <style>
-#accordion-disclosure > ul > li {
-  list-style-type: disc;
+#accordion-disclosure ul {
+  list-style-type: disc !important;
   margin-left: 8px;
   margin-top: 12px;
 }

@@ -4,7 +4,7 @@
       id="home"
       class="scroll-section section-1 lg:h-screen h-auto w-screen flex items-center justify-center flex-shrink-0"
     >
-      <HomeModule v-if="!appLoading && landingPageData" />
+      <HomeModule v-if="!appLoading" />
     </section>
     <section
       id="services"
@@ -45,14 +45,14 @@
       class="bottom-nav w-[max-content] rounded-full flex items-center overflow-x-auto"
     >
       <div
-        v-for="url in urls"
+        v-for="url in landingPageData?.NavComponent"
         :key="url.id"
-        :data-section="url.href"
+        :data-section="url.url"
         :class="[
           `sm:py-2 py-[5px] sm:px-4 px-2 rounded-full font-normal text-[16px] leading-[19.36px] !tracking-[0.6px] text-white cursor-pointer transition duration-300 delay-500 ease-in-out whitespace-nowrap`,
         ]"
       >
-        {{ url.name }}
+        {{ url.title }}
       </div>
     </nav>
     <nav
@@ -60,15 +60,15 @@
       class="bottom-nav w-full md:max-w-[max-content] max-w-[calc(100vw-35px)] mx-auto rounded-full flex items-center overflow-x-auto"
     >
       <a
-        v-for="url in urls"
+        v-for="url in landingPageData?.NavComponent"
         :key="url.id"
-        :data-section="url.href"
-        :href="`#${url.href}`"
+        :data-section="url.url"
+        :href="`#${url.url}`"
         :class="[
           `sm:py-2 py-[5px] sm:px-4 px-2 rounded-full font-normal text-[16px] leading-[19.36px] text-white cursor-pointer transition duration-300 delay-50 ease-in-out whitespace-nowrap`,
         ]"
       >
-        {{ url.name }}
+        {{ url.title }}
       </a>
     </nav>
   </div>
@@ -76,7 +76,16 @@
 
 <script>
 // @ is an alias to /src
-import { onMounted, onBeforeMount, ref, onUnmounted, computed } from "vue";
+import {
+  onMounted,
+  onBeforeMount,
+  ref,
+  onUnmounted,
+  computed,
+  watchEffect,
+  onUpdated,
+  // watchEffect,
+} from "vue";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
@@ -104,6 +113,7 @@ export default {
     const store = useStore();
     const landingPageData = computed(() => store.state.app.landingPageData);
     const appLoading = computed(() => store.state.app.appLoading);
+    const storedLocale = computed(() => store.state.app.locale);
 
     const urls = ref([
       { id: 1, name: "Home", href: "home", active: true },
@@ -122,17 +132,12 @@ export default {
       gsap.registerPlugin(ScrollTrigger);
       gsap.registerPlugin(ScrollToPlugin);
     });
+    const localeKey = computed(() => `locale-${storedLocale.value}`);
     onMounted(async () => {
-      // const activeSection = ref();
-      // document.addEventListener("resize", updateWidth());
-      const nav = gsap.utils.toArray("nav div");
+      let nav = gsap.utils.toArray("nav div");
+      const sections = gsap.utils.toArray(".scroll-section");
       const setActiveNavLink = (sectionId) => {
         // Remove active class from all nav links
-        // if (sectionId === section.id) {
-        //   console.log(
-        //     document.querySelector(`nav div[data-section="${sectionId}"]`)
-        //   );
-        // }
         nav.forEach((link) => link.classList.remove("nav-active"));
 
         // Add active class to the corresponding nav link
@@ -146,9 +151,6 @@ export default {
           activeLink.classList.remove("nav-active");
         }
       };
-
-      const sections = gsap.utils.toArray(".scroll-section");
-      // const navbarLinks = document.querySelectorAll(".navbar div");
 
       const checkSectionsInViewport = () => {
         let observerOptions = {
@@ -185,7 +187,6 @@ export default {
                     `nav div[data-section="${section.id}"]`
                   )
                 : document.querySelector(`nav a[data-section="${section.id}"]`);
-            // console.log(activeLink);
             if (entry.isIntersecting) {
               // console.log(`Section ${section.id} is in the viewport.`);
               // Perform actions for the section in the viewport
@@ -204,10 +205,6 @@ export default {
       checkSectionsInViewport();
 
       if (windowWidth.value > 1281) {
-        window.addEventListener("resize", () => {
-          console.log("resized");
-          updateWidth();
-        });
         let nav = gsap.utils.toArray("nav div"),
           getMaxWidth = () =>
             sections.reduce(
@@ -306,33 +303,23 @@ export default {
       }
     });
 
-    onUnmounted(async () => {
-      // document.removeEventListener("resize", updateWidth());
+    onUpdated(() => {
+      console.log("updated");
+    });
+
+    onUnmounted(() => {
       window.removeEventListener("resize", () => {
         updateWidth();
       });
-    });
+      ScrollTrigger.removeEventListener("refreshInit");
 
-    return { urls, windowWidth, landingPageData, appLoading };
+      // ScrollTrigger.refresh(true);
+    });
+    watchEffect(() => {});
+
+    return { urls, windowWidth, landingPageData, appLoading, localeKey };
   },
 };
-
-// Old scrollTrigger
-// const updatedWindowWidth = computed(() => windowWidth.value);
-
-// gsap.to(sections, {
-//   xPercent: -100 * (sections.length - 1),
-//   ease: "none",
-//   scrollTrigger: {
-//     trigger: ".scroll-wrapper",
-//     pin: true,
-//     scrub: 1,
-//     snap: 1 / (sections.length - 1),
-//     start: "center center",
-//     end: () => "+=" + updatedWindowWidth.value,
-//     // onToggle: (self) => console.log(self.isActive),
-//   },
-// });
 </script>
 <style>
 section {
