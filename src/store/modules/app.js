@@ -14,6 +14,7 @@ const state = {
 };
 const getters = {
   locale: (state) => state.locale,
+  landingPageData: (state) => state.landingPageData,
 };
 const mutations = {
   setAppLoading(state, appLoading) {

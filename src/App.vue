@@ -7,7 +7,7 @@
     <TopNavbar v-if="landingPageData" />
     <router-view />
     <BaseModal :modalActive="applicationModal">
-      <ApplicationForm />
+      <ApplicationForm :key="storedLocale" />
     </BaseModal>
   </main>
 </template>
@@ -41,8 +41,6 @@ export default {
     const applicationModal = computed(() => store.state.app.applicationModal);
     // eslint-disable-next-line no-unused-vars
     const modalActive = computed(() => store.state.app.modalActive);
-    // const landingPageData = computed(() => store.state.app.landingPageData);
-    const savedLocale = computed(() => store.state.app.locale);
     const landingPageData = computed(() => store.state.app.landingPageData);
 
     const reorderResponse = (res) => {
@@ -112,7 +110,7 @@ export default {
       getData();
     });
     watchEffect(() => {
-      if (savedLocale.value !== "en") {
+      if (storedLocale.value !== "en") {
         getData();
       } else {
         getData();
@@ -125,6 +123,7 @@ export default {
       applicationModal,
       modalActive,
       landingPageData,
+      storedLocale,
     };
   },
 };
