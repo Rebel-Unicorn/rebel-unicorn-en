@@ -4,7 +4,7 @@
   >
     <div class="py-10">
       <div
-        class="heading w-full md:max-w-[63.3%] max-w-full md:mb-10 mb-[62px] flex items-center justify-between"
+        class="heading w-full md:max-w-[63.3%] max-w-full md:mb-10 mb-[62px] flex flex-col items-start text-left"
       >
         <h3
           class="lg:text-[48px] text-[38px] lg:leading-[50px] leading-[38px] font-[600] mb-3"
