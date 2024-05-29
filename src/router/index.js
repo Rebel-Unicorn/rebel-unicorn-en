@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory } from "vue-router";
 // import HomeView from "../views/HomeView.vue";
-import TestimonialView from "../views/TestimonialView.vue";
-import CoachesView from "../views/CoachesView.vue";
-import SuccessesView from "../views/SuccessesView.vue";
-import TestimonialPage from "@/components/modules/TestimonialPage.vue";
+// import TestimonialView from "../views/TestimonialView.vue";
+// import CoachesView from "../views/CoachesView.vue";
+// import SuccessesView from "../views/SuccessesView.vue";
+// import TestimonialPage from "@/components/modules/TestimonialPage.vue";
 import CoachPage from "@/components/modules/CoachPage.vue";
-import TestimonialsLayout from "@/components/layouts/TestimonialsLayout.vue";
+// import TestimonialsLayout from "@/components/layouts/TestimonialsLayout.vue";
 import { useStore } from "vuex";
 
 const routes = [
@@ -21,24 +21,24 @@ const routes = [
   {
     path: "/testimonials",
     name: "TestimonialsLayout",
-    component: TestimonialsLayout,
+    component: () => import("@/components/layouts/TestimonialsLayout.vue"),
     children: [
       {
         path: "",
         name: "AllTestimonials",
-        component: TestimonialView,
+        component: () => import("../views/TestimonialView.vue"),
       },
       {
         path: "/testimonials/:id",
         name: "TestimonialPage",
-        component: TestimonialPage,
+        component: () => import("@/components/modules/TestimonialPage.vue"),
       },
     ],
   },
   {
     path: "/coaches",
     name: "Coaches",
-    component: CoachesView,
+    component: () => import("../views/CoachesView.vue"),
     children: [
       {
         path: "/coaches/:id",
@@ -50,7 +50,7 @@ const routes = [
   {
     path: "/successes",
     name: "Successes",
-    component: SuccessesView,
+    component: () => import("../views/SuccessesView.vue"),
   },
   // {
   //   path: "/about",

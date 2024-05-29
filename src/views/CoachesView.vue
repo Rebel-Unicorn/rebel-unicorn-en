@@ -86,6 +86,13 @@ export default {
         updateWidth();
         console.log("resized");
       });
+      // const header = document.getElementsByTagName("header");
+      // if (header) {
+      //   console.log(header);
+      //   header[0].style.backgroundColor = "#ffffffd1";
+      //   header[0].style.backdropBlur = "3px";
+      //   header[0].classList.add("shadow-lg");
+      // }
     });
     onUnmounted(async () => {
       // document.addEventListener("resize", updateWidth());
