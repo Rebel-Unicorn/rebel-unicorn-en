@@ -652,15 +652,6 @@ export default {
         console.error({ error: "Error fetching the resource" });
       }
     };
-    const getApplications = async () => {
-      try {
-        const response = await ApplicationService.getAllApplications();
-        console.log(response, "applications response");
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    getApplications();
 
     onMounted(() => {
       const fillBtn = document.getElementById("submit_application");
