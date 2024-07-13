@@ -434,7 +434,7 @@
                         ?.paid_items"
                       v-slot="{ active, selected }"
                       :key="option.id"
-                      :value="option.name"
+                      :value="option.title"
                       as="template"
                     >
                       <li
@@ -625,8 +625,8 @@ export default {
       grade: { required, $autoDirty: true, $lazy: true },
       major: { required, $autoDirty: true, $lazy: true },
       target_industry: { required, $autoDirty: true, $lazy: true },
-      consulting_direction: "",
-      paid_items: "",
+      consulting_direction: { $autoDirty: true, $lazy: true },
+      paid_items: { $autoDirty: true },
     }));
     const v$ = useVuelidate(rules, applicationData);
 
@@ -652,6 +652,15 @@ export default {
         console.error({ error: "Error fetching the resource" });
       }
     };
+    const getApplications = async () => {
+      try {
+        const response = await ApplicationService.getAllApplications();
+        console.log(response, "applications response");
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getApplications();
 
     onMounted(() => {
       const fillBtn = document.getElementById("submit_application");

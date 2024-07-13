@@ -80,6 +80,7 @@ export default {
       () => store.state.app.availableTestimonials
     );
     const baseUrl = process.env.VUE_APP_CMS_BASEURL;
+    const testimonialsUrl = process.env.VUE_APP_CMS_TESTIMONIALS_ENDPOINT;
     const appLoading = computed(() => store.state.app.appLoading);
     const storedLocale = computed(() => store.state.app.locale);
     const windowWidth = ref(window.innerWidth);
@@ -93,7 +94,7 @@ export default {
       store.commit("setAppLoading", true);
       try {
         const response = await axios.get(
-          `${baseUrl}testimonials?locale=${storedLocale.value}&populate=*`
+          `${baseUrl}${testimonialsUrl}&locale=${storedLocale.value}`
         );
         if (response.status === 200) {
           console.log(response.data.data, "page");
