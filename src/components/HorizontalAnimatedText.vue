@@ -3,8 +3,8 @@
     <div class="text-marquee">
       <div class="text-single">
         <span class="text js-text">{{ content }}</span>
-        <span class="text js-text">{{ content }}</span>
-        <span class="text js-text">{{ content }}</span>
+        <!-- <span class="text js-text">{{ content }}</span>
+        <span class="text js-text">{{ content }}</span> -->
         <!-- <span class="text js-text">{{ content }}</span>
         <span class="text js-text">{{ content }}</span> -->
       </div>
