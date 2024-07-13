@@ -1,9 +1,9 @@
 <template>
   <div class="sticky-text right">
     <div class="text-content rt">
-      <span class="slide-text-down">{{ content }}</span>
-      <span class="slide-text-down">{{ content }}</span>
-      <span class="slide-text-down">{{ content }}</span>
+      <span class="slide-text-down font-[600]">{{ content }}</span>
+      <!-- <span class="slide-text-down">{{ content }}</span>
+      <span class="slide-text-down">{{ content }}</span> -->
     </div>
   </div>
 </template>
@@ -312,7 +312,7 @@ export default {
   writing-mode: tb;
 }
 .sticky-text span {
-  font-size: 2.3rem;
+  font-size: 2.5rem;
   display: block;
 }
 .slide-text-down,

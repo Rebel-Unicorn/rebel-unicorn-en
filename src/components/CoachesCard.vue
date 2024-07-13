@@ -19,7 +19,7 @@
         <p
           class="mb-2 lg:text-[22px] text-[20px] lg:leading-[38px] leading-[30px] font-medium"
         >
-          {{ `"${name}"` }}
+          {{ `${name}` }}
         </p>
         <p class="text-sm">
           {{ specialization }}
